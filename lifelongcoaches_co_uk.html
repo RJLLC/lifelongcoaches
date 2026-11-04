@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-GB" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LifelongCoaches.co.uk | Elite Longevity &amp; Strength Coaching for Affluent Seniors</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f4f8f6',
+                            100: '#e1ede6',
+                            200: '#c2dccb',
+                            600: '#114232',
+                            700: '#0c3024',
+                            800: '#082119',
+                            900: '#05140f',
+                            950: '#030b08',
+                        },
+                        gold: {
+                            500: '#D4AF37',
+                            600: '#C59B27',
+                            400: '#E6C665',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
+
+    <!-- Top Luxury Announcement Bar -->
+    <div class="bg-brand-950 text-gold-400 px-4 py-3 text-center text-xs tracking-widest uppercase font-medium border-b border-gold-500/20">
+        <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
+    </div>
+
+    <!-- Luxury Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-brand-900/95 backdrop-blur-md border-b border-brand-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-24 flex items-center justify-between">
+            <!-- Brand Logo & Monogram -->
+            <a href="#" class="flex items-center gap-4 group">
+                <div class="w-12 h-12 rounded-xl bg-brand-800 border border-gold-500/40 p-1.5 flex items-center justify-center shadow-lg group-hover:border-gold-500 transition duration-300">
+                    <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"></path>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-2xl font-serif font-bold tracking-wide text-white block leading-none">Lifelong<span class="text-gold-400">Coaches</span></span>
+                    <span class="text-[9px] uppercase tracking-[0.25em] font-medium text-brand-200 mt-1 block">Private Longevity &amp; Strength Guild</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.2em] font-medium text-brand-100">
+                <a href="#search-section" class="hover:text-gold-400 transition">Private Directory</a>
+                <a href="#philosophy" class="hover:text-gold-400 transition">The Manifesto</a>
+                <a href="#for-coaches" class="hover:text-gold-400 transition">Practitioner Guild</a>
+            </nav>
+
+            <!-- CTA Actions -->
+            <div class="flex items-center gap-4">
+                <a href="#for-coaches" class="hidden sm:inline-flex text-xs uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-2 transition">
+                    Practitioner Sign In
+                </a>
+                <a href="#search-section" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-xs uppercase tracking-widest px-6 py-3.5 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                    Engage Private Coach
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-brand-900 py-24 lg:py-36 border-b border-brand-800 overflow-hidden">
+        <!-- Ambient Luxury Glow -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold-500/5 blur-[140px] pointer-events-none rounded-full"></div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-3 bg-brand-800/80 text-gold-400 text-xs font-semibold uppercase tracking-[0.25em] px-5 py-2 rounded-full mb-8 border border-gold-500/30 shadow-sm">
+                <span>✦</span> Britain's Premier Senior Longevity &amp; Performance Network
+            </div>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-white leading-[1.1] mb-8">
+                Outperform Your Age.<br><span class="italic font-normal text-gold-400">Out-Train Your Descendants.</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-brand-100 max-w-3xl mx-auto mb-14 leading-relaxed font-light">
+                Chronological age is merely a statistic. Secure bespoke, elite physical conditioning tailored exclusively for individuals who command uncompromising vitality, supreme independence, and ageless presence.
+            </p>
+
+            <!-- Search Widget Box (Elite Styling) -->
+            <div id="search-section" class="bg-white p-4 sm:p-5 rounded-2xl shadow-2xl max-w-4xl mx-auto text-brand-900 border border-gold-500/30">
+                <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                    <div class="sm:col-span-5 relative flex items-center">
+                        <span class="absolute left-4 text-brand-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </span>
+                        <input type="text" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm">
+                    </div>
+                    <div class="sm:col-span-4 relative flex items-center">
+                        <span class="absolute left-4 text-brand-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                        </span>
+                        <select class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer">
+                            <option>Elite Longevity Focus &amp; Goals</option>
+                            <option>Advanced Strength &amp; Muscle Preservation</option>
+                            <option>Absolute Balance &amp; Agility Mastery</option>
+                            <option>Post-Retirement High Performance</option>
+                            <option>Bespoke Home-Visit Conditioning</option>
+                        </select>
+                        <span class="absolute right-4 text-brand-400 pointer-events-none text-xs">▼</span>
+                    </div>
+                    <div class="sm:col-span-3">
+                        <button class="w-full h-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-wider py-4 px-6 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-xs">
+                            Find Specialist
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-wrap items-center justify-between px-3 pt-4 text-xs text-brand-700 font-medium border-t border-brand-100 mt-3">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        Rigorously vetted elite practitioners &amp; clinical insurance
+                    </span>
+                    <span class="font-serif italic text-brand-900">Private Session Investment: £30–£60 / hour</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area: Curated Elite Directory -->
+    <main class="max-w-7xl mx-auto px-6 lg:px-12 py-20 bg-brand-900">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-brand-800 gap-6">
+            <div>
+                <span class="text-gold-400 uppercase tracking-[0.25em] text-xs font-semibold block mb-2">Private Guild Roster</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold text-white">Featured Longevity Specialists</h2>
+                <p class="text-sm text-brand-200 mt-2 font-light">Verified private masters of senior physical conditioning available for discreet residential or private studio visits.</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-xs uppercase tracking-wider font-semibold text-brand-300">Sort Roster:</span>
+                <select class="bg-brand-800 border border-brand-700 text-white text-xs uppercase tracking-wider rounded-lg px-4 py-3 font-medium focus:outline-none focus:border-gold-500">
+                    <option>Proximity (Postcode Radius)</option>
+                    <option>Elite Credentials &amp; Honours</option>
+                    <option>Investment: High to Low</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Coach Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-brand-900">
+
+            <!-- Coach Card 1 -->
+            <div class="bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300">
+                <div class="absolute top-8 right-8 flex items-center gap-2">
+                    <span class="bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                        2.4 miles away
+                    </span>
+                </div>
+                
+                <div>
+                    <div class="flex items-center gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                        <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
+                        <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
+                        <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
+                    </div>
+
+                    <div class="flex items-start gap-6 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300" alt="Sarah Jenkins" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-brand-950">Sarah Jenkins, BSc (Hons)</h3>
+                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Senior Strength &amp; Biological Longevity Specialist</p>
+                            <p class="text-xs text-brand-500 mt-1 font-medium">Mayfair &amp; Chelsea • Residential &amp; Private Studio</p>
+                        </div>
+                    </div>
+
+                    <!-- Best Fit Clients Section -->
+                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Sarah elevates most):</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Advanced strength</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Reverse aging &amp; vitality</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Executive fitness</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
+                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Functional hypertrophy, neuromuscular balance, high-performance longevity.</p>
+                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Meticulous, motivating, highly calibrated, uncompromising on form.</p>
+                    </div>
+
+                    <!-- Trust & Verification Bar -->
+                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span>DBS &amp; Enhanced Check</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span>CIMSPA Fellow Insured</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>15 Years Elite Exp</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action Row -->
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-2xl font-serif font-bold text-brand-950">£50 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition">
+                            Shortlist
+                        </button>
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md">
+                            Secure Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Card 2 -->
+            <div class="bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300">
+                <div class="absolute top-8 right-8 flex items-center gap-2">
+                    <span class="bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                        4.1 miles away
+                    </span>
+                </div>
+                
+                <div>
+                    <div class="flex items-center gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                        <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
+                        <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
+                        <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
+                    </div>
+
+                    <div class="flex items-start gap-6 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300" alt="Marcus Vance" class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-brand-100">
+                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-brand-950">Marcus Vance, MSc</h3>
+                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Retirement High Performance &amp; Vitality Coach</p>
+                            <p class="text-xs text-brand-500 mt-1 font-medium">Kensington &amp; Knightsbridge • Virtual &amp; In-Person</p>
+                        </div>
+                    </div>
+
+                    <!-- Best Fit Clients Section -->
+                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Marcus elevates most):</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Elite cardiovascular health</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint preservation</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Dynamic physical agility</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Executive resilience</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
+                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanical longevity, kinetic power output, bespoke senior conditioning.</p>
+                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Analytical, calm, results-driven, highly sophisticated.</p>
+                    </div>
+
+                    <!-- Trust & Verification Bar -->
+                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span>DBS &amp; Enhanced Check</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span>REPs Elite Insured</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>12 Years Elite Exp</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action Row -->
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-2xl font-serif font-bold text-brand-950">£60 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition">
+                            Shortlist
+                        </button>
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md">
+                            Secure Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- The Manifesto Section -->
+    <section id="philosophy" class="bg-brand-950 py-28 border-t border-brand-800 text-white relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <span class="text-gold-400 text-xs font-semibold uppercase tracking-[0.3em] block mb-4">The Longevity Manifesto</span>
+            <h2 class="text-4xl sm:text-5xl font-serif font-bold tracking-tight mb-8 leading-tight">
+                "Physical decline is optional. Excellence is a lifelong discipline."
+            </h2>
+            <p class="text-brand-200 text-lg font-light leading-relaxed mb-12 max-w-2xl mx-auto">
+                Affluent individuals invest meticulously in their portfolios, real estate, and lifestyle. Your physical vessel, the absolute foundation of your freedom and enjoyment deserves world class private engineering.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 border-t border-brand-800 text-left">
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-gold-400 mb-2">Absolute Privacy</h3>
+                    <p class="text-xs text-brand-300 font-light leading-relaxed">Discreet residential sessions delivered directly to your home gym or private estate by elite practitioners.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-gold-400 mb-2">Peerless Credentials</h3>
+                    <p class="text-xs text-brand-300 font-light leading-relaxed">Every coach undergoes rigorous qualification, insurance, and enhanced background vetting.</p>
+                </div>
+                <div>
+                    <h3 class="font-serif text-xl font-bold text-gold-400 mb-2">Zero Commissions</h3>
+                    <p class="text-xs text-brand-300 font-light leading-relaxed">Transparent £30–£60/hr session rates paid directly to your independent master practitioner.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Coaches Section (Elite Practitioner Guild) -->
+    <section id="for-coaches" class="bg-brand-900 py-28 border-t border-brand-800">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <span class="text-gold-400 font-semibold text-xs uppercase tracking-[0.25em] bg-brand-800 px-4 py-1.5 rounded-full border border-gold-500/20 inline-block mb-4">Practitioner Guild Roster</span>
+            <h2 class="text-4xl sm:text-5xl font-serif font-bold tracking-tight text-white mb-6">
+                Elevate Your Practice with High-Net-Worth Clients.
+            </h2>
+            <p class="text-brand-200 text-base font-light leading-relaxed max-w-2xl mx-auto mb-14">
+                Connect directly with discerning older adults and families investing in premium physical longevity. Keep 100% of your hourly fees.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-16">
+                <div class="bg-brand-950 border border-brand-800 p-8 rounded-2xl shadow-xl">
+                    <div class="text-gold-400 font-serif text-2xl font-bold mb-3">01. Apply &amp; Verify</div>
+                    <p class="text-xs text-brand-200 font-light leading-relaxed">Submit your advanced fitness credentials and clinical insurance for our rigorous guild review.</p>
+                </div>
+                <div class="bg-brand-950 border border-brand-800 p-8 rounded-2xl shadow-xl">
+                    <div class="text-gold-400 font-serif text-2xl font-bold mb-3">02. Configure Scenarios</div>
+                    <p class="text-xs text-brand-200 font-light leading-relaxed">Tick your precise longevity specialisms, postcode radius, and private client preferences in your secure portal.</p>
+                </div>
+                <div class="bg-brand-950 border border-brand-800 p-8 rounded-2xl shadow-xl">
+                    <div class="text-gold-400 font-serif text-2xl font-bold mb-3">03. 2 Months Free</div>
+                    <p class="text-xs text-brand-200 font-light leading-relaxed">Founding coaches enjoy a 2-month complimentary trial, followed by a flat £25.00/month membership.</p>
+                </div>
+            </div>
+
+            <div class="inline-flex flex-col sm:flex-row gap-5">
+                <a href="#" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl shadow-2xl transition duration-300">
+                    Apply for Founding Practitioner Status &rarr;
+                </a>
+                <a href="#" class="bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl transition duration-300">
+                    Practitioner Sign In
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comprehensive Luxury Footer -->
+    <footer class="bg-brand-950 border-t border-brand-800 text-brand-300 pt-20 pb-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- Footer Top Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-brand-800">
+                
+                <!-- Brand Column -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-900 border border-gold-500/40 p-1.5 flex items-center justify-center">
+                            <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="font-serif font-bold text-white text-xl tracking-wide block">LifelongCoaches.co.uk</span>
+                            <span class="text-[10px] text-gold-400 uppercase tracking-[0.25em] font-medium">The British Senior Longevity Guild</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-brand-200 font-light leading-relaxed max-w-sm">
+                        Connecting affluent seniors and discerning families with elite, vetted private fitness and strength specialists across the United Kingdom. Uncompromising standards for lifelong vitality.
+                    </p>
+                    <div class="text-xs text-brand-400 font-mono">
+                        Registered in England &amp; Wales • Company No. 17334702
+                    </div>
+                </div>
+
+                <!-- Column 1: Private Clients -->
+                <div class="space-y-4">
+                    <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Private Clients</h4>
+                    <ul class="space-y-2.5 text-xs font-light">
+                        <li><a href="#search-section" class="hover:text-gold-400 transition">Find Local Specialist</a></li>
+                        <li><a href="#philosophy" class="hover:text-gold-400 transition">The Longevity Manifesto</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Home Visit Concierge</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Client Verification Standards</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Private Consultation Desk</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Practitioner Guild -->
+                <div class="space-y-4">
+                    <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Practitioner Guild</h4>
+                    <ul class="space-y-2.5 text-xs font-light">
+                        <li><a href="#for-coaches" class="hover:text-gold-400 transition">Apply for Membership</a></li>
+                        <li><a href="#for-coaches" class="hover:text-gold-400 transition">Founding Trial (£25/mo)</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Credential Verification</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Practitioner Portal Login</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Guild Code of Conduct</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Governance & Legal -->
+                <div class="space-y-4">
+                    <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Governance &amp; Legal</h4>
+                    <ul class="space-y-2.5 text-xs font-light">
+                        <li><a href="#" class="hover:text-gold-400 transition">Privacy &amp; Discretion Policy</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Client Terms &amp; Conditions</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Practitioner Membership Terms</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Safeguarding &amp; DBS Protocols</a></li>
+                        <li><a href="#" class="hover:text-gold-400 transition">Cookie Compliance</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-400 font-light">
+                <div>
+                    <p>&copy; 2026 LifelongCoaches.co.uk. All rights reserved. Designed for elite longevity.</p>
+                </div>
+                <div class="flex items-center gap-6">
+                    <span class="flex items-center gap-1.5 text-gold-400 font-medium">
+                        <span>✦</span> Secure SSL Encryption
+                    </span>
+                    <span class="flex items-center gap-1.5 text-gold-400 font-medium">
+                        <span>✦</span> UK Vetted Guild
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
