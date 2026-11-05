@@ -1,34 +1,36 @@
 import os
 import google.generativeai as genai
 
-# Configure secure Google Gemini API key
 api_key = os.environ.get("GEMINI_API_KEY")
 if not api_key:
     raise ValueError("GEMINI_API_KEY secret is not set in GitHub repository settings.")
 
 genai.configure(api_key=api_key)
-# Utilizing advanced Gemini reasoning capabilities for executive agent coordination
 model = genai.GenerativeModel('gemini-2.5-flash')
 
 def run_presidential_agent_swarm():
-    print("👑 Initializing Presidential Multi-Agent Executive Swarm for LifelongCoaches.co.uk...")
+    print("👑 Initializing Presidential Multi-Agent Executive Swarm & Deliberation Loop...")
     
-    master_directive = """
-    You are the CTO Agent heading an elite executive multi-agent software engineering team building LifelongCoaches.co.uk.
-    Target Audience: Ultra-successful, affluent seniors and high-net-worth individuals who view health, strength, and longevity as the ultimate status symbol (out-performing younger generations in vitality and independence).
-    Pricing Model: £30-£60/hr paid directly to independent local coaches; coaches pay £25/month after a 2-month free trial.
+    deliberation_prompt = """
+    You are the CTO Agent leading an elite executive multi-agent software engineering team (UX Director, Growth/SEO Director, Backend Architect, Creative Media Director) building LifelongCoaches.co.uk.
     
-    The Departmental Heads (UX Director, Growth/SEO Director, Backend Architect, and Creative Media Director) must now coordinate their reports to optimize the platform's code, structure, and asset placeholders.
+    Conduct an exhaustive executive board review to elevate this platform to world-class enterprise standards for affluent seniors (£30-£60/hr coaches, £25/mo subscription).
     
-    Provide an executive briefing and actionable code/asset updates for the repository to maintain world-class prestige.
+    Analyze what a luxury fitness platform requires:
+    1. Precision postcode radius search integration.
+    2. High-net-worth conversion psychology and typography.
+    3. Supabase backend schema integration for coaches and secure authentication.
+    4. Exclusive image placeholder architecture for high-end fitness assets.
+    
+    Provide the detailed architectural deliberation report and exact file optimizations needed.
     """
     
-    response = model.generate_content(master_directive)
+    response = model.generate_content(deliberation_prompt)
     
-    print("\n================== EXECUTIVE SWARM REPORT ==================")
+    print("\n================== EXECUTIVE DELIBERATION REPORT ==================")
     print(response.text)
-    print("============================================================")
-    print("👑 Presidential Agent Swarm execution completed successfully.")
+    print("====================================================================")
+    print("👑 Deliberation and planning cycle completed successfully.")
 
 if __name__ == "__main__":
     run_presidential_agent_swarm()
