@@ -4,6 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LifelongCoaches.co.uk | Elite Longevity &amp; Strength Coaching for Affluent Seniors</title>
+    <!-- JSON-LD Schema Markup - CTO Spec 3.3.2 -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "MedicalBusiness",
+          "additionalType": ["HealthAndBeautyBusiness", "ProfessionalService", "SportsActivityLocation"],
+          "name": "LifelongCoaches.co.uk",
+          "url": "https://lifelongcoaches.co.uk",
+          "logo": "https://lifelongcoaches.co.uk/assets/images/lifelong-coaches-logo.png",
+          "image": "https://lifelongcoaches.co.uk/assets/images/longevity-banner.jpg",
+          "description": "LifelongCoaches.co.uk is Britain's elite marketplace for bespoke longevity and strength coaching for affluent adults aged 50+, connecting them with rigorously vetted private fitness and health specialists across the United Kingdom.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "71-75 Shelton Street",
+            "addressLocality": "Covent Garden",
+            "addressRegion": "London",
+            "postalCode": "WC2H 9JQ",
+            "addressCountry": "GB"
+          },
+          "telephone": "+442071838814",
+          "email": "contact@lifelongcoaches.co.uk",
+          "priceRange": "£30-£60 per hour",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "09:00",
+              "closes": "17:00"
+            }
+          ],
+          "areaServed": {
+            "@type": "Country",
+            "name": "United Kingdom"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Elite Longevity Coaching Services",
+            "url": "https://lifelongcoaches.co.uk#search-section"
+          },
+          "sameAs": [
+            // Add official social media profiles here if applicable
+            // "https://twitter.com/lifelongcoaches",
+            // "https://www.linkedin.com/company/lifelongcoaches"
+          ]
+        }
+    </script>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,7 +62,7 @@
                             100: '#e1ede6',
                             200: '#c2dccb',
                             600: '#114232',
-                            700: '#0c3024',
+                            700: '#0c3024', /* Ensured brand-700 is defined for contrast fixes */
                             800: '#082119',
                             900: '#0c221c', /* Adjusted for better contrast with gold */
                             950: '#030b08',
@@ -80,6 +126,35 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Mobile Nav specific styles - CTO Spec 3.2.2 */
+        .mobile-nav {
+            transform: translateX(100%); /* Start off-screen */
+            visibility: hidden; /* Hide initially for accessibility & transitions */
+        }
+        .mobile-nav.is-open {
+            transform: translateX(0); /* Slide in */
+            visibility: visible; /* Make visible when open */
+        }
+        .hamburger-icon span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: currentColor; /* Inherit color from parent */
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger-icon span:nth-child(2) {
+            margin: 6px 0;
+        }
+        .hamburger-icon.is-active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger-icon.is-active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-icon.is-active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
     </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
@@ -95,7 +170,7 @@
     <header class="sticky top-0 z-50 bg-brand-900/95 backdrop-blur-md border-b border-brand-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 h-24 flex items-center justify-between">
             <!-- Brand Logo & Monogram -->
-            <a href="#" class="flex items-center gap-4 group">
+            <a href="/" class="flex items-center gap-4 group"> <!-- CTO Spec 3.1.2: Logo href="/" -->
                 <div class="w-12 h-12 rounded-xl bg-brand-800 border border-gold-500/40 p-1.5 flex items-center justify-center shadow-lg group-hover:border-gold-500 transition duration-300">
                     <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
@@ -104,19 +179,28 @@
                 </div>
                 <div>
                     <span class="text-2xl font-serif font-bold tracking-wide text-white block leading-none">Lifelong<span class="text-gold-400">Coaches</span></span>
-                    <span class="text-[9px] uppercase tracking-[0.25em] font-medium text-brand-200 mt-1 block">Private Longevity &amp; Strength Guild</span>
+                    <span class="text-xs normal-case tracking-normal font-medium text-brand-200 mt-1 block">Private Longevity &amp; Strength Guild</span> <!-- CTO Spec 3.4.2: text-[9px] uppercase tracking-[0.25em] -> text-xs normal-case tracking-normal -->
                 </div>
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.2em] font-medium text-brand-100">
+            <nav class="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium text-brand-100"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                 <a href="#search-section" class="hover:text-gold-400 transition">Private Directory</a>
                 <a href="#philosophy" class="hover:text-gold-400 transition">The Manifesto</a>
                 <a href="#for-coaches" class="hover:text-gold-400 transition">Practitioner Guild</a>
             </nav>
 
-            <!-- CTA Actions -->
+            <!-- CTA Actions & Mobile Hamburger -->
             <div class="flex items-center gap-4">
+                <!-- Mobile Hamburger Button - CTO Spec 3.2.2 -->
+                <button id="mobile-nav-toggle" class="md:hidden p-2 -mr-2 rounded-md text-gold-400 hover:text-white hover:bg-brand-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold-500 transition" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger-icon flex flex-col justify-center items-center h-full">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+
                 <a href="#" data-modal-target="practitioner-sign-in" class="hidden sm:inline-flex text-xs uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-2 transition">
                     Practitioner Sign In
                 </a>
@@ -126,6 +210,26 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation Menu - CTO Spec 3.2.2 -->
+    <nav id="mobile-nav" class="mobile-nav fixed inset-0 bg-brand-950 z-[90] flex flex-col justify-center items-center p-8 transform transition-transform duration-300 ease-out md:hidden" role="navigation" aria-label="Mobile main navigation">
+        <button id="mobile-nav-close" class="absolute top-6 right-6 text-brand-200 hover:text-gold-400 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-md p-2" aria-label="Close mobile navigation">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <ul class="space-y-6 text-center">
+            <li><a href="#search-section" class="mobile-nav-link text-xl font-serif text-brand-50 hover:text-gold-400 transition py-2 block">Private Directory</a></li>
+            <li><a href="#philosophy" class="mobile-nav-link text-xl font-serif text-brand-50 hover:text-gold-400 transition py-2 block">The Manifesto</a></li>
+            <li><a href="#for-coaches" class="mobile-nav-link text-xl font-serif text-brand-50 hover:text-gold-400 transition py-2 block">Practitioner Guild</a></li>
+        </ul>
+        <div class="flex flex-col gap-4 w-full max-w-xs mt-12">
+            <a href="#" data-modal-target="practitioner-sign-in" class="mobile-nav-link w-full text-base uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-3 rounded-lg border border-gold-400 hover:border-white transition-colors text-center">
+                Practitioner Sign In
+            </a>
+            <a href="#" data-modal-target="engage-coach" class="mobile-nav-link w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-base uppercase tracking-widest px-6 py-3 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 text-center">
+                Engage Private Coach
+            </a>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
     <section class="relative bg-brand-900 py-24 lg:py-36 border-b border-brand-800 overflow-hidden">
@@ -235,13 +339,13 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Sarah Jenkins, BSc (Hons)</h3>
-                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Senior Strength &amp; Biological Longevity Specialist</p>
-                        <p class="text-xs text-brand-500 mt-1 font-medium">Mayfair &amp; Chelsea • Residential &amp; Private Studio</p>
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Senior Strength &amp; Biological Longevity Specialist</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Mayfair &amp; Chelsea • Residential &amp; Private Studio</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Sarah elevates most):</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Sarah elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Advanced strength</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Reverse aging &amp; vitality</span>
@@ -250,7 +354,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Functional hypertrophy, neuromuscular balance, high-performance longevity.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Meticulous, motivating, highly calibrated, uncompromising on form.</p>
                 </div>
@@ -272,7 +376,7 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
                         <span class="text-2xl font-serif font-bold text-brand-950">£50 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
@@ -315,13 +419,13 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Marcus Vance, MSc</h3>
-                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Retirement High Performance &amp; Vitality Coach</p>
-                        <p class="text-xs text-brand-500 mt-1 font-medium">Kensington &amp; Knightsbridge • Virtual &amp; In-Person</p>
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Post-Retirement High Performance &amp; Vitality Coach</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Kensington &amp; Knightsbridge • Virtual &amp; In-Person</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Marcus elevates most):</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Marcus elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Elite cardiovascular health</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint preservation</span>
@@ -330,7 +434,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanical longevity, kinetic power output, bespoke senior conditioning.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Analytical, calm, results-driven, highly sophisticated.</p>
                 </div>
@@ -352,7 +456,7 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
                         <span class="text-2xl font-serif font-bold text-brand-950">£60 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
@@ -395,13 +499,13 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
-                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Bone Density &amp; Musculoskeletal Resilience</p>
-                        <p class="text-xs text-brand-500 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinical Visits</p>
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Bone Density &amp; Musculoskeletal Resilience</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinical Visits</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Evelyn elevates most):</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Evelyn elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative mobility</span>
@@ -410,7 +514,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Osteoporosis management, joint mechanics, rehabilitation protocols.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Empathetic, scientifically-driven, detail-oriented.</p>
                 </div>
@@ -432,7 +536,7 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
                         <span class="text-2xl font-serif font-bold text-brand-950">£55 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
@@ -475,13 +579,13 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Mr. Alistair Finch, PT</h3>
-                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Neuromuscular Balance &amp; Agility Restoration</p>
-                        <p class="text-xs text-brand-500 mt-1 font-medium">Cotswolds &amp; Glos • Residential &amp; Remote</p>
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Neuromuscular Balance &amp; Agility Restoration</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Cotswolds &amp; Glos • Residential &amp; Remote</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Alistair elevates most):</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Alistair elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Neuromuscular balance</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Agility mastery</span>
@@ -490,7 +594,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Proprioception training, functional movement, active lifestyle coaching.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Engaging, patient, nature-integrated, highly motivational.</p>
                 </div>
@@ -512,7 +616,7 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
                         <span class="text-2xl font-serif font-bold text-brand-950">£40 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
@@ -555,13 +659,13 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Ms. Eleanor Shaw, BSc</h3>
-                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Operative Mobility &amp; Recovery Specialist</p>
-                        <p class="text-xs text-brand-500 mt-1 font-medium">Sandbanks &amp; Poole • Home &amp; Yacht Visits</p>
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Post-Operative Mobility &amp; Recovery Specialist</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Sandbanks &amp; Poole • Home &amp; Yacht Visits</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Eleanor elevates most):</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Eleanor elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative rehabilitation</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint specific recovery</span>
@@ -570,7 +674,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanics, tailored recovery plans, gentle strength progression.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Nurturing, precise, patient, holistic.</p>
                 </div>
@@ -592,7 +696,7 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
                         <span class="text-2xl font-serif font-bold text-brand-950">£45 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
@@ -635,13 +739,13 @@
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Cameron Ross, MD</h3>
-                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Cardiovascular Longevity &amp; Endurance Coach</p>
-                        <p class="text-xs text-brand-500 mt-1 font-medium">Edinburgh &amp; Lothians • Executive &amp; Virtual</p>
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Cardiovascular Longevity &amp; Endurance Coach</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Edinburgh &amp; Lothians • Executive &amp; Virtual</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Cameron elevates most):</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Cameron elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Cardiovascular longevity</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Endurance training for seniors</span>
@@ -650,7 +754,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Cardiology-informed exercise, V02 max improvement, advanced metabolic programming.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Clinical, data-driven, strategic, highly refined.</p>
                 </div>
@@ -672,7 +776,7 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
                         <span class="text-2xl font-serif font-bold text-brand-950">£58 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
@@ -772,13 +876,13 @@
                         </div>
                         <div>
                             <span class="font-serif font-bold text-white text-xl tracking-wide block">LifelongCoaches.co.uk</span>
-                            <span class="text-[10px] text-gold-400 uppercase tracking-[0.25em] font-medium">The British Senior Longevity Guild</span>
+                            <span class="text-xs text-gold-400 normal-case tracking-normal font-medium">The British Senior Longevity Guild</span> <!-- CTO Spec 3.4.2: text-[10px] uppercase tracking-[0.25em] -> text-xs normal-case tracking-normal -->
                         </div>
                     </div>
                     <p class="text-xs text-brand-200 font-light leading-relaxed max-w-sm">
                         Connecting affluent seniors and discerning families with elite, vetted private fitness and strength specialists across the United Kingdom. Uncompromising standards for lifelong vitality.
                     </p>
-                    <div class="text-xs text-brand-400 font-mono">
+                    <div class="text-sm text-brand-400 font-mono"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                         Registered in England &amp; Wales • Company No. 17334702
                     </div>
                 </div>
@@ -786,43 +890,43 @@
                 <!-- Column 1: Private Clients -->
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Private Clients</h4>
-                    <ul class="space-y-2.5 text-xs font-light">
+                    <ul class="space-y-2.5 text-sm font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                         <li><a href="#search-section" class="hover:text-gold-400 transition">Find Local Specialist</a></li>
                         <li><a href="#philosophy" class="hover:text-gold-400 transition">The Longevity Manifesto</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Home Visit Concierge</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Client Verification Standards</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Private Consultation Desk</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Home Visit Concierge</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Client Verification Standards</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Private Consultation Desk</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
                     </ul>
                 </div>
 
                 <!-- Column 2: Practitioner Guild -->
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Practitioner Guild</h4>
-                    <ul class="space-y-2.5 text-xs font-light">
+                    <ul class="space-y-2.5 text-sm font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                         <li><a href="#" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition">Apply for Membership</a></li>
                         <li><a href="#" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition">Founding Trial (£25/mo)</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Credential Verification</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Credential Verification</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
                         <li><a href="#" data-modal-target="practitioner-sign-in" class="hover:text-gold-400 transition">Practitioner Portal Login</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Guild Code of Conduct</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Guild Code of Conduct</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
                     </ul>
                 </div>
 
                 <!-- Column 3: Governance & Legal -->
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Governance &amp; Legal</h4>
-                    <ul class="space-y-2.5 text-xs font-light">
-                        <li><a href="#" class="hover:text-gold-400 transition">Privacy &amp; Discretion Policy</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Client Terms &amp; Conditions</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Practitioner Membership Terms</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Safeguarding &amp; DBS Protocols</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Cookie Compliance</a></li>
+                    <ul class="space-y-2.5 text-sm font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Privacy &amp; Discretion Policy</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Client Terms &amp; Conditions</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Practitioner Membership Terms</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Safeguarding &amp; DBS Protocols</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Cookie Compliance</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
                     </ul>
                 </div>
 
             </div>
 
             <!-- Footer Bottom Bar -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-400 font-light">
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-brand-400 font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                 <div>
                     <p>&copy; 2026 LifelongCoaches.co.uk. All rights reserved. Designed for elite longevity.</p>
                 </div>
@@ -1242,357 +1346,4 @@
                                         <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Lord Featherstone">
                                     </div>
                                     <div>
-                                        <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
-                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="SW1A 0AA">
-                                    </div>
-                                    <div>
-                                        <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">What are your primary longevity goals?</label>
-                                        <textarea id="engage-goals" name="goals" rows="4" required minlength="20" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm keen to improve my golf swing power and maintain independence for sailing..."></textarea>
-                                    </div>
-                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
-                                        Request Bespoke Match
-                                    </button>
-                                </form>
-                            `;
-                            break;
-                    }
-
-                    elements.title.innerHTML = title;
-                    elements.body.innerHTML = content;
-                }
-
-                async function _handleFormSubmit(e, modalType, data) {
-                    e.preventDefault();
-                    const form = e.currentTarget;
-                    const submitButton = form.querySelector('.submit-btn');
-                    const originalButtonText = submitButton.textContent;
-                    
-                    FormValidator.clearForm(form); // Clear potential previous errors but not form data
-                    if (!FormValidator.validateForm(form)) {
-                        submitButton.disabled = false;
-                        return; // Stop if validation fails
-                    }
-
-                    // Show loading state
-                    FormValidator.showGeneralMessage('loading', 'Processing your request...', true);
-                    submitButton.disabled = true;
-                    submitButton.innerHTML = `<span class="spinner text-brand-950"></span> Processing...`;
-
-                    // Simulate API call
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-
-                    try {
-                        // In a real app, send data to server here
-                        // const formData = new FormData(form);
-                        // const response = await fetch('/api/submit', { method: 'POST', body: formData });
-                        // const result = await response.json();
-
-                        const simulatedSuccess = Math.random() > 0.1; // 90% success rate
-                        if (simulatedSuccess) {
-                            let successMessage = "Your request has been sent successfully!";
-                            if (modalType === 'secure-consultation') {
-                                successMessage = `Your request for consultation has been sent to ${data.practitionerName} and our concierge team. We will be in touch shortly.`;
-                            } else if (modalType === 'apply-practitioner') {
-                                const emailInput = form.querySelector('#apply-email');
-                                const email = emailInput ? emailInput.value : 'your email';
-                                successMessage = `Thank you for your application! We've sent a verification email to ${email}. Please follow the instructions to complete your onboarding and activate your 2-month free trial.`;
-                            } else if (modalType === 'engage-coach') {
-                                successMessage = `Thank you for your bespoke match request! Our concierge team will review your needs and connect you with suitable elite coaches shortly.`;
-                            } else if (modalType === 'practitioner-sign-in') {
-                                successMessage = `Welcome back! Redirecting to your portal...`;
-                            }
-                            FormValidator.showGeneralMessage('success', successMessage);
-                            FormValidator.clearForm(form); // Clear form fields on success
-                        } else {
-                            let errorMessage = "Failed to submit request. Please try again.";
-                            if (modalType === 'practitioner-sign-in') {
-                                errorMessage = "Invalid credentials. Please try again.";
-                            } else if (modalType === 'apply-practitioner') {
-                                errorMessage = "Failed to submit application. Please check your details and try again.";
-                            }
-                            FormValidator.showGeneralMessage('error', errorMessage);
-                        }
-                    } catch (error) {
-                        console.error("Submission error:", error);
-                        FormValidator.showGeneralMessage('error', 'An unexpected error occurred. Please try again later.');
-                    } finally {
-                        submitButton.disabled = false;
-                        submitButton.innerHTML = originalButtonText; // Restore original button text
-                    }
-                }
-
-                function open(type, data = {}, triggeringElement = null) {
-                    _triggeringElement = triggeringElement || document.activeElement; // Store the element that triggered the modal
-
-                    elements.container.classList.remove('modal-closed');
-                    elements.container.classList.add('modal-open');
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling body
-
-                    elements.container.setAttribute('aria-modal', 'true');
-                    elements.container.setAttribute('role', 'dialog');
-                    elements.container.setAttribute('aria-labelledby', 'modal-title');
-                    elements.container.setAttribute('aria-describedby', 'modal-body');
-
-                    // Clear any old messages or form states
-                    elements.messages.innerHTML = '';
-                    elements.body.innerHTML = '';
-
-                    renderContent(type, data);
-
-                    // Attach validation and submit listeners for the new form
-                    const formElement = elements.body.querySelector('.modal-form');
-                    if (formElement) {
-                        FormValidator.attachValidationListeners(formElement);
-                        formElement.addEventListener('submit', (e) => _handleFormSubmit(e, type, data));
-                    }
-                    // For buttons inside modals that open other modals (e.g., Shortlist's "Sign In to Save")
-                    elements.body.querySelectorAll('[data-modal-target]').forEach(button => {
-                        button.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const newTarget = e.currentTarget.dataset.modalTarget;
-                            // Close current modal, open new one, but keep _triggeringElement for final close
-                            close(false); // Close without restoring focus immediately
-                            open(newTarget, {}, _triggeringElement);
-                        });
-                    });
-
-                    _trapFocus();
-                }
-
-                function close(restoreFocus = true) {
-                    elements.container.classList.remove('modal-open');
-                    elements.container.classList.add('modal-closed');
-                    document.body.style.overflow = ''; // Restore body scrolling
-
-                    elements.title.innerHTML = 'Modal Title'; // Reset title
-                    elements.body.innerHTML = ''; // Clear dynamic content
-                    elements.messages.innerHTML = ''; // Clear messages
-
-                    elements.container.removeAttribute('aria-modal');
-                    elements.container.removeAttribute('role');
-                    elements.container.removeAttribute('aria-labelledby');
-                    elements.container.removeAttribute('aria-describedby');
-
-                    _releaseFocus();
-                    if (restoreFocus && _triggeringElement) {
-                        _triggeringElement.focus(); // Restore focus to the element that opened the modal
-                        _triggeringElement = null;
-                    }
-                }
-
-                function init() {
-                    // Event listeners for opening modals
-                    document.querySelectorAll('[data-modal-target]').forEach(button => {
-                        button.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const target = e.currentTarget.dataset.modalTarget;
-                            const practitionerName = e.currentTarget.dataset.practitionerName;
-                            const practitionerId = e.currentTarget.dataset.practitionerId;
-                            
-                            let data = { practitionerName, practitionerId };
-                            let isAddedOrRemoved = false;
-
-                            if (target === 'shortlist') {
-                                if (ShortlistManager.isShortlisted(practitionerId)) {
-                                    ShortlistManager.remove(practitionerId);
-                                    isAddedOrRemoved = false; // Removed
-                                } else {
-                                    ShortlistManager.add(practitionerId, practitionerName);
-                                    isAddedOrRemoved = true; // Added
-                                }
-                                ShortlistManager.updateShortlistButtons(); // Update all shortlist buttons on the page
-                                data.isAdded = isAddedOrRemoved;
-                            }
-                            open(target, data, e.currentTarget);
-                        });
-                    });
-
-                    // Event listeners for closing modals
-                    elements.closeBtn.addEventListener('click', () => close());
-                    elements.backdrop.addEventListener('click', () => close());
-                }
-
-                return {
-                    init,
-                    open,
-                    close
-                };
-            })();
-
-
-            // --- FILTERING AND SORTING LOGIC ---
-            const postcodeInput = document.getElementById('postcode-input');
-            const focusSelect = document.getElementById('focus-select');
-            const findSpecialistBtn = document.getElementById('find-specialist-btn');
-            const sortSelect = document.getElementById('sort-select');
-            const practitionerCardsGrid = document.getElementById('practitioner-cards-grid');
-
-            // Store original card elements to manipulate their order
-            const allPractitionerCards = Array.from(practitionerCardsGrid.querySelectorAll('.coach-card'));
-
-            // UK Postcode Prefix Coordinate Data (JavaScript)
-            const ukPostcodePrefixCoords = {
-                "SW1X": { lat: 51.4988, lon: -0.1585 }, // Belgravia, London
-                "W1K": { lat: 51.5103, lon: -0.1504 },  // Mayfair, London
-                "BH13": { lat: 50.7196, lon: -1.9796 }, // Sandbanks, Poole
-                "GU25": { lat: 51.3789, lon: -0.6300 }, // Wentworth, Surrey
-                "GL54": { lat: 51.9149, lon: -1.7828 }, // Bourton-on-the-Water, Cotswolds
-                "EH3":  { lat: 55.9529, lon: -3.2081 }, // New Town, Edinburgh
-                "SW1": { lat: 51.5007, lon: -0.1246 }, // Westminster, London (example of broader prefix)
-                "SW": { lat: 51.45, lon: -0.15 },      // General South West London area
-                "N": { lat: 51.56, lon: -0.10 },       // General North London area
-                "SE": { lat: 51.45, lon: 0.05 },       // General South East London area
-                "E": { lat: 51.53, lon: 0.05 },        // General East London area
-                "W": { lat: 51.51, lon: -0.22 },       // General West London area
-                "EC": { lat: 51.51, lon: -0.09 },      // East Central London
-                "WC": { lat: 51.51, lon: -0.12 },      // West Central London
-                // Other major cities/regions as needed:
-                "B": { lat: 52.48, lon: -1.90 },       // Birmingham
-                "M": { lat: 53.48, lon: -2.24 },       // Manchester
-                "L": { lat: 53.40, lon: -2.98 },       // Liverpool
-                "LS": { lat: 53.80, lon: -1.54 },      // Leeds
-                "BS": { lat: 51.45, lon: -2.58 },      // Bristol
-                "CF": { lat: 51.48, lon: -3.18 },      // Cardiff
-                "G": { lat: 55.86, lon: -4.25 },       // Glasgow
-                "BT": { lat: 54.59, lon: -5.92 },      // Belfast
-            };
-
-            // Helper function to get coordinates from a postcode prefix
-            function getCoordsFromPostcodePrefix(postcode) {
-                if (!postcode) return null;
-                const cleanPostcode = postcode.toUpperCase().trim();
-                const outwardCode = cleanPostcode.split(' ')[0]; // E.g., "SW1X" from "SW1X 7GR", or "SW" from "SW"
-
-                // Try exact match for the derived outwardCode
-                if (ukPostcodePrefixCoords[outwardCode]) {
-                    return ukPostcodePrefixCoords[outwardCode];
-                }
-
-                // If no exact match for the full outward code, try progressively shorter prefixes
-                for (let i = outwardCode.length - 1; i >= 1; i--) { // Start from one character less than full outwardCode
-                    const prefix = outwardCode.substring(0, i);
-                    if (ukPostcodePrefixCoords[prefix]) {
-                        return ukPostcodePrefixCoords[prefix];
-                    }
-                }
-                return null; // No match found
-            }
-
-            // Helper function to calculate distance using Haversine formula
-            function calculateDistance(lat1, lon1, lat2, lon2) {
-                const R = 3958.8; // Radius of Earth in miles
-                const toRad = (value) => (value * Math.PI) / 180;
-
-                const dLat = toRad(lat2 - lat1);
-                const dLon = toRad(lon2 - lon1);
-
-                const a =
-                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
-                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-                return parseFloat((R * c).toFixed(1)); // Distance in miles, rounded to 1 decimal place
-            }
-
-            function filterAndSortPractitioners() {
-                const searchPostcode = postcodeInput.value.trim();
-                const selectedFocus = focusSelect.value;
-                const sortBy = sortSelect.value;
-
-                let filteredCards = [...allPractitionerCards]; // Start with all cards
-
-                let userCoords = null;
-                let invalidUserPostcode = false;
-
-                // 1. User Postcode Geocoding
-                if (searchPostcode) {
-                    userCoords = getCoordsFromPostcodePrefix(searchPostcode);
-                    if (!userCoords) {
-                        invalidUserPostcode = true;
-                    }
-                }
-
-                // 2. Distance Calculation & UI Update for all Coaches
-                filteredCards.forEach(card => {
-                    const distancePill = card.querySelector('.distance-pill');
-                    // Get practitioner's postcode coords. If null, this practitioner cannot be geo-located.
-                    const practitionerPostcodeCoords = getCoordsFromPostcodePrefix(card.dataset.postcode);
-
-                    if (userCoords && !invalidUserPostcode && practitionerPostcodeCoords) {
-                        // Condition 1: Valid User Postcode and valid practitioner postcode
-                        const distance = calculateDistance(
-                            userCoords.lat, userCoords.lon,
-                            practitionerPostcodeCoords.lat, practitionerPostcodeCoords.lon
-                        );
-                        card.dataset.distance = distance.toFixed(1);
-                        distancePill.textContent = `${distance.toFixed(1)} miles away`;
-                    } else if (!searchPostcode) {
-                        // Condition 2: Empty Postcode Input (user hasn't typed anything)
-                        card.dataset.distance = card.getAttribute('data-initial-distance') || '9999';
-                        distancePill.textContent = 'Enter Postcode';
-                    } else { 
-                        // Condition 3: Invalid Postcode Input (user entered something, but it's invalid or practitioner postcode is invalid)
-                        card.dataset.distance = '9999'; // Large number to place last in proximity sort
-                        distancePill.textContent = 'Invalid Postcode';
-                    }
-                });
-
-                // 3. Filtering by Longevity Focus
-                if (selectedFocus) {
-                    filteredCards = filteredCards.filter(card => {
-                        const focuses = card.dataset.focuses ? card.dataset.focuses.split(',') : [];
-                        return focuses.includes(selectedFocus);
-                    });
-                }
-
-                // 4. Sorting Logic
-                filteredCards.sort((a, b) => {
-                    if (sortBy === 'proximity') {
-                        const distA = parseFloat(a.dataset.distance);
-                        const distB = parseFloat(b.dataset.distance);
-                        return distA - distB;
-                    } else if (sortBy === 'credentials') {
-                        const rankA = parseInt(a.dataset.credentialsRank || '9999'); // Default to 9999 for missing attribute
-                        const rankB = parseInt(b.dataset.credentialsRank || '9999');
-                        return rankA - rankB;
-                    } else if (sortBy === 'rate-desc') {
-                        const rateA = parseInt(a.dataset.rate);
-                        const rateB = parseInt(b.dataset.rate);
-                        return rateB - rateA;
-                    } else if (sortBy === 'rate-asc') {
-                        const rateA = parseInt(a.dataset.rate);
-                        const rateB = parseInt(b.dataset.rate);
-                        return rateA - rateB;
-                    }
-                    return 0; // Maintain current order if no specific sort is selected (or if sorting by other unspecified criteria)
-                });
-
-                // 5. DOM Update
-                practitionerCardsGrid.innerHTML = '';
-                if (filteredCards.length > 0) {
-                    filteredCards.forEach(card => practitionerCardsGrid.appendChild(card));
-                } else {
-                    practitionerCardsGrid.innerHTML = `<p class="text-brand-200 text-center col-span-full py-10">No elite practitioners found matching your criteria. Please adjust your search.</p>`;
-                }
-            }
-
-            // Store initial distances for reset, needs to run once when the DOM is ready
-            allPractitionerCards.forEach(card => {
-                card.setAttribute('data-initial-distance', card.dataset.distance);
-            });
-
-            // Event Listeners for filtering and sorting
-            postcodeInput.addEventListener('input', filterAndSortPractitioners);
-            focusSelect.addEventListener('change', filterAndSortPractitioners);
-            findSpecialistBtn.addEventListener('click', filterAndSortPractitioners);
-            sortSelect.addEventListener('change', filterAndSortPractitioners);
-
-            // --- INITIALIZATION ---
-            ShortlistManager.init();
-            ModalManager.init();
-            filterAndSortPractitioners(); // Initial display of practitioners when the page loads
-        });
-    </script>
-</body>
-</html>
+                                        <label for
