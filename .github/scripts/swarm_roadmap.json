@@ -1,0 +1,34 @@
+{
+  "milestones": [
+    {
+      "id": 1,
+      "name": "Card Layout & Luxury Badge Alignment",
+      "status": "completed",
+      "directive": "Fix all CSS flex/grid collisions on practitioner cards so MASTER PRACTITIONER, FULLY INSURED, ACCEPTING CLIENTS, and the distance pill never overlap on desktop or mobile. Refine typography and spacing to match ultra-luxury private client aesthetics."
+    },
+    {
+      "id": 2,
+      "name": "National Affluent Roster Expansion",
+      "status": "pending",
+      "directive": "Expand the practitioner roster to 6 distinct, deeply detailed UK profiles covering Mayfair, Kensington, Sandbanks/Poole (BH13), Surrey/Wentworth (GU25), Cotswolds (GL7), and Edinburgh (EH3). Ensure realistic credentials (CIMSPA, MSc, BSc, Enhanced DBS) and hourly rates between \u00a330 and \u00a360."
+    },
+    {
+      "id": 3,
+      "name": "Interactive UK Postcode Radius & Specialism Filtering",
+      "status": "pending",
+      "directive": "Implement working vanilla JavaScript for the postcode input, Longevity Focus dropdown, and Sort selector. Map UK postcode prefixes (SW, W, BH, GU, GL, EH, etc.) to coordinates so entering any UK postcode calculates realistic mile distances, sorts the cards by proximity, and updates the distance badges dynamically."
+    },
+    {
+      "id": 4,
+      "name": "Client Booking, Shortlist & \u00a325/mo Practitioner Onboarding Modals",
+      "status": "pending",
+      "directive": "Wire every button ('SECURE CONSULTATION', 'SHORTLIST', 'PRACTITIONER SIGN IN', 'APPLY FOR FOUNDING PRACTITIONER STATUS') to sleek, working luxury modal dialogs with form validation, interactive state feedback, localStorage shortlist persistence, and the 2-month free trial / \u00a325 per month subscription onboarding flow."
+    },
+    {
+      "id": 5,
+      "name": "Executive QA Polish, SEO Schema & Accessibility Audit",
+      "status": "pending",
+      "directive": "Audit the entire DOM and JavaScript for broken links, mobile responsiveness, JSON-LD LocalBusiness/MedicalBusiness SEO schema, and high-contrast readability for older affluent adults."
+    }
+  ]
+}

@@ -194,67 +194,66 @@
         <div id="practitioner-cards-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-brand-900">
 
             <!-- Coach Card 1 -->
-            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between group hover:border-gold-500/50 transition duration-300"
                  data-id="sarah-jenkins"
                  data-postcode="SW1X 7GR"
                  data-focuses="advanced-strength,reverse-aging,executive-fitness,bone-density"
                  data-rate="50"
                  data-distance="2.4">
-                <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
-                        2.4 miles away
-                    </span>
-                </div>
                 
-                <div>
-                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                <!-- New container for status pills and distance pill -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
+                    <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
                     </div>
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide flex-shrink-0">
+                        2.4 miles away
+                    </span>
+                </div>
 
-                    <div class="flex items-start gap-6 mb-6">
-                        <div class="relative flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300" alt="Sarah Jenkins" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
-                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold text-brand-950">Sarah Jenkins, BSc (Hons)</h3>
-                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Senior Strength &amp; Biological Longevity Specialist</p>
-                            <p class="text-xs text-brand-500 mt-1 font-medium">Mayfair &amp; Chelsea • Residential &amp; Private Studio</p>
-                        </div>
+                <div class="flex items-start gap-6 mb-6">
+                    <div class="relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300" alt="Sarah Jenkins" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
-
-                    <!-- Best Fit Clients Section -->
-                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Sarah elevates most):</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Advanced strength</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Reverse aging &amp; vitality</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Executive fitness</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-950">Sarah Jenkins, BSc (Hons)</h3>
+                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Senior Strength &amp; Biological Longevity Specialist</p>
+                        <p class="text-xs text-brand-500 mt-1 font-medium">Mayfair &amp; Chelsea • Residential &amp; Private Studio</p>
                     </div>
+                </div>
 
-                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
-                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Functional hypertrophy, neuromuscular balance, high-performance longevity.</p>
-                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Meticulous, motivating, highly calibrated, uncompromising on form.</p>
+                <!-- Best Fit Clients Section -->
+                <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Sarah elevates most):</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Advanced strength</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Reverse aging &amp; vitality</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Executive fitness</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
                     </div>
+                </div>
 
-                    <!-- Trust & Verification Bar -->
-                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span>DBS &amp; Enhanced Check</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span>CIMSPA Fellow Insured</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span>15 Years Elite Exp</span>
-                        </div>
+                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                    <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Functional hypertrophy, neuromuscular balance, high-performance longevity.</p>
+                    <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Meticulous, motivating, highly calibrated, uncompromising on form.</p>
+                </div>
+
+                <!-- Trust & Verification Bar -->
+                <div class="grid grid-cols-3 gap-3 py-4 border-t border-b border-brand-100 text-xs font-medium text-brand-700 mb-6">
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>DBS &amp; Enhanced Check</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>CIMSPA Fellow Insured</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>15 Years Elite Exp</span>
                     </div>
                 </div>
 
@@ -278,67 +277,66 @@
             </div>
 
             <!-- Coach Card 2 -->
-            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between group hover:border-gold-500/50 transition duration-300"
                  data-id="marcus-vance"
                  data-postcode="W1K 7AU"
                  data-focuses="cardiovascular-health,joint-preservation,dynamic-agility,executive-resilience"
                  data-rate="60"
                  data-distance="4.1">
-                <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
-                        4.1 miles away
-                    </span>
-                </div>
                 
-                <div>
-                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                <!-- New container for status pills and distance pill -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
+                    <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
                     </div>
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide flex-shrink-0">
+                        4.1 miles away
+                    </span>
+                </div>
 
-                    <div class="flex items-start gap-6 mb-6">
-                        <div class="relative flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300" alt="Marcus Vance" class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-brand-100">
-                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold text-brand-950">Marcus Vance, MSc</h3>
-                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Retirement High Performance &amp; Vitality Coach</p>
-                            <p class="text-xs text-brand-500 mt-1 font-medium">Kensington &amp; Knightsbridge • Virtual &amp; In-Person</p>
-                        </div>
+                <div class="flex items-start gap-6 mb-6">
+                    <div class="relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300" alt="Marcus Vance" class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-brand-100">
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
-
-                    <!-- Best Fit Clients Section -->
-                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Marcus elevates most):</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Elite cardiovascular health</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint preservation</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Dynamic physical agility</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Executive resilience</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-950">Marcus Vance, MSc</h3>
+                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Retirement High Performance &amp; Vitality Coach</p>
+                        <p class="text-xs text-brand-500 mt-1 font-medium">Kensington &amp; Knightsbridge • Virtual &amp; In-Person</p>
                     </div>
+                </div>
 
-                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
-                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanical longevity, kinetic power output, bespoke senior conditioning.</p>
-                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Analytical, calm, results-driven, highly sophisticated.</p>
+                <!-- Best Fit Clients Section -->
+                <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Marcus elevates most):</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Elite cardiovascular health</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint preservation</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Dynamic physical agility</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Executive resilience</span>
                     </div>
+                </div>
 
-                    <!-- Trust & Verification Bar -->
-                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span>DBS &amp; Enhanced Check</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span>REPs Elite Insured</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span>12 Years Elite Exp</span>
-                        </div>
+                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                    <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanical longevity, kinetic power output, bespoke senior conditioning.</p>
+                    <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Analytical, calm, results-driven, highly sophisticated.</p>
+                </div>
+
+                <!-- Trust & Verification Bar -->
+                <div class="grid grid-cols-3 gap-3 py-4 border-t border-b border-brand-100 text-xs font-medium text-brand-700 mb-6">
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>DBS &amp; Enhanced Check</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>REPs Elite Insured</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>12 Years Elite Exp</span>
                     </div>
                 </div>
 
@@ -362,67 +360,66 @@
             </div>
 
             <!-- Coach Card 3: Dr. Evelyn Reed (Surrey/Wentworth) -->
-            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between group hover:border-gold-500/50 transition duration-300"
                  data-id="evelyn-reed"
                  data-postcode="GU25 4JR"
                  data-focuses="bone-density,post-operative-mobility,absolute-balance,advanced-strength"
                  data-rate="55"
                  data-distance="6.8">
-                <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
-                        6.8 miles away
-                    </span>
-                </div>
                 
-                <div>
-                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                <!-- New container for status pills and distance pill -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
+                    <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
                     </div>
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide flex-shrink-0">
+                        6.8 miles away
+                    </span>
+                </div>
 
-                    <div class="flex items-start gap-6 mb-6">
-                        <div class="relative flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=300" alt="Dr. Evelyn Reed" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
-                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
-                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Bone Density &amp; Musculoskeletal Resilience</p>
-                            <p class="text-xs text-brand-500 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinical Visits</p>
-                        </div>
+                <div class="flex items-start gap-6 mb-6">
+                    <div class="relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=300" alt="Dr. Evelyn Reed" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
-
-                    <!-- Best Fit Clients Section -->
-                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Evelyn elevates most):</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative mobility</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Fall prevention &amp; balance</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Strength preservation</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
+                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Bone Density &amp; Musculoskeletal Resilience</p>
+                        <p class="text-xs text-brand-500 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinical Visits</p>
                     </div>
+                </div>
 
-                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
-                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Osteoporosis management, joint mechanics, rehabilitation protocols.</p>
-                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Empathetic, scientifically-driven, detail-oriented.</p>
+                <!-- Best Fit Clients Section -->
+                <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Evelyn elevates most):</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative mobility</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Fall prevention &amp; balance</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Strength preservation</span>
                     </div>
+                </div>
 
-                    <!-- Trust & Verification Bar -->
-                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span>DBS &amp; Enhanced Check</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span>ISRM Verified Insured</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span>10 Years Clinical Exp</span>
-                        </div>
+                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                    <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Osteoporosis management, joint mechanics, rehabilitation protocols.</p>
+                    <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Empathetic, scientifically-driven, detail-oriented.</p>
+                </div>
+
+                <!-- Trust & Verification Bar -->
+                <div class="grid grid-cols-3 gap-3 py-4 border-t border-b border-brand-100 text-xs font-medium text-brand-700 mb-6">
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>DBS &amp; Enhanced Check</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>ISRM Verified Insured</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>10 Years Clinical Exp</span>
                     </div>
                 </div>
 
@@ -446,67 +443,66 @@
             </div>
 
             <!-- Coach Card 4: Mr. Alistair Finch (Cotswolds) -->
-            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between group hover:border-gold-500/50 transition duration-300"
                  data-id="alistair-finch"
                  data-postcode="GL54 1EU"
                  data-focuses="neuromuscular-balance,absolute-balance,agility-mastery,bespoke-home-visit"
                  data-rate="40"
                  data-distance="12.3">
-                <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
-                        12.3 miles away
-                    </span>
-                </div>
                 
-                <div>
-                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                <!-- New container for status pills and distance pill -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
+                    <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
                     </div>
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide flex-shrink-0">
+                        12.3 miles away
+                    </span>
+                </div>
 
-                    <div class="flex items-start gap-6 mb-6">
-                        <div class="relative flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=300" alt="Mr. Alistair Finch" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
-                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold text-brand-950">Mr. Alistair Finch, PT</h3>
-                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Neuromuscular Balance &amp; Agility Restoration</p>
-                            <p class="text-xs text-brand-500 mt-1 font-medium">Cotswolds &amp; Glos • Residential &amp; Remote</p>
-                        </div>
+                <div class="flex items-start gap-6 mb-6">
+                    <div class="relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=300" alt="Mr. Alistair Finch" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
-
-                    <!-- Best Fit Clients Section -->
-                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Alistair elevates most):</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Neuromuscular balance</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Agility mastery</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Fall prevention</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Outdoor fitness &amp; hiking</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-950">Mr. Alistair Finch, PT</h3>
+                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Neuromuscular Balance &amp; Agility Restoration</p>
+                        <p class="text-xs text-brand-500 mt-1 font-medium">Cotswolds &amp; Glos • Residential &amp; Remote</p>
                     </div>
+                </div>
 
-                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
-                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Proprioception training, functional movement, active lifestyle coaching.</p>
-                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Engaging, patient, nature-integrated, highly motivational.</p>
+                <!-- Best Fit Clients Section -->
+                <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Alistair elevates most):</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Neuromuscular balance</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Agility mastery</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Fall prevention</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Outdoor fitness &amp; hiking</span>
                     </div>
+                </div>
 
-                    <!-- Trust & Verification Bar -->
-                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span>DBS &amp; Enhanced Check</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span>REPs Level 4 Insured</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span>8 Years Elite Exp</span>
-                        </div>
+                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                    <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Proprioception training, functional movement, active lifestyle coaching.</p>
+                    <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Engaging, patient, nature-integrated, highly motivational.</p>
+                </div>
+
+                <!-- Trust & Verification Bar -->
+                <div class="grid grid-cols-3 gap-3 py-4 border-t border-b border-brand-100 text-xs font-medium text-brand-700 mb-6">
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>DBS &amp; Enhanced Check</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>REPs Level 4 Insured</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>8 Years Elite Exp</span>
                     </div>
                 </div>
 
@@ -530,67 +526,66 @@
             </div>
 
             <!-- Coach Card 5: Ms. Eleanor Shaw (Sandbanks/Poole) -->
-            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between group hover:border-gold-500/50 transition duration-300"
                  data-id="eleanor-shaw"
                  data-postcode="BH13 7QY"
                  data-focuses="post-operative-mobility,joint-preservation,bespoke-home-visit,advanced-strength"
                  data-rate="45"
                  data-distance="8.1">
-                <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
-                        8.1 miles away
-                    </span>
-                </div>
                 
-                <div>
-                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                <!-- New container for status pills and distance pill -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
+                    <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
                     </div>
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide flex-shrink-0">
+                        8.1 miles away
+                    </span>
+                </div>
 
-                    <div class="flex items-start gap-6 mb-6">
-                        <div class="relative flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=300" alt="Ms. Eleanor Shaw" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
-                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold text-brand-950">Ms. Eleanor Shaw, BSc</h3>
-                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Operative Mobility &amp; Recovery Specialist</p>
-                            <p class="text-xs text-brand-500 mt-1 font-medium">Sandbanks &amp; Poole • Home &amp; Yacht Visits</p>
-                        </div>
+                <div class="flex items-start gap-6 mb-6">
+                    <div class="relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=300" alt="Ms. Eleanor Shaw" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
-
-                    <!-- Best Fit Clients Section -->
-                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Eleanor elevates most):</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative rehabilitation</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint specific recovery</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Pain management movement</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Functional strength restoration</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-950">Ms. Eleanor Shaw, BSc</h3>
+                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Operative Mobility &amp; Recovery Specialist</p>
+                        <p class="text-xs text-brand-500 mt-1 font-medium">Sandbanks &amp; Poole • Home &amp; Yacht Visits</p>
                     </div>
+                </div>
 
-                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
-                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanics, tailored recovery plans, gentle strength progression.</p>
-                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Nurturing, precise, patient, holistic.</p>
+                <!-- Best Fit Clients Section -->
+                <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Eleanor elevates most):</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative rehabilitation</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint specific recovery</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Pain management movement</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Functional strength restoration</span>
                     </div>
+                </div>
 
-                    <!-- Trust & Verification Bar -->
-                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span>DBS &amp; Enhanced Check</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span>APPI Pilates Certified</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span>9 Years Elite Exp</span>
-                        </div>
+                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                    <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanics, tailored recovery plans, gentle strength progression.</p>
+                    <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Nurturing, precise, patient, holistic.</p>
+                </div>
+
+                <!-- Trust & Verification Bar -->
+                <div class="grid grid-cols-3 gap-3 py-4 border-t border-b border-brand-100 text-xs font-medium text-brand-700 mb-6">
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>DBS &amp; Enhanced Check</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>APPI Pilates Certified</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>9 Years Elite Exp</span>
                     </div>
                 </div>
 
@@ -614,67 +609,66 @@
             </div>
 
             <!-- Coach Card 6: Dr. Cameron Ross (Edinburgh) -->
-            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between group hover:border-gold-500/50 transition duration-300"
                  data-id="cameron-ross"
                  data-postcode="EH3 6AA"
                  data-focuses="cardiovascular-longevity,post-retirement-performance,elite-cardiovascular-health,endurance-training"
                  data-rate="58"
                  data-distance="18.9">
-                <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
-                        18.9 miles away
-                    </span>
-                </div>
                 
-                <div>
-                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                <!-- New container for status pills and distance pill -->
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
+                    <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
                     </div>
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide flex-shrink-0">
+                        18.9 miles away
+                    </span>
+                </div>
 
-                    <div class="flex items-start gap-6 mb-6">
-                        <div class="relative flex-shrink-0">
-                            <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=300" alt="Dr. Cameron Ross" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
-                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Cameron Ross, MD</h3>
-                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Cardiovascular Longevity &amp; Endurance Coach</p>
-                            <p class="text-xs text-brand-500 mt-1 font-medium">Edinburgh &amp; Lothians • Executive &amp; Virtual</p>
-                        </div>
+                <div class="flex items-start gap-6 mb-6">
+                    <div class="relative flex-shrink-0">
+                        <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=300" alt="Dr. Cameron Ross" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
-
-                    <!-- Best Fit Clients Section -->
-                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Cameron elevates most):</span>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Cardiovascular longevity</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Endurance training for seniors</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Metabolic health optimization</span>
-                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Stress reduction &amp; recovery</span>
-                        </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Cameron Ross, MD</h3>
+                        <p class="text-gold-600 font-semibold text-sm mt-0.5">Cardiovascular Longevity &amp; Endurance Coach</p>
+                        <p class="text-xs text-brand-500 mt-1 font-medium">Edinburgh &amp; Lothians • Executive &amp; Virtual</p>
                     </div>
+                </div>
 
-                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
-                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Cardiology-informed exercise, V02 max improvement, advanced metabolic programming.</p>
-                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Clinical, data-driven, strategic, highly refined.</p>
+                <!-- Best Fit Clients Section -->
+                <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-500 block mb-3">Private Client Focus (Who Cameron elevates most):</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Cardiovascular longevity</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Endurance training for seniors</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Metabolic health optimization</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Stress reduction &amp; recovery</span>
                     </div>
+                </div>
 
-                    <!-- Trust & Verification Bar -->
-                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span>GMC Registered Doctor</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                            <span>Clinical Insured</span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span>20 Years Clinical Exp</span>
-                        </div>
+                <div class="mb-6 text-xs space-y-2 text-brand-700 font-normal">
+                    <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Cardiology-informed exercise, V02 max improvement, advanced metabolic programming.</p>
+                    <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Clinical, data-driven, strategic, highly refined.</p>
+                </div>
+
+                <!-- Trust & Verification Bar -->
+                <div class="grid grid-cols-3 gap-3 py-4 border-t border-b border-brand-100 text-xs font-medium text-brand-700 mb-6">
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>GMC Registered Doctor</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>Clinical Insured</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>20 Years Clinical Exp</span>
                     </div>
                 </div>
 
