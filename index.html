@@ -81,6 +81,8 @@
             }
         }
     </script>
+    <!-- Performance Optimization: Preconnect for Google Fonts - CTO Spec 8 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom modal styles for smoother transitions */
@@ -183,8 +185,8 @@
                 </div>
             </a>
 
-            <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium text-brand-100"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+            <!-- Desktop Nav Links - CTO Spec 9: Add ARIA roles -->
+            <nav class="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium text-brand-100" role="navigation" aria-label="Main navigation"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
                 <a href="#search-section" class="hover:text-gold-400 transition">Private Directory</a>
                 <a href="#philosophy" class="hover:text-gold-400 transition">The Manifesto</a>
                 <a href="#for-coaches" class="hover:text-gold-400 transition">Practitioner Guild</a>
@@ -214,7 +216,7 @@
     <!-- Mobile Navigation Menu - CTO Spec 3.2.2 -->
     <nav id="mobile-nav" class="mobile-nav fixed inset-0 bg-brand-950 z-[90] flex flex-col justify-center items-center p-8 transform transition-transform duration-300 ease-out md:hidden" role="navigation" aria-label="Mobile main navigation">
         <button id="mobile-nav-close" class="absolute top-6 right-6 text-brand-200 hover:text-gold-400 transition-colors focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-md p-2" aria-label="Close mobile navigation">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <ul class="space-y-6 text-center">
             <li><a href="#search-section" class="mobile-nav-link text-xl font-serif text-brand-50 hover:text-gold-400 transition py-2 block">Private Directory</a></li>
@@ -252,15 +254,19 @@
                 <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
                     <div class="sm:col-span-5 relative flex items-center">
                         <span class="absolute left-4 text-brand-600">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <!-- CTO Spec 12: SVG Icon Consistency -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </span>
-                        <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm">
+                        <!-- CTO Spec 9: ARIA Attributes -->
+                        <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm" aria-label="Enter your UK Postcode to find specialists nearby">
                     </div>
                     <div class="sm:col-span-4 relative flex items-center">
                         <span class="absolute left-4 text-brand-600">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                            <!-- CTO Spec 12: SVG Icon Consistency -->
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                         </span>
-                        <select id="focus-select" class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer">
+                        <!-- CTO Spec 9: ARIA Attributes -->
+                        <select id="focus-select" class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer" aria-label="Select an Elite Longevity Focus or Goal">
                             <option value="">Elite Longevity Focus &amp; Goals</option>
                             <option value="advanced-strength">Advanced Strength &amp; Muscle Preservation</option>
                             <option value="absolute-balance">Absolute Balance &amp; Agility Mastery</option>
@@ -279,9 +285,13 @@
                         </button>
                     </div>
                 </div>
+                <div id="filter-status-message" class="text-gold-600 text-xs font-medium px-3 pt-4 border-t border-brand-100 mt-3 hidden flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.354 5.76a.75.75 0 0 0-1.18-.082L4.015 11.23a1.5 1.5 0 0 0 1.157 2.45h14.456a.75.75 0 0 0 .546-1.28L12.534 5.678a.75.75 0 0 0-1.18-.082z"></path></svg>
+                    <span>Filtered by: </span><span id="applied-filters-text"></span>
+                </div>
                 <div class="flex flex-wrap items-center justify-between px-3 pt-4 text-xs text-brand-700 font-medium border-t border-brand-100 mt-3">
                     <span class="flex items-center gap-2">
-                        <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <svg class="w-4 h-4 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                         Rigorously vetted elite practitioners &amp; clinical insurance
                     </span>
                     <span class="font-serif italic text-brand-900">Private Session Investment: £30–£60 / hour</span>
@@ -311,6 +321,10 @@
 
         <!-- Coach Cards Grid -->
         <div id="practitioner-cards-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-brand-900">
+            <!-- No results message placeholder -->
+            <div id="no-results-message" class="hidden lg:col-span-2 bg-brand-800 border border-gold-500/20 text-gold-400 p-8 rounded-2xl text-center text-lg font-serif italic shadow-lg">
+                No matching specialists found. Please adjust your search criteria.
+            </div>
 
             <!-- Coach Card 1: Sarah Jenkins (Mayfair) -->
             <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between group hover:border-gold-500/50 transition duration-300"
@@ -334,7 +348,8 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300" alt="Sarah Jenkins" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <!-- CTO Spec 7: Image Loading Optimization -->
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300" alt="Sarah Jenkins" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
@@ -414,7 +429,8 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300" alt="Marcus Vance" class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-brand-100">
+                        <!-- CTO Spec 7: Image Loading Optimization -->
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300" alt="Marcus Vance" class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-brand-100" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
@@ -494,7 +510,8 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=300" alt="Dr. Evelyn Reed" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <!-- CTO Spec 7: Image Loading Optimization -->
+                        <img src="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=300" alt="Dr. Evelyn Reed" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
@@ -574,7 +591,8 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=300" alt="Mr. Alistair Finch" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <!-- CTO Spec 7: Image Loading Optimization -->
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=300" alt="Mr. Alistair Finch" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
@@ -654,7 +672,8 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=300" alt="Ms. Eleanor Shaw" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <!-- CTO Spec 7: Image Loading Optimization -->
+                        <img src="https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=300" alt="Ms. Eleanor Shaw" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
@@ -734,7 +753,8 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=300" alt="Dr. Cameron Ross" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                        <!-- CTO Spec 7: Image Loading Optimization -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=300" alt="Dr. Cameron Ross" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
@@ -951,7 +971,7 @@
         <!-- Modal Content -->
         <div class="modal-content bg-brand-900 rounded-2xl border border-brand-800 shadow-3xl max-w-lg w-full p-8 relative transform translate-y-[-20px] opacity-0 text-brand-50">
             <button id="modal-close-btn" class="absolute top-4 right-4 text-brand-200 hover:text-gold-400 transition" aria-label="Close modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <h3 id="modal-title" class="text-3xl font-serif font-bold text-white mb-6">Modal Title</h3>
             <div class="modal-messages mb-4 space-y-2" aria-live="polite"></div>
@@ -966,10 +986,20 @@
         document.addEventListener('DOMContentLoaded', () => {
             // --- MODAL LOGIC & COMPONENTS ---
 
-            // ShortlistManager Module (IIFE for encapsulation)
+            /**
+             * @module ShortlistManager
+             * @description Manages adding, removing, and retrieving practitioners from a user's shortlist
+             *              stored in localStorage, and updates UI buttons accordingly.
+             * @exports init, add, remove, getAll, isShortlisted, updateShortlistButtons
+             */
             const ShortlistManager = (function() {
                 const LOCAL_STORAGE_KEY = 'lifelongCoachesShortlist';
 
+                /**
+                 * Retrieves the current shortlist from localStorage.
+                 * @private
+                 * @returns {Array<Object>} An array of shortlisted practitioners.
+                 */
                 function _getShortlist() {
                     try {
                         const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -980,6 +1010,11 @@
                     }
                 }
 
+                /**
+                 * Saves the current shortlist to localStorage.
+                 * @private
+                 * @param {Array<Object>} list - The shortlist array to save.
+                 */
                 function _saveShortlist(list) {
                     try {
                         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
@@ -988,6 +1023,12 @@
                     }
                 }
 
+                /**
+                 * Adds a practitioner to the shortlist if not already present.
+                 * @param {string} practitionerId - The unique ID of the practitioner.
+                 * @param {string} practitionerName - The name of the practitioner.
+                 * @returns {boolean} True if the practitioner was added, false if already existed.
+                 */
                 function add(practitionerId, practitionerName) {
                     const shortlist = _getShortlist();
                     if (!shortlist.some(p => p.id === practitionerId)) {
@@ -998,6 +1039,11 @@
                     return false; // Already exists
                 }
 
+                /**
+                 * Removes a practitioner from the shortlist.
+                 * @param {string} practitionerId - The unique ID of the practitioner to remove.
+                 * @returns {boolean} True if the practitioner was removed, false if not found.
+                 */
                 function remove(practitionerId) {
                     let shortlist = _getShortlist();
                     const initialLength = shortlist.length;
@@ -1006,29 +1052,49 @@
                     return shortlist.length < initialLength; // Removed
                 }
 
+                /**
+                 * Retrieves all practitioners currently in the shortlist.
+                 * @returns {Array<Object>} An array of shortlisted practitioners.
+                 */
                 function getAll() {
                     return _getShortlist();
                 }
 
+                /**
+                 * Checks if a practitioner is currently in the shortlist.
+                 * @param {string} practitionerId - The unique ID of the practitioner.
+                 * @returns {boolean} True if the practitioner is shortlisted, false otherwise.
+                 */
                 function isShortlisted(practitionerId) {
                     return _getShortlist().some(p => p.id === practitionerId);
                 }
 
+                /**
+                 * Updates the text and styling of all "Shortlist" buttons on the page
+                 * based on their current shortlisted status.
+                 * @CTOSpec 5, 9
+                 */
                 function updateShortlistButtons() {
                     document.querySelectorAll('.shortlist-btn').forEach(button => {
                         const practitionerId = button.dataset.practitionerId;
+                        const practitionerName = button.dataset.practitionerName;
                         if (isShortlisted(practitionerId)) {
                             button.textContent = 'Shortlisted ✦';
                             button.classList.add('bg-gold-600', 'text-brand-950', 'border-transparent');
                             button.classList.remove('border-brand-300', 'text-brand-800', 'hover:bg-brand-50');
+                            button.setAttribute('aria-label', `Remove ${practitionerName} from shortlist`); // CTO Spec 9
                         } else {
                             button.textContent = 'Shortlist';
                             button.classList.remove('bg-gold-600', 'text-brand-950', 'border-transparent');
                             button.classList.add('border-brand-300', 'text-brand-800', 'hover:bg-brand-50');
+                            button.setAttribute('aria-label', `Add ${practitionerName} to shortlist`); // CTO Spec 9
                         }
                     });
                 }
 
+                /**
+                 * Initializes the ShortlistManager, updating button states on page load.
+                 */
                 function init() {
                     updateShortlistButtons();
                 }
@@ -1043,11 +1109,22 @@
                 };
             })();
 
-            // FormValidator Module (IIFE for encapsulation)
+            /**
+             * @module FormValidator
+             * @description Provides client-side form validation utilities, including input-specific
+             *              validation, general message display, and form clearing.
+             * @exports showGeneralMessage, clearForm, validateForm, attachValidationListeners
+             */
             const FormValidator = (function() {
                 const UK_POSTCODE_REGEX = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
                 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+                /**
+                 * Displays an error message below a specific input element.
+                 * @private
+                 * @param {HTMLElement} inputElement - The input element to show the error for.
+                 * @param {string} message - The error message to display.
+                 */
                 function _showError(inputElement, message) {
                     // Find or create error message element
                     let errorElement = inputElement.nextElementSibling;
@@ -1060,8 +1137,15 @@
                     errorElement.textContent = message;
                     inputElement.classList.add('border-red-500');
                     inputElement.classList.remove('focus:border-gold-500'); // Remove focus border if error present
+                    inputElement.setAttribute('aria-invalid', 'true'); // A11y
+                    inputElement.setAttribute('aria-describedby', errorElement.id || (errorElement.id = `${inputElement.id}-error`)); // A11y
                 }
 
+                /**
+                 * Hides any error message associated with a specific input element.
+                 * @private
+                 * @param {HTMLElement} inputElement - The input element to clear the error for.
+                 */
                 function _hideError(inputElement) {
                     const errorElement = inputElement.nextElementSibling;
                     if (errorElement && errorElement.classList.contains('text-red-400')) {
@@ -1069,9 +1153,39 @@
                     }
                     inputElement.classList.remove('border-red-500');
                     inputElement.classList.add('focus:border-gold-500');
+                    inputElement.removeAttribute('aria-invalid'); // A11y
+                    inputElement.removeAttribute('aria-describedby'); // A11y
                 }
 
-                function showGeneralMessage(type, message, spinner = false) {
+                /**
+                 * Clears all general messages from the modal message container.
+                 * @private
+                 */
+                function _clearGeneralMessages() {
+                    const messagesContainer = document.querySelector('#modal-container .modal-messages');
+                    if (messagesContainer) {
+                        messagesContainer.innerHTML = '';
+                    }
+                }
+
+                /**
+                 * Clears all input fields in a given form.
+                 * @private
+                 * @param {HTMLFormElement} formElement - The form element to clear.
+                 */
+                function _clearFormInputs(formElement) {
+                    formElement.reset();
+                    formElement.querySelectorAll('input, textarea, select').forEach(input => _hideError(input));
+                }
+
+                /**
+                 * Displays a general message (success, error, info) within the modal.
+                 * @param {string} type - The type of message ('success', 'error', 'info').
+                 * @param {string} message - The message text to display.
+                 * @param {boolean} spinner - If true, displays a loading spinner.
+                 * @param {HTMLFormElement} [formElement] - Optional. The form to clear on success messages. @CTOSpec 6
+                 */
+                function showGeneralMessage(type, message, spinner = false, formElement = null) {
                     const messagesContainer = document.querySelector('#modal-container .modal-messages');
                     if (!messagesContainer) return;
 
@@ -1091,15 +1205,25 @@
                     `;
                     messagesContainer.appendChild(messageDiv);
                     messagesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
 
-                function _clearGeneralMessages() {
-                    const messagesContainer = document.querySelector('#modal-container .modal-messages');
-                    if (messagesContainer) {
-                        messagesContainer.innerHTML = '';
+                    // CTO Spec 6: Temporary success messages, clear form inputs
+                    if (type === 'success') {
+                        if (formElement) {
+                            _clearFormInputs(formElement);
+                        }
+                        setTimeout(() => {
+                            if (messagesContainer.contains(messageDiv)) {
+                                messageDiv.remove();
+                            }
+                        }, 5000); // Message disappears after 5 seconds
                     }
                 }
 
+                /**
+                 * Validates a single input element based on its attributes (required, type, minlength, maxlength).
+                 * @param {HTMLElement} input - The input element to validate.
+                 * @returns {boolean} True if the input is valid, false otherwise.
+                 */
                 function validateField(input) {
                     _hideError(input); // Clear previous error
 
@@ -1113,7 +1237,13 @@
                         return false;
                     }
 
-                    if (input.id === 'engage-postcode' && !UK_POSTCODE_REGEX.test(input.value)) {
+                    if (input.id === 'postcode-input' && input.value.trim() && !UK_POSTCODE_REGEX.test(input.value)) {
+                        _showError(input, 'Please enter a valid UK postcode (e.g., SW1A 0AA).');
+                        return false;
+                    }
+
+                    // This handles engage-postcode and any other postcode fields in modals
+                    if (input.id === 'engage-postcode' && input.value.trim() && !UK_POSTCODE_REGEX.test(input.value)) {
                         _showError(input, 'Please enter a valid UK postcode (e.g., SW1A 0AA).');
                         return false;
                     }
@@ -1144,6 +1274,11 @@
                     return true;
                 }
 
+                /**
+                 * Validates all input fields within a given form.
+                 * @param {HTMLFormElement} form - The form element to validate.
+                 * @returns {boolean} True if the entire form is valid, false otherwise.
+                 */
                 function validateForm(form) {
                     _clearGeneralMessages();
                     let isValid = true;
@@ -1160,6 +1295,10 @@
                     return isValid;
                 }
 
+                /**
+                 * Attaches validation event listeners (blur, input) to all form fields.
+                 * @param {HTMLFormElement} formElement - The form element to attach listeners to.
+                 */
                 function attachValidationListeners(formElement) {
                     const inputs = formElement.querySelectorAll('input, textarea, select');
                     inputs.forEach(input => {
@@ -1168,10 +1307,12 @@
                     });
                 }
 
+                /**
+                 * Clears a form, its validation errors, and any general messages.
+                 * @param {HTMLFormElement} formElement - The form element to clear.
+                 */
                 function clearForm(formElement) {
-                    formElement.reset();
-                    const inputs = formElement.querySelectorAll('input, textarea, select');
-                    inputs.forEach(input => _hideError(input));
+                    _clearFormInputs(formElement);
                     _clearGeneralMessages();
                 }
 
@@ -1179,11 +1320,17 @@
                     showGeneralMessage,
                     clearForm,
                     validateForm,
-                    attachValidationListeners
+                    attachValidationListeners,
+                    validateField // Expose validateField for individual input validation (e.g., postcode in hero)
                 };
             })();
 
-            // ModalManager Module (IIFE for encapsulation)
+            /**
+             * @module ModalManager
+             * @description Handles opening, closing, and rendering content within a generic modal.
+             *              Includes focus trapping and keyboard accessibility.
+             * @exports open, close, renderContent
+             */
             const ModalManager = (function() {
                 const elements = {
                     container: document.getElementById('modal-container'),
@@ -1199,6 +1346,11 @@
                 let _firstFocusableElement = null;
                 let _lastFocusableElement = null;
 
+                /**
+                 * Handles keyboard interactions for modal accessibility (Escape key, Tab trapping).
+                 * @private
+                 * @param {KeyboardEvent} e - The keyboard event.
+                 */
                 function _handleKeyDown(e) {
                     if (e.key === 'Escape') {
                         e.preventDefault();
@@ -1223,6 +1375,10 @@
                     }
                 }
 
+                /**
+                 * Sets up focus trapping within the modal when it opens.
+                 * @private
+                 */
                 function _trapFocus() {
                     const focusableSelectors = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
                     _focusableElements = Array.from(elements.container.querySelectorAll(focusableSelectors))
@@ -1238,13 +1394,56 @@
                     document.addEventListener('keydown', _handleKeyDown);
                 }
 
+                /**
+                 * Releases focus trapping when the modal closes.
+                 * @private
+                 */
                 function _releaseFocus() {
                     document.removeEventListener('keydown', _handleKeyDown);
                 }
 
+                /**
+                 * Opens the modal, sets its content, and handles focus.
+                 * @param {string} type - The type of modal content to render (e.g., 'secure-consultation').
+                 * @param {Object} data - Data to populate the modal content.
+                 * @param {HTMLElement} [triggerElement] - The element that triggered the modal, for focus restoration.
+                 */
+                function open(type, data, triggerElement = null) {
+                    _triggeringElement = triggerElement; // Store for focus restoration
+                    renderContent(type, data); // Render content before showing
+                    elements.container.classList.remove('modal-closed');
+                    elements.container.classList.add('modal-open');
+                    document.body.classList.add('overflow-hidden'); // Prevent background scrolling
+
+                    _trapFocus(); // Trap focus within the modal
+                }
+
+                /**
+                 * Closes the modal and restores focus to the triggering element.
+                 */
+                function close() {
+                    elements.container.classList.remove('modal-open');
+                    elements.container.classList.add('modal-closed');
+                    document.body.classList.remove('overflow-hidden'); // Restore background scrolling
+
+                    _releaseFocus(); // Release focus trapping
+                    if (_triggeringElement) {
+                        _triggeringElement.focus(); // Restore focus to the element that opened the modal
+                        _triggeringElement = null;
+                    }
+                    FormValidator.clearForm(elements.container.querySelector('.modal-form') || elements.body); // Clear forms and messages
+                }
+
+                /**
+                 * Renders dynamic content into the modal body based on type and data.
+                 * @param {string} type - The type of content to render.
+                 * @param {Object} data - Data specific to the content type.
+                 */
                 function renderContent(type, data) {
                     let title = '';
                     let content = '';
+
+                    elements.messages.innerHTML = ''; // Clear any previous general messages
 
                     switch (type) {
                         case 'secure-consultation':
@@ -1277,7 +1476,7 @@
 
                             title = `Your Private Shortlist`;
                             content = `
-                                <p>You have ${isAdded ? 'added' : 'removed'} <strong>${data.practitionerName}</strong> to your private shortlist. You currently have <strong>${currentShortlistCount}</strong> coach${currentShortlistCount === 1 ? '' : 'es'} on your shortlist.</p>
+                                <p>You have ${isAdded ? 'added' : 'removed'} <strong>${data.practitionerName}</strong> ${isAdded ? 'to' : 'from'} your private shortlist. You currently have <strong>${currentShortlistCount}</strong> coach${currentShortlistCount === 1 ? '' : 'es'} on your shortlist.</p>
                                 <p>Would you like to sign in or create an account to save your selections permanently?</p>
                                 <div class="flex flex-col sm:flex-row gap-3 mt-6">
                                     <button class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" data-modal-target="practitioner-sign-in">
@@ -1346,4 +1545,275 @@
                                         <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Lord Featherstone">
                                     </div>
                                     <div>
-                                        <label for
+                                        <label for="engage-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
+                                        <input type="email" id="engage-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="lord.featherstone@example.com">
+                                    </div>
+                                    <div>
+                                        <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
+                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="SW1A 0AA">
+                                    </div>
+                                    <div>
+                                        <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">Your Longevity Goals (20-500 chars)</label>
+                                        <textarea id="engage-goals" name="goals" rows="4" required minlength="20" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I am seeking a specialist to improve my golf swing agility and overall stamina for expeditions..."></textarea>
+                                    </div>
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                        Match Me with a Coach
+                                    </button>
+                                </form>
+                            `;
+                            break;
+                        default:
+                            title = 'Information';
+                            content = '<p>No specific content for this modal type.</p>';
+                            break;
+                    }
+
+                    elements.title.textContent = title;
+                    elements.body.innerHTML = content;
+
+                    const form = elements.body.querySelector('.modal-form');
+                    if (form) {
+                        FormValidator.attachValidationListeners(form);
+                        form.addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            if (FormValidator.validateForm(form)) {
+                                const submitBtn = form.querySelector('.submit-btn');
+                                submitBtn.innerHTML = '<span class="spinner text-brand-950"></span> Processing...';
+                                submitBtn.disabled = true;
+
+                                FormValidator.showGeneralMessage('info', 'Submitting your request...', true);
+
+                                // Simulate API call
+                                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                                // Mock success/error for demonstration
+                                const isSuccess = Math.random() > 0.1; // 90% success rate
+                                if (isSuccess) {
+                                    FormValidator.showGeneralMessage('success', 'Your request has been successfully submitted!', false, form); // CTO Spec 6
+                                } else {
+                                    FormValidator.showGeneralMessage('error', 'There was an error processing your request. Please try again.', false); // CTO Spec 6
+                                }
+
+                                submitBtn.innerHTML = submitBtn.dataset.originalText || 'Submit'; // Restore original text
+                                submitBtn.disabled = false;
+                            }
+                        });
+                        // Store original button text for spinner restoration
+                        form.querySelectorAll('.submit-btn').forEach(btn => {
+                            btn.dataset.originalText = btn.textContent;
+                        });
+                    }
+                }
+
+                elements.closeBtn.addEventListener('click', close);
+                elements.backdrop.addEventListener('click', close); // Close when clicking outside modal
+
+                return {
+                    open,
+                    close,
+                    renderContent
+                };
+            })();
+
+
+            // --- GLOBAL EVENT LISTENERS & INITIALIZERS ---
+
+            // Initialise ShortlistManager
+            ShortlistManager.init();
+
+            // Handle modal triggers
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = button.dataset.modalTarget;
+                    const practitionerId = button.dataset.practitionerId;
+                    const practitionerName = button.dataset.practitionerName;
+
+                    if (targetId === 'shortlist') {
+                        let isAdded;
+                        if (ShortlistManager.isShortlisted(practitionerId)) {
+                            ShortlistManager.remove(practitionerId);
+                            isAdded = false;
+                        } else {
+                            ShortlistManager.add(practitionerId, practitionerName);
+                            isAdded = true;
+                        }
+                        ShortlistManager.updateShortlistButtons();
+                        ModalManager.open(targetId, { practitionerId, practitionerName, isAdded }, button);
+                    } else if (targetId === 'secure-consultation') {
+                        // CTO Spec 9: Add aria-label to consultation buttons
+                        button.setAttribute('aria-label', `Secure Consultation with ${practitionerName}`);
+                        ModalManager.open(targetId, { practitionerName }, button);
+                    } else {
+                        ModalManager.open(targetId, {}, button);
+                    }
+                });
+            });
+
+            // --- MOBILE NAVIGATION (CTO Spec 3) ---
+            const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+            const mobileNav = document.getElementById('mobile-nav');
+            const mobileNavClose = document.getElementById('mobile-nav-close');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            mobileNavToggle.addEventListener('click', () => {
+                mobileNav.classList.toggle('is-open');
+                mobileNavToggle.classList.toggle('is-active');
+                mobileNavToggle.setAttribute('aria-expanded', mobileNav.classList.contains('is-open'));
+                document.body.classList.toggle('overflow-hidden', mobileNav.classList.contains('is-open')); // CTO Spec 3
+            });
+
+            mobileNavClose.addEventListener('click', () => {
+                mobileNav.classList.remove('is-open');
+                mobileNavToggle.classList.remove('is-active');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('overflow-hidden'); // CTO Spec 3
+            });
+
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Close the mobile nav when a link is clicked - CTO Spec 3
+                    mobileNav.classList.remove('is-open');
+                    mobileNavToggle.classList.remove('is-active');
+                    mobileNavToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('overflow-hidden');
+                });
+            });
+
+            // --- PRACTITIONER SEARCH & FILTER/SORT LOGIC (CTO Spec 1, 2) ---
+
+            const practitionerCardsGrid = document.getElementById('practitioner-cards-grid');
+            const coachCards = Array.from(document.querySelectorAll('.coach-card'));
+            const postcodeInput = document.getElementById('postcode-input');
+            const focusSelect = document.getElementById('focus-select');
+            const sortSelect = document.getElementById('sort-select');
+            const findSpecialistBtn = document.getElementById('find-specialist-btn');
+            const noResultsMessage = document.getElementById('no-results-message');
+            const filterStatusMessage = document.getElementById('filter-status-message');
+            const appliedFiltersText = document.getElementById('applied-filters-text');
+
+            /**
+             * Filters and sorts the displayed practitioner cards based on user input.
+             * @CTOSpec 1, 2
+             * @param {boolean} [isSearchTrigger=false] - True if triggered by the "Find Specialist" button.
+             */
+            function filterAndSortPractitioners(isSearchTrigger = false) {
+                let filteredCards = [...coachCards]; // Start with all cards
+                let activeFilters = [];
+
+                // 1. Postcode Filtering (CTO Spec 1)
+                const postcode = postcodeInput.value.trim();
+                let isPostcodeValid = false;
+                if (postcode) {
+                    isPostcodeValid = FormValidator.validateField(postcodeInput); // Validate in place
+
+                    if (isPostcodeValid) {
+                        // Mock proximity filter: show cards within 20 miles.
+                        // In a real app, this would involve geocoding and calculating actual distance.
+                        filteredCards = filteredCards.filter(card => {
+                            const distance = parseFloat(card.dataset.distance);
+                            return !isNaN(distance) && distance <= 20; // Hardcoded radius for demo
+                        });
+                        activeFilters.push(`Proximity to "${postcode}"`);
+
+                        // If a postcode is provided and valid, set default sort to proximity unless already set
+                        if (isSearchTrigger && sortSelect.value !== 'proximity') {
+                            sortSelect.value = 'proximity';
+                        }
+                    } else {
+                        // If postcode is invalid, treat it as no postcode filter applied, but show error
+                        // No cards are removed based on invalid postcode, only the error is shown.
+                    }
+                }
+
+                // 2. Focus Filtering (CTO Spec 1)
+                const selectedFocus = focusSelect.value;
+                if (selectedFocus) {
+                    filteredCards = filteredCards.filter(card => {
+                        const focuses = card.dataset.focuses || '';
+                        return focuses.includes(selectedFocus);
+                    });
+                    const focusOptionText = focusSelect.options[focusSelect.selectedIndex].textContent;
+                    activeFilters.push(`Focus: "${focusOptionText}"`);
+                }
+
+                // 3. Sorting Logic (CTO Spec 2)
+                const sortBy = sortSelect.value;
+                filteredCards.sort((a, b) => {
+                    if (sortBy === 'proximity') {
+                        const distA = parseFloat(a.dataset.distance);
+                        const distB = parseFloat(b.dataset.distance);
+                        return distA - distB;
+                    } else if (sortBy === 'credentials') {
+                        const rankA = parseInt(a.dataset.credentialsRank);
+                        const rankB = parseInt(b.dataset.credentialsRank);
+                        return rankA - rankB; // Lower rank = higher elite status (ascending)
+                    } else if (sortBy === 'rate-desc') {
+                        const rateA = parseFloat(a.dataset.rate);
+                        const rateB = parseFloat(b.dataset.rate);
+                        return rateB - rateA; // Descending rate
+                    } else if (sortBy === 'rate-asc') {
+                        const rateA = parseFloat(a.dataset.rate);
+                        const rateB = parseFloat(b.dataset.rate);
+                        return rateA - rateB; // Ascending rate
+                    }
+                    return 0;
+                });
+
+                // Update UI based on filtered and sorted cards
+                practitionerCardsGrid.innerHTML = ''; // Clear existing cards
+                noResultsMessage.style.display = 'none';
+                filterStatusMessage.style.display = 'none';
+
+                if (filteredCards.length > 0) {
+                    filteredCards.forEach(card => {
+                        card.style.display = ''; // Make sure it's visible
+                        practitionerCardsGrid.appendChild(card);
+                    });
+                } else {
+                    noResultsMessage.style.display = 'block'; // CTO Spec 1: No Results State
+                }
+
+                // Display filter status message (CTO Spec 1)
+                if (activeFilters.length > 0) {
+                    appliedFiltersText.textContent = activeFilters.join(' & ');
+                    filterStatusMessage.style.display = 'flex';
+                }
+            }
+
+            // Event listeners for filtering and sorting
+            findSpecialistBtn.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const originalBtnText = findSpecialistBtn.textContent;
+                findSpecialistBtn.innerHTML = '<span class="spinner text-brand-950"></span> Searching...'; // CTO Spec 1: Loading state
+                findSpecialistBtn.disabled = true;
+
+                // Simulate processing time
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                filterAndSortPractitioners(true);
+
+                findSpecialistBtn.innerHTML = originalBtnText;
+                findSpecialistBtn.disabled = false;
+            });
+
+            // Re-filter on select changes
+            focusSelect.addEventListener('change', () => filterAndSortPractitioners());
+            sortSelect.addEventListener('change', () => filterAndSortPractitioners());
+
+            // Initial load of practitioners (with default filters/sort)
+            filterAndSortPractitioners();
+
+            // Validate postcode input on blur for immediate feedback
+            postcodeInput.addEventListener('blur', () => {
+                if (postcodeInput.value.trim()) {
+                    FormValidator.validateField(postcodeInput);
+                }
+            });
+            postcodeInput.addEventListener('input', () => FormValidator.validateField(postcodeInput)); // clear error while typing
+
+
+        }); // End DOMContentLoaded
+    </script>
+</body>
+</html>
