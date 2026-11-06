@@ -2,7 +2,7 @@ name: LifelongCoaches Autonomous Agent Runner
 
 on:
   schedule:
-    - cron: '0 2 * * *' # Runs automatically every night at 2:00 AM UTC while you sleep
+    - cron: '0 */2 * * *' # Runs automatically every night at 2:00 AM UTC while you sleep
   workflow_dispatch: # Allows you to manually trigger the agent run anytime from GitHub with one click
 
 jobs:
