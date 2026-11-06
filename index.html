@@ -18,7 +18,7 @@
                             600: '#114232',
                             700: '#0c3024',
                             800: '#082119',
-                            900: '#05140f',
+                            900: '#0c221c', /* Adjusted for better contrast with gold */
                             950: '#030b08',
                         },
                         gold: {
@@ -199,7 +199,8 @@
                  data-postcode="SW1X 7GR"
                  data-focuses="advanced-strength,reverse-aging,executive-fitness,bone-density"
                  data-rate="50"
-                 data-distance="2.4">
+                 data-distance="2.4"
+                 data-credentials-rank="1">
                 
                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
                     <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
@@ -278,7 +279,8 @@
                  data-postcode="W1K 7AU"
                  data-focuses="cardiovascular-health,joint-preservation,dynamic-agility,executive-resilience"
                  data-rate="60"
-                 data-distance="4.1">
+                 data-distance="4.1"
+                 data-credentials-rank="2">
                 
                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
                     <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
@@ -357,7 +359,8 @@
                  data-postcode="GU25 4JR"
                  data-focuses="bone-density,post-operative-mobility,absolute-balance,advanced-strength"
                  data-rate="55"
-                 data-distance="6.8">
+                 data-distance="6.8"
+                 data-credentials-rank="1">
                 
                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
                     <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
@@ -436,7 +439,8 @@
                  data-postcode="GL54 1EU"
                  data-focuses="neuromuscular-balance,absolute-balance,agility-mastery,bespoke-home-visit"
                  data-rate="40"
-                 data-distance="12.3">
+                 data-distance="12.3"
+                 data-credentials-rank="3">
                 
                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
                     <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
@@ -515,7 +519,8 @@
                  data-postcode="BH13 7QY"
                  data-focuses="post-operative-mobility,joint-preservation,bespoke-home-visit,advanced-strength"
                  data-rate="45"
-                 data-distance="8.1">
+                 data-distance="8.1"
+                 data-credentials-rank="3">
                 
                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
                     <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
@@ -594,7 +599,8 @@
                  data-postcode="EH3 6AA"
                  data-focuses="cardiovascular-longevity,post-retirement-performance,elite-cardiovascular-health,endurance-training"
                  data-rate="58"
-                 data-distance="18.9">
+                 data-distance="18.9"
+                 data-credentials-rank="1">
                 
                 <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-4 md:gap-x-6 mb-6">
                     <div class="flex flex-wrap gap-x-3 gap-y-2 text-xs font-semibold text-gold-700 tracking-wider uppercase">
@@ -1001,27 +1007,69 @@
             // Store original card elements to manipulate their order
             const allPractitionerCards = Array.from(practitionerCardsGrid.querySelectorAll('.coach-card'));
 
-            // Simplified postcode distance simulation
-            function calculateSimulatedDistance(practitionerPostcode, searchPostcode) {
-                if (!searchPostcode || searchPostcode.trim() === '') {
-                    return null; // No search postcode, no specific proximity
+            // UK Postcode Prefix Coordinate Data (JavaScript)
+            const ukPostcodePrefixCoords = {
+                "SW1X": { lat: 51.4988, lon: -0.1585 }, // Belgravia, London
+                "W1K": { lat: 51.5103, lon: -0.1504 },  // Mayfair, London
+                "BH13": { lat: 50.7196, lon: -1.9796 }, // Sandbanks, Poole
+                "GU25": { lat: 51.3789, lon: -0.6300 }, // Wentworth, Surrey
+                "GL54": { lat: 51.9149, lon: -1.7828 }, // Bourton-on-the-Water, Cotswolds
+                "EH3":  { lat: 55.9529, lon: -3.2081 }, // New Town, Edinburgh
+                "SW1": { lat: 51.5007, lon: -0.1246 }, // Westminster, London (example of broader prefix)
+                "SW": { lat: 51.45, lon: -0.15 },      // General South West London area
+                "N": { lat: 51.56, lon: -0.10 },       // General North London area
+                "SE": { lat: 51.45, lon: 0.05 },       // General South East London area
+                "E": { lat: 51.53, lon: 0.05 },        // General East London area
+                "W": { lat: 51.51, lon: -0.22 },       // General West London area
+                "EC": { lat: 51.51, lon: -0.09 },      // East Central London
+                "WC": { lat: 51.51, lon: -0.12 },      // West Central London
+                // Other major cities/regions as needed:
+                "B": { lat: 52.48, lon: -1.90 },       // Birmingham
+                "M": { lat: 53.48, lon: -2.24 },       // Manchester
+                "L": { lat: 53.40, lon: -2.98 },       // Liverpool
+                "LS": { lat: 53.80, lon: -1.54 },      // Leeds
+                "BS": { lat: 51.45, lon: -2.58 },      // Bristol
+                "CF": { lat: 51.48, lon: -3.18 },      // Cardiff
+                "G": { lat: 55.86, lon: -4.25 },       // Glasgow
+                "BT": { lat: 54.59, lon: -5.92 },      // Belfast
+            };
+
+            // Helper function to get coordinates from a postcode prefix
+            function getCoordsFromPostcodePrefix(postcode) {
+                if (!postcode) return null;
+                const cleanPostcode = postcode.toUpperCase().trim();
+                const outwardCode = cleanPostcode.split(' ')[0]; // E.g., "SW1X" from "SW1X 7GR", or "SW" from "SW"
+
+                // Try exact match for the derived outwardCode
+                if (ukPostcodePrefixCoords[outwardCode]) {
+                    return ukPostcodePrefixCoords[outwardCode];
                 }
 
-                const searchPrefix = searchPostcode.toUpperCase().split(' ')[0];
-                const practitionerPrefix = practitionerPostcode.toUpperCase().split(' ')[0];
+                // If no exact match for the full outward code, try progressively shorter prefixes
+                for (let i = outwardCode.length - 1; i >= 1; i--) { // Start from one character less than full outwardCode
+                    const prefix = outwardCode.substring(0, i);
+                    if (ukPostcodePrefixCoords[prefix]) {
+                        return ukPostcodePrefixCoords[prefix];
+                    }
+                }
+                return null; // No match found
+            }
 
-                let distance;
-                if (practitionerPrefix.startsWith(searchPrefix)) {
-                    // Closer match, e.g., SW1X matches SW1X 7GR
-                    distance = (Math.random() * 4) + 1; // 1 to 5 miles
-                } else if (searchPrefix.length >= 2 && practitionerPrefix.startsWith(searchPrefix.substring(0,2))) {
-                    // Broader area match, e.g., SW1X matches SW1A
-                    distance = (Math.random() * 7) + 3; // 3 to 10 miles
-                }
-                else {
-                    distance = (Math.random() * 15) + 5; // 5 to 20 miles
-                }
-                return parseFloat(distance.toFixed(1));
+            // Helper function to calculate distance using Haversine formula
+            function calculateDistance(lat1, lon1, lat2, lon2) {
+                const R = 3958.8; // Radius of Earth in miles
+                const toRad = (value) => (value * Math.PI) / 180;
+
+                const dLat = toRad(lat2 - lat1);
+                const dLon = toRad(lon2 - lon1);
+
+                const a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+                return parseFloat((R * c).toFixed(1)); // Distance in miles, rounded to 1 decimal place
             }
 
             function filterAndSortPractitioners() {
@@ -1031,29 +1079,43 @@
 
                 let filteredCards = [...allPractitionerCards]; // Start with all cards
 
-                // 1. Calculate & Update Distances (if postcode provided)
+                let userCoords = null;
+                let invalidUserPostcode = false;
+
+                // 1. User Postcode Geocoding
                 if (searchPostcode) {
-                    filteredCards.forEach(card => {
-                        const practitionerPostcode = card.dataset.postcode;
-                        const newDistance = calculateSimulatedDistance(practitionerPostcode, searchPostcode);
-                        card.dataset.distance = newDistance !== null ? newDistance : 9999; // Assign large distance if no postcode or no match
-                        const distancePill = card.querySelector('.distance-pill');
-                        if (distancePill) {
-                            distancePill.textContent = newDistance !== null ? `${newDistance} miles away` : 'Distance N/A';
-                        }
-                    });
-                } else {
-                    // Reset to initial distances or a generic message if postcode cleared
-                    filteredCards.forEach(card => {
-                        card.dataset.distance = card.getAttribute('data-initial-distance') || 9999;
-                        const distancePill = card.querySelector('.distance-pill');
-                        if (distancePill) {
-                            distancePill.textContent = `${card.dataset.distance} miles away`; // Restore initial value or default
-                        }
-                    });
+                    userCoords = getCoordsFromPostcodePrefix(searchPostcode);
+                    if (!userCoords) {
+                        invalidUserPostcode = true;
+                    }
                 }
 
-                // 2. Filter by Longevity Focus
+                // 2. Distance Calculation & UI Update for all Coaches
+                filteredCards.forEach(card => {
+                    const distancePill = card.querySelector('.distance-pill');
+                    // Get practitioner's postcode coords. If null, this practitioner cannot be geo-located.
+                    const practitionerPostcodeCoords = getCoordsFromPostcodePrefix(card.dataset.postcode);
+
+                    if (userCoords && !invalidUserPostcode && practitionerPostcodeCoords) {
+                        // Condition 1: Valid User Postcode and valid practitioner postcode
+                        const distance = calculateDistance(
+                            userCoords.lat, userCoords.lon,
+                            practitionerPostcodeCoords.lat, practitionerPostcodeCoords.lon
+                        );
+                        card.dataset.distance = distance.toFixed(1);
+                        distancePill.textContent = `${distance.toFixed(1)} miles away`;
+                    } else if (!searchPostcode) {
+                        // Condition 2: Empty Postcode Input (user hasn't typed anything)
+                        card.dataset.distance = card.getAttribute('data-initial-distance') || '9999';
+                        distancePill.textContent = 'Enter Postcode';
+                    } else { 
+                        // Condition 3: Invalid Postcode Input (user entered something, but it's invalid or practitioner postcode is invalid)
+                        card.dataset.distance = '9999'; // Large number to place last in proximity sort
+                        distancePill.textContent = 'Invalid Postcode';
+                    }
+                });
+
+                // 3. Filtering by Longevity Focus
                 if (selectedFocus) {
                     filteredCards = filteredCards.filter(card => {
                         const focuses = card.dataset.focuses ? card.dataset.focuses.split(',') : [];
@@ -1061,12 +1123,16 @@
                     });
                 }
 
-                // 3. Sort
+                // 4. Sorting Logic
                 filteredCards.sort((a, b) => {
                     if (sortBy === 'proximity') {
                         const distA = parseFloat(a.dataset.distance);
                         const distB = parseFloat(b.dataset.distance);
                         return distA - distB;
+                    } else if (sortBy === 'credentials') {
+                        const rankA = parseInt(a.dataset.credentialsRank || '9999'); // Default to 9999 for missing attribute
+                        const rankB = parseInt(b.dataset.credentialsRank || '9999');
+                        return rankA - rankB;
                     } else if (sortBy === 'rate-desc') {
                         const rateA = parseInt(a.dataset.rate);
                         const rateB = parseInt(b.dataset.rate);
@@ -1075,15 +1141,11 @@
                         const rateA = parseInt(a.dataset.rate);
                         const rateB = parseInt(b.dataset.rate);
                         return rateA - rateB;
-                    } else if (sortBy === 'credentials') {
-                        // For 'Elite Credentials', keep initial order or add a new data-attribute for ranking.
-                        // For this demo, we'll maintain their original position within the filtered set
-                        return 0;
                     }
-                    return 0;
+                    return 0; // Maintain current order if no specific sort is selected (or if sorting by other unspecified criteria)
                 });
 
-                // Clear current grid and append sorted/filtered cards
+                // 5. DOM Update
                 practitionerCardsGrid.innerHTML = '';
                 if (filteredCards.length > 0) {
                     filteredCards.forEach(card => practitionerCardsGrid.appendChild(card));
@@ -1092,7 +1154,7 @@
                 }
             }
 
-            // Store initial distances for reset
+            // Store initial distances for reset, needs to run once when the DOM is ready
             allPractitionerCards.forEach(card => {
                 card.setAttribute('data-initial-distance', card.dataset.distance);
             });
@@ -1103,7 +1165,7 @@
             findSpecialistBtn.addEventListener('click', filterAndSortPractitioners);
             sortSelect.addEventListener('change', filterAndSortPractitioners);
 
-            // Initial display of practitioners
+            // Initial display of practitioners when the page loads
             filterAndSortPractitioners();
         });
     </script>

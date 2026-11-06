@@ -15,7 +15,7 @@
     {
       "id": 3,
       "name": "Interactive UK Postcode Radius & Specialism Filtering",
-      "status": "pending",
+      "status": "completed",
       "directive": "Implement working vanilla JavaScript for the postcode input, Longevity Focus dropdown, and Sort selector. Map UK postcode prefixes (SW, W, BH, GU, GL, EH, etc.) to coordinates so entering any UK postcode calculates realistic mile distances, sorts the cards by proximity, and updates the distance badges dynamically."
     },
     {
