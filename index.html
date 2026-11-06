@@ -54,87 +54,11 @@
     <link href="/dist/output.css" rel="stylesheet">
     <!-- Performance Optimization: Preconnect for Google Fonts - CTO Spec 8 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- CTO Spec III.9: Critical Font Preloading -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v37/rnCf-O2Xz2htPoGx-VE4cE_B.woff2" as="font" type="font/woff2" crossorigin> <!-- Playfair Display 700 normal -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO4kAplfW5jhlpxiEkUCM.woff2" as="font" type="font/woff2" crossorigin> <!-- Inter 400 regular -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Custom modal styles for smoother transitions */
-        .modal-backdrop {
-            transition: opacity 0.3s ease-out;
-        }
-        .modal-content {
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-        }
-        .modal-open .modal-backdrop {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-open .modal-content {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .modal-closed .modal-backdrop {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .modal-closed .modal-content {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-
-        /* Custom spinner for buttons */
-        .spinner {
-            border: 2px solid currentColor;
-            border-top-color: transparent;
-            border-radius: 50%;
-            width: 1em;
-            height: 1em;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Mobile Nav specific styles - CTO Spec 3.2.2 */
-        .mobile-nav {
-            transform: translateX(100%); /* Start off-screen */
-            visibility: hidden; /* Hide initially for accessibility & transitions */
-        }
-        .mobile-nav.is-open {
-            transform: translateX(0); /* Slide in */
-            visibility: visible; /* Make visible when open */
-        }
-        .hamburger-icon span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: currentColor; /* Inherit color from parent */
-            transition: all 0.3s ease-in-out;
-        }
-        .hamburger-icon span:nth-child(2) {
-            margin: 6px 0;
-        }
-        .hamburger-icon.is-active span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-        .hamburger-icon.is-active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger-icon.is-active span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        /* Active Navigation Link Highlighting - CTO Spec I.4 */
-        .nav-link.is-active {
-            color: #E6C665; /* gold-400 */
-            border-bottom: 2px solid #E6C665; /* gold-400 */
-            padding-bottom: 0.25rem; /* pb-1 */
-        }
-        /* Override for mobile links as they have different base styles */
-        .mobile-nav-link.is-active {
-            color: #E6C665; /* gold-400 */
-        }
-    </style>
+    <!-- CTO Spec III.8: Inline CSS has been migrated to the external Tailwind CSS build (output.css) -->
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
 
@@ -178,9 +102,9 @@
                 <!-- Mobile Hamburger Button - CTO Spec 3.2.2 -->
                 <button id="mobile-nav-toggle" class="md:hidden p-2 -mr-2 rounded-md text-gold-400 hover:text-white hover:bg-brand-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold-500 transition" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="hamburger-icon flex flex-col justify-center items-center h-full">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                        <span class="block w-24px h-2px bg-current transition-all duration-300 ease-in-out"></span>
+                        <span class="block w-24px h-2px bg-current transition-all duration-300 ease-in-out my-6px"></span>
+                        <span class="block w-24px h-2px bg-current transition-all duration-300 ease-in-out"></span>
                     </div>
                 </button>
 
@@ -243,9 +167,10 @@
                             <!-- CTO Spec 12: SVG Icon Consistency -->
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </span>
-                        <!-- CTO Spec 9: ARIA Attributes -->
-                        <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm" aria-label="Enter your UK Postcode to find specialists nearby">
-                        <button id="use-my-location-btn" type="button" class="absolute right-2 px-3 py-2 text-brand-600 hover:text-gold-500 text-xs font-semibold rounded-lg transition" aria-label="Use my current location">
+                        <!-- CTO Spec 9: ARIA Attributes & CTO Spec III.3: Enhanced Form Input Focus States -->
+                        <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Enter your UK Postcode to find specialists nearby">
+                        <!-- CTO Spec III.4: Consistent Button Disabled States -->
+                        <button id="use-my-location-btn" type="button" class="absolute right-2 px-3 py-2 text-brand-600 hover:text-gold-500 text-xs font-semibold rounded-lg transition disabled:opacity-75 disabled:cursor-not-allowed" aria-label="Use my current location">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </button>
                     </div>
@@ -254,8 +179,8 @@
                             <!-- CTO Spec 12: SVG Icon Consistency -->
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                         </span>
-                        <!-- CTO Spec 9: ARIA Attributes -->
-                        <select id="focus-select" class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer" aria-label="Select an Elite Longevity Focus or Goal">
+                        <!-- CTO Spec 9: ARIA Attributes & CTO Spec III.3: Enhanced Form Input Focus States -->
+                        <select id="focus-select" class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Select an Elite Longevity Focus or Goal">
                             <option value="">Elite Longevity Focus &amp; Goals</option>
                             <option value="advanced-strength">Advanced Strength &amp; Muscle Preservation</option>
                             <option value="absolute-balance">Absolute Balance &amp; Agility Mastery</option>
@@ -269,7 +194,8 @@
                         <span class="absolute right-4 text-brand-400 pointer-events-none text-xs">▼</span>
                     </div>
                     <div class="sm:col-span-3">
-                        <button id="find-specialist-btn" class="w-full h-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-wider py-4 px-6 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-xs">
+                        <!-- CTO Spec III.4: Consistent Button Disabled States -->
+                        <button id="find-specialist-btn" class="w-full h-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-wider py-4 px-6 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-xs disabled:opacity-75 disabled:cursor-not-allowed">
                             Find Specialist
                         </button>
                     </div>
@@ -310,9 +236,9 @@
 
         <!-- Coach Cards Grid -->
         <div id="practitioner-cards-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-brand-900">
-            <!-- No results message placeholder -->
+            <!-- CTO Spec III.6: "No Results" Message Enhancement -->
             <div id="no-results-message" class="hidden lg:col-span-2 bg-brand-800 border border-gold-500/20 text-gold-400 p-8 rounded-2xl text-center text-lg font-serif italic shadow-lg">
-                No matching specialists found. Please adjust your search criteria.
+                No elite specialists matched your criteria. Please broaden your postcode search radius or select a different longevity focus. Alternatively, our <a href='#' class='text-gold-400 hover:underline' data-modal-target='engage-coach'>concierge service</a> can match you privately.
             </div>
 
             <!-- Coach Card 1: Sarah Jenkins (Mayfair) -->
@@ -957,12 +883,12 @@
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Practitioner Guild</h4>
                     <ul class="space-y-2.5 text-sm font-light">
-                        <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                        <!-- CTO Spec III.12: Footer Link Enhancements for Clarity -->
                         <li><button type="button" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition" aria-label="Apply for Membership">Apply for Membership</button></li>
-                        <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                        <!-- CTO Spec III.12: Footer Link Enhancements for Clarity -->
                         <li><button type="button" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition" aria-label="Founding Trial details">Founding Trial (£25/mo)</button></li>
                         <li><a href="/404" class="hover:text-gold-400 transition">Credential Verification</a></li>
-                        <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                        <!-- CTO Spec III.12: Footer Link Enhancements for Clarity -->
                         <li><button type="button" data-modal-target="practitioner-sign-in" class="hover:text-gold-400 transition" aria-label="Practitioner Portal Login">Practitioner Portal Login</button></li>
                         <li><a href="/404" class="hover:text-gold-400 transition">Guild Code of Conduct</a></li>
                     </ul>
@@ -1052,7 +978,7 @@
                         const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
                         return stored ? JSON.parse(stored) : [];
                     } catch (e) {
-                        console.error("Error reading shortlist from localStorage:", e);
+                        console.error("Error reading shortlist from localStorage:", e); // CTO Spec III.14
                         return [];
                     }
                 }
@@ -1066,7 +992,7 @@
                     try {
                         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
                     } catch (e) {
-                        console.error("Error saving shortlist to localStorage:", e);
+                        console.error("Error saving shortlist to localStorage:", e); // CTO Spec III.14
                     }
                 }
 
@@ -1076,7 +1002,7 @@
                  * @param {string} practitionerName - The name of the practitioner.
                  * @returns {boolean} True if the practitioner was added, false if already existed.
                  */
-                function add(practitionerId, practitionerName) {
+                function add(practitionerId, practitionerName) { // CTO Spec III.13
                     const shortlist = _getShortlist();
                     if (!shortlist.some(p => p.id === practitionerId)) {
                         shortlist.push({ id: practitionerId, name: practitionerName });
@@ -1091,7 +1017,7 @@
                  * @param {string} practitionerId - The unique ID of the practitioner to remove.
                  * @returns {boolean} True if the practitioner was removed, false if not found.
                  */
-                function remove(practitionerId) {
+                function remove(practitionerId) { // CTO Spec III.13
                     let shortlist = _getShortlist();
                     const initialLength = shortlist.length;
                     shortlist = shortlist.filter(p => p.id !== practitionerId);
@@ -1103,7 +1029,7 @@
                  * Retrieves all practitioners currently in the shortlist.
                  * @returns {Array<Object>} An array of shortlisted practitioners.
                  */
-                function getAll() {
+                function getAll() { // CTO Spec III.13
                     return _getShortlist();
                 }
 
@@ -1112,7 +1038,7 @@
                  * @param {string} practitionerId - The unique ID of the practitioner.
                  * @returns {boolean} True if the practitioner is shortlisted, false otherwise.
                  */
-                function isShortlisted(practitionerId) {
+                function isShortlisted(practitionerId) { // CTO Spec III.13
                     return _getShortlist().some(p => p.id === practitionerId);
                 }
 
@@ -1121,7 +1047,7 @@
                  * based on their current shortlisted status.
                  * @CTOSpec 5, 9
                  */
-                function updateShortlistButtons() {
+                function updateShortlistButtons() { // CTO Spec III.13
                     document.querySelectorAll('.shortlist-btn').forEach(button => {
                         const practitionerId = button.dataset.practitionerId;
                         const practitionerName = button.dataset.practitionerName;
@@ -1142,7 +1068,7 @@
                 /**
                  * Initializes the ShortlistManager, updating button states on page load.
                  */
-                function init() {
+                function init() { // CTO Spec III.13
                     updateShortlistButtons();
                 }
 
@@ -1160,7 +1086,7 @@
              * @module FormValidator
              * @description Provides client-side form validation utilities, including input-specific
              *              validation, general message display, and form clearing.
-             * @exports showGeneralMessage, clearForm, validateForm, attachValidationListeners
+             * @exports showGeneralMessage, clearForm, validateForm, attachValidationListeners, validateField
              */
             const FormValidator = (function() {
                 const UK_POSTCODE_REGEX = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
@@ -1183,7 +1109,7 @@
                     }
                     errorElement.textContent = message;
                     inputElement.classList.add('border-red-500');
-                    inputElement.classList.remove('focus:border-gold-500'); // Remove focus border if error present
+                    inputElement.classList.remove('focus:border-gold-500', 'focus:ring-2'); // Remove focus border/ring if error present
                     inputElement.setAttribute('aria-invalid', 'true'); // A11y
                     inputElement.setAttribute('aria-describedby', errorElement.id || (errorElement.id = `${inputElement.id}-error`)); // A11y
                 }
@@ -1199,7 +1125,7 @@
                         errorElement.remove();
                     }
                     inputElement.classList.remove('border-red-500');
-                    inputElement.classList.add('focus:border-gold-500');
+                    inputElement.classList.add('focus:border-gold-500', 'focus:ring-2'); // Restore focus styles
                     inputElement.removeAttribute('aria-invalid'); // A11y
                     inputElement.removeAttribute('aria-describedby'); // A11y
                 }
@@ -1230,9 +1156,9 @@
                  * @param {string} type - The type of message ('success', 'error', 'info').
                  * @param {string} message - The message text to display.
                  * @param {boolean} spinner - If true, displays a loading spinner.
-                 * @param {HTMLFormElement} [formElement] - Optional. The form to clear on success messages. @CTOSpec 6
+                 * @param {HTMLFormElement} [formElement] - Optional. The form to clear on success messages.
                  */
-                function showGeneralMessage(type, message, spinner = false, formElement = null) {
+                function showGeneralMessage(type, message, spinner = false, formElement = null) { // CTO Spec III.13
                     const messagesContainer = document.querySelector('#modal-container .modal-messages');
                     if (!messagesContainer) return;
 
@@ -1247,7 +1173,7 @@
                     messageDiv.setAttribute('role', type === 'error' ? 'alert' : 'status');
 
                     messageDiv.innerHTML = `
-                        ${spinner ? '<span class="spinner text-gold-400"></span>' : ''}
+                        ${spinner ? '<span class="spinner text-gold-400 inline-flex items-center justify-center"></span>' : ''}
                         <span>${message}</span>
                     `;
                     messagesContainer.appendChild(messageDiv);
@@ -1271,7 +1197,7 @@
                  * @param {HTMLElement} input - The input element to validate.
                  * @returns {boolean} True if the input is valid, false otherwise.
                  */
-                function validateField(input) {
+                function validateField(input) { // CTO Spec III.13
                     _hideError(input); // Clear previous error
 
                     if (input.hasAttribute('required') && !input.value.trim()) {
@@ -1320,7 +1246,7 @@
                  * @param {HTMLFormElement} form - The form element to validate.
                  * @returns {boolean} True if the entire form is valid, false otherwise.
                  */
-                function validateForm(form) {
+                function validateForm(form) { // CTO Spec III.13
                     _clearGeneralMessages();
                     let isValid = true;
                     const inputs = form.querySelectorAll('input, textarea, select');
@@ -1340,7 +1266,7 @@
                  * Attaches validation event listeners (blur, input) to all form fields.
                  * @param {HTMLFormElement} formElement - The form element to attach listeners to.
                  */
-                function attachValidationListeners(formElement) {
+                function attachValidationListeners(formElement) { // CTO Spec III.13
                     const inputs = formElement.querySelectorAll('input, textarea, select');
                     inputs.forEach(input => {
                         input.addEventListener('blur', () => validateField(input));
@@ -1352,7 +1278,7 @@
                  * Clears a form, its validation errors, and any general messages.
                  * @param {HTMLFormElement} formElement - The form element to clear.
                  */
-                function clearForm(formElement) {
+                function clearForm(formElement) { // CTO Spec III.13
                     _clearFormInputs(formElement);
                     _clearGeneralMessages();
                 }
@@ -1424,6 +1350,8 @@
                     const focusableSelectors = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
                     _focusableElements = Array.from(elements.container.querySelectorAll(focusableSelectors))
                                             .filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === elements.closeBtn); // Include close button if it's there
+                    _focusableElements.sort((a, b) => (a.tabIndex || 0) - (b.tabIndex || 0)); // Ensure correct tab order
+
                     _firstFocusableElement = _focusableElements[0];
                     _lastFocusableElement = _focusableElements[_focusableElements.length - 1];
 
@@ -1449,7 +1377,7 @@
                  * @param {Object} data - Data to populate the modal content.
                  * @param {HTMLElement} [triggerElement] - The element that triggered the modal, for focus restoration.
                  */
-                function open(type, data, triggerElement = null) {
+                function open(type, data, triggerElement = null) { // CTO Spec III.13
                     _triggeringElement = triggerElement; // Store for focus restoration
                     renderContent(type, data); // Render content before showing
                     elements.container.classList.remove('modal-closed');
@@ -1462,7 +1390,7 @@
                 /**
                  * Closes the modal and restores focus to the triggering element.
                  */
-                function close() {
+                function close() { // CTO Spec III.13
                     elements.container.classList.remove('modal-open');
                     elements.container.classList.add('modal-closed');
                     document.body.classList.remove('overflow-hidden'); // Restore background scrolling
@@ -1480,11 +1408,15 @@
                  * @param {string} type - The type of content to render.
                  * @param {Object} data - Data specific to the content type.
                  */
-                function renderContent(type, data) {
+                function renderContent(type, data) { // CTO Spec III.13
                     let title = '';
                     let content = '';
 
                     elements.messages.innerHTML = ''; // Clear any previous general messages
+
+                    // CTO Spec III.3 & III.4: Enhanced Form Input Focus States & Consistent Button Disabled States
+                    const focusRingClasses = 'focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900';
+                    const disabledButtonClasses = 'disabled:opacity-75 disabled:cursor-not-allowed';
 
                     switch (type) {
                         case 'secure-consultation':
@@ -1494,17 +1426,17 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="consult-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="consult-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="John Smith">
+                                        <input type="text" id="consult-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="John Smith">
                                     </div>
                                     <div>
                                         <label for="consult-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
-                                        <input type="email" id="consult-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="john.smith@example.com">
+                                        <input type="email" id="consult-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="john.smith@example.com">
                                     </div>
                                     <div>
                                         <label for="consult-message" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your goals</label>
-                                        <textarea id="consult-message" name="message" rows="4" required minlength="20" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm looking to enhance my agility and bone density..."></textarea>
+                                        <textarea id="consult-message" name="message" rows="4" required minlength="20" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="I'm looking to enhance my agility and bone density..."></textarea>
                                     </div>
-                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Submit Consultation Request
                                     </button>
                                 </form>
@@ -1516,14 +1448,22 @@
                             const currentShortlistCount = ShortlistManager.getAll().length;
 
                             title = `Your Private Shortlist`;
+                            // CTO Spec III.7: Shortlist Modal Content Clarification for Empty State
+                            let shortlistMessage;
+                            if (currentShortlistCount === 0) {
+                                shortlistMessage = "Your private shortlist is now empty. Shortlist elite coaches to save them for later or explore our <a href='#' class='text-gold-400 hover:underline' data-modal-target='engage-coach'>concierge service</a>.";
+                            } else {
+                                shortlistMessage = `You have ${isAdded ? 'added' : 'removed'} <strong>${data.practitionerName}</strong> ${isAdded ? 'to' : 'from'} your private shortlist. You currently have <strong>${currentShortlistCount}</strong> coach${currentShortlistCount === 1 ? '' : 'es'} on your shortlist.`;
+                            }
+
                             content = `
-                                <p>You have ${isAdded ? 'added' : 'removed'} <strong>${data.practitionerName}</strong> ${isAdded ? 'to' : 'from'} your private shortlist. You currently have <strong>${currentShortlistCount}</strong> coach${currentShortlistCount === 1 ? '' : 'es'} on your shortlist.</p>
+                                <p>${shortlistMessage}</p>
                                 <p>Would you like to sign in or create an account to save your selections permanently?</p>
                                 <div class="flex flex-col sm:flex-row gap-3 mt-6">
-                                    <button class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" data-modal-target="practitioner-sign-in">
+                                    <button type="button" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" data-modal-target="practitioner-sign-in">
                                         Sign In to Save
                                     </button>
-                                    <button class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" onclick="ModalManager.close()">
+                                    <button type="button" class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" onclick="ModalManager.close()">
                                         Continue Browsing
                                     </button>
                                 </div>
@@ -1536,13 +1476,13 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="login-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                        <input type="email" id="login-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="your.name@lifelongcoaches.co.uk">
+                                        <input type="email" id="login-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="your.name@lifelongcoaches.co.uk">
                                     </div>
                                     <div>
                                         <label for="login-password" class="block text-brand-200 text-sm font-medium mb-1">Password</label>
-                                        <input type="password" id="login-password" name="password" required minlength="8" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="••••••••">
+                                        <input type="password" id="login-password" name="password" required minlength="8" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="••••••••">
                                     </div>
-                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Sign In to Portal
                                     </button>
                                     <a href="#" class="block text-center text-gold-400 hover:underline text-xs mt-3">Forgot Password?</a>
@@ -1560,17 +1500,17 @@
                                 <form class="modal-form space-y-4 mt-4" novalidate>
                                     <div>
                                         <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="apply-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Dr. Jane Doe">
+                                        <input type="text" id="apply-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="Dr. Jane Doe">
                                     </div>
                                     <div>
                                         <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                        <input type="email" id="apply-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="jane.doe@elitetraining.com">
+                                        <input type="email" id="apply-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="jane.doe@elitetraining.com">
                                     </div>
                                     <div>
                                         <label for="apply-credentials" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your credentials & specialisms</label>
-                                        <textarea id="apply-credentials" name="credentials" rows="4" required minlength="50" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="BSc Sport Science, CIMSPA L3/4, 10+ years HNW client experience, specializing in strength and balance for seniors..."></textarea>
+                                        <textarea id="apply-credentials" name="credentials" rows="4" required minlength="50" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="BSc Sport Science, CIMSPA L3/4, 10+ years HNW client experience, specializing in strength and balance for seniors..."></textarea>
                                     </div>
-                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Submit Application
                                     </button>
                                 </form>
@@ -1583,21 +1523,21 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Lord Featherstone">
+                                        <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="Lord Featherstone">
                                     </div>
                                     <div>
                                         <label for="engage-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
-                                        <input type="email" id="engage-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="lord.featherstone@example.com">
+                                        <input type="email" id="engage-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="lord.featherstone@example.com">
                                     </div>
                                     <div>
                                         <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
-                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="SW1A 0AA">
+                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="SW1A 0AA">
                                     </div>
                                     <div>
                                         <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">Your Longevity Goals (20-500 chars)</label>
-                                        <textarea id="engage-goals" name="goals" rows="4" required minlength="20" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I am seeking a specialist to improve my golf swing agility and overall stamina for expeditions..."></textarea>
+                                        <textarea id="engage-goals" name="goals" rows="4" required minlength="20" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="I am seeking a specialist to improve my golf swing agility and overall stamina for expeditions..."></textarea>
                                     </div>
-                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Match Me with a Coach
                                     </button>
                                 </form>
@@ -1619,7 +1559,7 @@
                             e.preventDefault();
                             if (FormValidator.validateForm(form)) {
                                 const submitBtn = form.querySelector('.submit-btn');
-                                submitBtn.innerHTML = '<span class="spinner text-brand-950"></span> Processing...';
+                                submitBtn.innerHTML = '<span class="spinner text-brand-950 inline-flex items-center justify-center"></span> Processing...';
                                 submitBtn.disabled = true;
 
                                 FormValidator.showGeneralMessage('info', 'Submitting your request...', true);
@@ -1630,9 +1570,11 @@
                                 // Mock success/error for demonstration
                                 const isSuccess = Math.random() > 0.1; // 90% success rate
                                 if (isSuccess) {
-                                    FormValidator.showGeneralMessage('success', 'Your request has been successfully submitted!', false, form); // CTO Spec 6
+                                    FormValidator.showGeneralMessage('success', 'Your request has been successfully submitted!', false, form);
                                 } else {
-                                    FormValidator.showGeneralMessage('error', 'There was an error processing your request. Please try again.', false); // CTO Spec 6
+                                    const errorMessage = 'There was an error processing your request. Please try again.';
+                                    FormValidator.showGeneralMessage('error', errorMessage, false);
+                                    console.error('Modal form submission failed:', errorMessage, { formId: form.id || form.className, data: Array.from(new FormData(form).entries()) }); // CTO Spec III.14
                                 }
 
                                 submitBtn.innerHTML = submitBtn.dataset.originalText || 'Submit'; // Restore original text
@@ -1696,8 +1638,8 @@
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
             mobileNavToggle.addEventListener('click', () => {
-                mobileNav.classList.toggle('is-open');
-                mobileNavToggle.classList.toggle('is-active');
+                mobileNav.classList.toggle('is-open'); // Assumes is-open, hamburger-icon classes are in output.css
+                mobileNavToggle.classList.toggle('is-active'); // Assumes is-active, hamburger-icon classes are in output.css
                 mobileNavToggle.setAttribute('aria-expanded', mobileNav.classList.contains('is-open'));
                 document.body.classList.toggle('overflow-hidden', mobileNav.classList.contains('is-open')); // CTO Spec 3
             });
@@ -1810,7 +1752,7 @@
                         practitionerCardsGrid.appendChild(card);
                     });
                 } else {
-                    noResultsMessage.style.display = 'block'; // CTO Spec 1: No Results State
+                    noResultsMessage.style.display = 'block'; // CTO Spec III.6: No Results State
                 }
 
                 // Display filter status message (CTO Spec 1)
@@ -1824,7 +1766,7 @@
             findSpecialistBtn.addEventListener('click', async (e) => {
                 e.preventDefault();
                 const originalBtnText = findSpecialistBtn.textContent;
-                findSpecialistBtn.innerHTML = '<span class="spinner text-brand-950"></span> Searching...'; // CTO Spec 1: Loading state
+                findSpecialistBtn.innerHTML = '<span class="spinner text-brand-950 inline-flex items-center justify-center"></span> Searching...'; // CTO Spec 1: Loading state
                 findSpecialistBtn.disabled = true;
 
                 // Simulate processing time
@@ -1857,7 +1799,7 @@
                 useMyLocationBtn.addEventListener('click', () => {
                     if (navigator.geolocation) {
                         const originalBtnContent = useMyLocationBtn.innerHTML;
-                        useMyLocationBtn.innerHTML = '<span class="spinner text-brand-950"></span>';
+                        useMyLocationBtn.innerHTML = '<span class="spinner text-brand-950 inline-flex items-center justify-center"></span> Locating...'; // CTO Spec III.5
                         useMyLocationBtn.disabled = true;
                         postcodeInput.value = 'Fetching postcode...';
 
@@ -1881,8 +1823,11 @@
                                     errorMessage = 'Location permission denied. Please enable it in browser settings or enter postcode manually.';
                                 } else if (error.code === error.POSITION_UNAVAILABLE) {
                                     errorMessage = 'Location information unavailable. Please try again or enter postcode manually.';
+                                } else if (error.code === error.TIMEOUT) { // CTO Spec III.14: More detailed error logging
+                                    errorMessage = 'Location request timed out. Please check your connection or try again.';
                                 }
                                 FormValidator.showGeneralMessage('error', errorMessage);
+                                console.error('Geolocation Error:', error); // CTO Spec III.14
                                 postcodeInput.value = ''; // Clear placeholder if error
                                 useMyLocationBtn.innerHTML = originalBtnContent;
                                 useMyLocationBtn.disabled = false;
@@ -1895,6 +1840,7 @@
                         );
                     } else {
                         FormValidator.showGeneralMessage('error', 'Geolocation is not supported by your browser.');
+                        console.error('Geolocation API not supported.'); // CTO Spec III.14
                     }
                 });
             }
@@ -1985,7 +1931,7 @@
 
                 // Update desktop navigation
                 desktopNavLinks.forEach(link => {
-                    link.classList.remove('is-active');
+                    link.classList.remove('is-active'); // Assumes is-active class is in output.css
                     if (link.getAttribute('href') === `#${activeSectionId}`) {
                         link.classList.add('is-active');
                     }
@@ -1993,7 +1939,7 @@
 
                 // Update mobile navigation
                 mobileNavLinksActive.forEach(link => {
-                    link.classList.remove('is-active');
+                    link.classList.remove('is-active'); // Assumes is-active class is in output.css
                     if (link.getAttribute('href') === `#${activeSectionId}`) {
                         link.classList.add('is-active');
                     }
