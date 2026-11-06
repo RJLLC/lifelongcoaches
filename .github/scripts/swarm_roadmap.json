@@ -21,7 +21,7 @@
     {
       "id": 4,
       "name": "Client Booking, Shortlist & \u00a325/mo Practitioner Onboarding Modals",
-      "status": "pending",
+      "status": "completed",
       "directive": "Wire every button ('SECURE CONSULTATION', 'SHORTLIST', 'PRACTITIONER SIGN IN', 'APPLY FOR FOUNDING PRACTITIONER STATUS') to sleek, working luxury modal dialogs with form validation, interactive state feedback, localStorage shortlist persistence, and the 2-month free trial / \u00a325 per month subscription onboarding flow."
     },
     {

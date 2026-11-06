@@ -65,6 +65,21 @@
         .hidden-option {
             display: none;
         }
+
+        /* Custom spinner for buttons */
+        .spinner {
+            border: 2px solid currentColor;
+            border-top-color: transparent;
+            border-radius: 50%;
+            width: 1em;
+            height: 1em;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
@@ -261,8 +276,8 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£50 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-name="Sarah Jenkins">
+                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="sarah-jenkins" data-practitioner-name="Sarah Jenkins">
                             Shortlist
                         </button>
                         <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
@@ -341,8 +356,8 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£60 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-name="Marcus Vance">
+                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="marcus-vance" data-practitioner-name="Marcus Vance">
                             Shortlist
                         </button>
                         <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
@@ -421,8 +436,8 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£55 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-name="Dr. Evelyn Reed">
+                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="evelyn-reed" data-practitioner-name="Dr. Evelyn Reed">
                             Shortlist
                         </button>
                         <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
@@ -501,8 +516,8 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£40 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-name="Alistair Finch">
+                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="alistair-finch" data-practitioner-name="Alistair Finch">
                             Shortlist
                         </button>
                         <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
@@ -581,8 +596,8 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£45 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-name="Eleanor Shaw">
+                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="eleanor-shaw" data-practitioner-name="Eleanor Shaw">
                             Shortlist
                         </button>
                         <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
@@ -661,8 +676,8 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£58 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-name="Dr. Cameron Ross">
+                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="cameron-ross" data-practitioner-name="Dr. Cameron Ross">
                             Shortlist
                         </button>
                         <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
@@ -824,16 +839,18 @@
     </footer>
 
     <!-- Modals Container -->
-    <div id="modal-container" class="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-closed">
+    <div id="modal-container" class="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-closed"
+        aria-modal="true" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-body">
         <!-- Backdrop -->
         <div class="modal-backdrop absolute inset-0 bg-brand-950/90 backdrop-blur-sm"></div>
 
         <!-- Modal Content -->
         <div class="modal-content bg-brand-900 rounded-2xl border border-brand-800 shadow-3xl max-w-lg w-full p-8 relative transform translate-y-[-20px] opacity-0 text-brand-50">
-            <button id="modal-close-btn" class="absolute top-4 right-4 text-brand-200 hover:text-gold-400 transition">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-brand-200 hover:text-gold-400 transition" aria-label="Close modal">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <h3 id="modal-title" class="text-3xl font-serif font-bold text-white mb-6">Modal Title</h3>
+            <div class="modal-messages mb-4 space-y-2" aria-live="polite"></div>
             <div id="modal-body" class="text-brand-100 space-y-4 text-sm leading-relaxed">
                 <!-- Dynamic content goes here -->
             </div>
@@ -843,159 +860,565 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- MODAL LOGIC ---
-            const modalContainer = document.getElementById('modal-container');
-            const modalCloseBtn = document.getElementById('modal-close-btn');
-            const modalTitle = document.getElementById('modal-title');
-            const modalBody = document.getElementById('modal-body');
+            // --- MODAL LOGIC & COMPONENTS ---
 
-            const openModal = (type, data = {}) => {
-                modalContainer.classList.remove('modal-closed');
-                modalContainer.classList.add('modal-open');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling body
+            // ShortlistManager Module (IIFE for encapsulation)
+            const ShortlistManager = (function() {
+                const LOCAL_STORAGE_KEY = 'lifelongCoachesShortlist';
 
-                let title = '';
-                let content = '';
-
-                switch (type) {
-                    case 'secure-consultation':
-                        title = `Secure Consultation with ${data.practitionerName}`;
-                        content = `
-                            <p>To arrange a private consultation with ${data.practitionerName}, please provide your details below. We will connect you discreetly.</p>
-                            <form class="space-y-4">
-                                <div>
-                                    <label for="consult-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                    <input type="text" id="consult-name" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="John Smith">
-                                </div>
-                                <div>
-                                    <label for="consult-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
-                                    <input type="email" id="consult-email" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="john.smith@example.com">
-                                </div>
-                                <div>
-                                    <label for="consult-message" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your goals</label>
-                                    <textarea id="consult-message" rows="4" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm looking to enhance my agility and bone density..."></textarea>
-                                </div>
-                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
-                                    Submit Consultation Request
-                                </button>
-                            </form>
-                        `;
-                        break;
-                    case 'shortlist':
-                        title = `Shortlist ${data.practitionerName}`;
-                        content = `
-                            <p>You've added <strong>${data.practitionerName}</strong> to your private shortlist.</p>
-                            <p>Would you like to sign in or create an account to save your selections and compare practitioners?</p>
-                            <div class="flex flex-col sm:flex-row gap-3 mt-6">
-                                <button class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
-                                    Sign In to Save
-                                </button>
-                                <button class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" onclick="closeModal()">
-                                    Continue Browsing
-                                </button>
-                            </div>
-                        `;
-                        break;
-                    case 'practitioner-sign-in':
-                        title = 'Practitioner Sign In';
-                        content = `
-                            <p>Welcome back, elite practitioner. Please enter your credentials to access your private portal.</p>
-                            <form class="space-y-4">
-                                <div>
-                                    <label for="login-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                    <input type="email" id="login-email" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="your.name@lifelongcoaches.co.uk">
-                                </div>
-                                <div>
-                                    <label for="login-password" class="block text-brand-200 text-sm font-medium mb-1">Password</label>
-                                    <input type="password" id="login-password" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="••••••••">
-                                </div>
-                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
-                                    Sign In to Portal
-                                </button>
-                                <a href="#" class="block text-center text-gold-400 hover:underline text-xs mt-3">Forgot Password?</a>
-                            </form>
-                        `;
-                        break;
-                    case 'apply-practitioner':
-                        title = 'Apply for Founding Practitioner Status';
-                        content = `
-                            <p>Join Britain's premier network of elite longevity coaches. Connect with high-net-worth clients seeking uncompromising physical vitality.</p>
-                            <div class="bg-brand-800 border border-brand-700 p-4 rounded-xl text-xs flex items-center gap-3">
-                                <span class="text-gold-400 text-lg font-bold">✦</span>
-                                <p><strong>Founding Practitioners Benefit:</strong> Enjoy a <strong class="text-gold-400">2-month complimentary trial</strong>, followed by a flat rate of <strong class="text-gold-400">£25.00/month</strong>. Keep 100% of your session fees.</p>
-                            </div>
-                            <form class="space-y-4 mt-4">
-                                <div>
-                                    <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                    <input type="text" id="apply-name" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Dr. Jane Doe">
-                                </div>
-                                <div>
-                                    <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                    <input type="email" id="apply-email" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="jane.doe@elitetraining.com">
-                                </div>
-                                <div>
-                                    <label for="apply-credentials" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your credentials & specialisms</label>
-                                    <textarea id="apply-credentials" rows="4" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="BSc Sport Science, CIMSPA L3/4, 10+ years HNW client experience, specializing in strength and balance for seniors..."></textarea>
-                                </div>
-                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
-                                    Submit Application
-                                </button>
-                            </form>
-                        `;
-                        break;
-                    case 'engage-coach':
-                        title = 'Engage a Private Coach';
-                        content = `
-                            <p>Tell us about your longevity goals and we'll match you with the perfect elite coach.</p>
-                            <form class="space-y-4">
-                                <div>
-                                    <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                    <input type="text" id="engage-name" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Lord Featherstone">
-                                </div>
-                                <div>
-                                    <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
-                                    <input type="text" id="engage-postcode" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="SW1A 0AA">
-                                </div>
-                                <div>
-                                    <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">What are your primary longevity goals?</label>
-                                    <textarea id="engage-goals" rows="4" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm keen to improve my golf swing power and maintain independence for sailing..."></textarea>
-                                </div>
-                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
-                                    Request Bespoke Match
-                                </button>
-                            </form>
-                        `;
-                        break;
+                function _getShortlist() {
+                    try {
+                        const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+                        return stored ? JSON.parse(stored) : [];
+                    } catch (e) {
+                        console.error("Error reading shortlist from localStorage:", e);
+                        return [];
+                    }
                 }
 
-                modalTitle.innerHTML = title;
-                modalBody.innerHTML = content;
-            };
+                function _saveShortlist(list) {
+                    try {
+                        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list));
+                    } catch (e) {
+                        console.error("Error saving shortlist to localStorage:", e);
+                    }
+                }
 
-            const closeModal = () => {
-                modalContainer.classList.remove('modal-open');
-                modalContainer.classList.add('modal-closed');
-                document.body.style.overflow = ''; // Restore body scrolling
-            };
+                function add(practitionerId, practitionerName) {
+                    const shortlist = _getShortlist();
+                    if (!shortlist.some(p => p.id === practitionerId)) {
+                        shortlist.push({ id: practitionerId, name: practitionerName });
+                        _saveShortlist(shortlist);
+                        return true; // Added
+                    }
+                    return false; // Already exists
+                }
 
-            // Event listeners for opening modals
-            document.querySelectorAll('[data-modal-target]').forEach(button => {
-                button.addEventListener('click', (e) => {
+                function remove(practitionerId) {
+                    let shortlist = _getShortlist();
+                    const initialLength = shortlist.length;
+                    shortlist = shortlist.filter(p => p.id !== practitionerId);
+                    _saveShortlist(shortlist);
+                    return shortlist.length < initialLength; // Removed
+                }
+
+                function getAll() {
+                    return _getShortlist();
+                }
+
+                function isShortlisted(practitionerId) {
+                    return _getShortlist().some(p => p.id === practitionerId);
+                }
+
+                function updateShortlistButtons() {
+                    document.querySelectorAll('.shortlist-btn').forEach(button => {
+                        const practitionerId = button.dataset.practitionerId;
+                        if (isShortlisted(practitionerId)) {
+                            button.textContent = 'Shortlisted ✦';
+                            button.classList.add('bg-gold-600', 'text-brand-950', 'border-transparent');
+                            button.classList.remove('border-brand-300', 'text-brand-800', 'hover:bg-brand-50');
+                        } else {
+                            button.textContent = 'Shortlist';
+                            button.classList.remove('bg-gold-600', 'text-brand-950', 'border-transparent');
+                            button.classList.add('border-brand-300', 'text-brand-800', 'hover:bg-brand-50');
+                        }
+                    });
+                }
+
+                function init() {
+                    updateShortlistButtons();
+                }
+
+                return {
+                    init,
+                    add,
+                    remove,
+                    getAll,
+                    isShortlisted,
+                    updateShortlistButtons
+                };
+            })();
+
+            // FormValidator Module (IIFE for encapsulation)
+            const FormValidator = (function() {
+                const UK_POSTCODE_REGEX = /^[A-Z]{1,2}[0-9][A-Z0-9]?\s?[0-9][A-Z]{2}$/i;
+                const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                function _showError(inputElement, message) {
+                    // Find or create error message element
+                    let errorElement = inputElement.nextElementSibling;
+                    if (!errorElement || !errorElement.classList.contains('text-red-400')) {
+                        errorElement = document.createElement('p');
+                        errorElement.className = 'text-red-400 text-xs mt-1';
+                        errorElement.setAttribute('aria-live', 'assertive');
+                        inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
+                    }
+                    errorElement.textContent = message;
+                    inputElement.classList.add('border-red-500');
+                    inputElement.classList.remove('focus:border-gold-500'); // Remove focus border if error present
+                }
+
+                function _hideError(inputElement) {
+                    const errorElement = inputElement.nextElementSibling;
+                    if (errorElement && errorElement.classList.contains('text-red-400')) {
+                        errorElement.remove();
+                    }
+                    inputElement.classList.remove('border-red-500');
+                    inputElement.classList.add('focus:border-gold-500');
+                }
+
+                function showGeneralMessage(type, message, spinner = false) {
+                    const messagesContainer = document.querySelector('#modal-container .modal-messages');
+                    if (!messagesContainer) return;
+
+                    _clearGeneralMessages(); // Clear existing messages first
+
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `p-3 rounded-lg text-sm flex items-center gap-3 ${
+                        type === 'success' ? 'bg-emerald-700 text-white' :
+                        type === 'error' ? 'bg-red-700 text-white' :
+                        'bg-brand-800 text-gold-400'
+                    }`;
+                    messageDiv.setAttribute('role', type === 'error' ? 'alert' : 'status');
+
+                    messageDiv.innerHTML = `
+                        ${spinner ? '<span class="spinner text-gold-400"></span>' : ''}
+                        <span>${message}</span>
+                    `;
+                    messagesContainer.appendChild(messageDiv);
+                    messagesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                function _clearGeneralMessages() {
+                    const messagesContainer = document.querySelector('#modal-container .modal-messages');
+                    if (messagesContainer) {
+                        messagesContainer.innerHTML = '';
+                    }
+                }
+
+                function validateField(input) {
+                    _hideError(input); // Clear previous error
+
+                    if (input.hasAttribute('required') && !input.value.trim()) {
+                        _showError(input, 'This field is required.');
+                        return false;
+                    }
+
+                    if (input.type === 'email' && !EMAIL_REGEX.test(input.value)) {
+                        _showError(input, 'Please enter a valid email address.');
+                        return false;
+                    }
+
+                    if (input.id === 'engage-postcode' && !UK_POSTCODE_REGEX.test(input.value)) {
+                        _showError(input, 'Please enter a valid UK postcode (e.g., SW1A 0AA).');
+                        return false;
+                    }
+
+                    if (input.tagName === 'TEXTAREA') {
+                        const minLength = parseInt(input.getAttribute('minlength'), 10);
+                        const maxLength = parseInt(input.getAttribute('maxlength'), 10);
+                        const valueLength = input.value.trim().length;
+
+                        if (minLength && valueLength < minLength) {
+                            _showError(input, `Please enter at least ${minLength} characters.`);
+                            return false;
+                        }
+                        if (maxLength && valueLength > maxLength) {
+                            _showError(input, `Please enter no more than ${maxLength} characters.`);
+                            return false;
+                        }
+                    }
+
+                    if (input.type === 'password') {
+                        const minLength = parseInt(input.getAttribute('minlength'), 10);
+                        if (minLength && input.value.length < minLength) {
+                            _showError(input, `Password must be at least ${minLength} characters.`);
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
+
+                function validateForm(form) {
+                    _clearGeneralMessages();
+                    let isValid = true;
+                    const inputs = form.querySelectorAll('input, textarea, select');
+                    inputs.forEach(input => {
+                        if (!validateField(input)) {
+                            isValid = false;
+                        }
+                    });
+
+                    if (!isValid) {
+                        showGeneralMessage('error', 'Please correct the errors above and try again.');
+                    }
+                    return isValid;
+                }
+
+                function attachValidationListeners(formElement) {
+                    const inputs = formElement.querySelectorAll('input, textarea, select');
+                    inputs.forEach(input => {
+                        input.addEventListener('blur', () => validateField(input));
+                        input.addEventListener('input', () => _hideError(input)); // Hide error as user types
+                    });
+                }
+
+                function clearForm(formElement) {
+                    formElement.reset();
+                    const inputs = formElement.querySelectorAll('input, textarea, select');
+                    inputs.forEach(input => _hideError(input));
+                    _clearGeneralMessages();
+                }
+
+                return {
+                    showGeneralMessage,
+                    clearForm,
+                    validateForm,
+                    attachValidationListeners
+                };
+            })();
+
+            // ModalManager Module (IIFE for encapsulation)
+            const ModalManager = (function() {
+                const elements = {
+                    container: document.getElementById('modal-container'),
+                    closeBtn: document.getElementById('modal-close-btn'),
+                    title: document.getElementById('modal-title'),
+                    body: document.getElementById('modal-body'),
+                    backdrop: document.querySelector('.modal-backdrop'),
+                    messages: document.querySelector('#modal-container .modal-messages'),
+                };
+
+                let _triggeringElement = null; // To restore focus after closing
+                let _focusableElements = [];
+                let _firstFocusableElement = null;
+                let _lastFocusableElement = null;
+
+                function _handleKeyDown(e) {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        close();
+                    } else if (e.key === 'Tab') {
+                        // Trap focus
+                        if (_focusableElements.length === 0) {
+                            e.preventDefault();
+                            return;
+                        }
+                        if (e.shiftKey) { // Shift + Tab
+                            if (document.activeElement === _firstFocusableElement) {
+                                _lastFocusableElement.focus();
+                                e.preventDefault();
+                            }
+                        } else { // Tab
+                            if (document.activeElement === _lastFocusableElement) {
+                                _firstFocusableElement.focus();
+                                e.preventDefault();
+                            }
+                        }
+                    }
+                }
+
+                function _trapFocus() {
+                    const focusableSelectors = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+                    _focusableElements = Array.from(elements.container.querySelectorAll(focusableSelectors))
+                                            .filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === elements.closeBtn); // Include close button if it's there
+                    _firstFocusableElement = _focusableElements[0];
+                    _lastFocusableElement = _focusableElements[_focusableElements.length - 1];
+
+                    // Set initial focus
+                    if (_firstFocusableElement) {
+                        setTimeout(() => _firstFocusableElement.focus(), 0); // Timeout to ensure modal is fully rendered/visible
+                    }
+
+                    document.addEventListener('keydown', _handleKeyDown);
+                }
+
+                function _releaseFocus() {
+                    document.removeEventListener('keydown', _handleKeyDown);
+                }
+
+                function renderContent(type, data) {
+                    let title = '';
+                    let content = '';
+
+                    switch (type) {
+                        case 'secure-consultation':
+                            title = `Secure Consultation with ${data.practitionerName}`;
+                            content = `
+                                <p>To arrange a private consultation with ${data.practitionerName}, please provide your details below. We will connect you discreetly.</p>
+                                <form class="modal-form space-y-4" novalidate>
+                                    <div>
+                                        <label for="consult-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
+                                        <input type="text" id="consult-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="John Smith">
+                                    </div>
+                                    <div>
+                                        <label for="consult-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
+                                        <input type="email" id="consult-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="john.smith@example.com">
+                                    </div>
+                                    <div>
+                                        <label for="consult-message" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your goals</label>
+                                        <textarea id="consult-message" name="message" rows="4" required minlength="20" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm looking to enhance my agility and bone density..."></textarea>
+                                    </div>
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                        Submit Consultation Request
+                                    </button>
+                                </form>
+                            `;
+                            break;
+                        case 'shortlist':
+                            const practitionerId = data.practitionerId;
+                            const isAdded = data.isAdded; // Passed from the button click handler
+                            const currentShortlistCount = ShortlistManager.getAll().length;
+
+                            title = `Your Private Shortlist`;
+                            content = `
+                                <p>You have ${isAdded ? 'added' : 'removed'} <strong>${data.practitionerName}</strong> to your private shortlist. You currently have <strong>${currentShortlistCount}</strong> coach${currentShortlistCount === 1 ? '' : 'es'} on your shortlist.</p>
+                                <p>Would you like to sign in or create an account to save your selections permanently?</p>
+                                <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                                    <button class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" data-modal-target="practitioner-sign-in">
+                                        Sign In to Save
+                                    </button>
+                                    <button class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" onclick="ModalManager.close()">
+                                        Continue Browsing
+                                    </button>
+                                </div>
+                            `;
+                            break;
+                        case 'practitioner-sign-in':
+                            title = 'Practitioner Sign In';
+                            content = `
+                                <p>Welcome back, elite practitioner. Please enter your credentials to access your private portal.</p>
+                                <form class="modal-form space-y-4" novalidate>
+                                    <div>
+                                        <label for="login-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
+                                        <input type="email" id="login-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="your.name@lifelongcoaches.co.uk">
+                                    </div>
+                                    <div>
+                                        <label for="login-password" class="block text-brand-200 text-sm font-medium mb-1">Password</label>
+                                        <input type="password" id="login-password" name="password" required minlength="8" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="••••••••">
+                                    </div>
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                        Sign In to Portal
+                                    </button>
+                                    <a href="#" class="block text-center text-gold-400 hover:underline text-xs mt-3">Forgot Password?</a>
+                                </form>
+                            `;
+                            break;
+                        case 'apply-practitioner':
+                            title = 'Apply for Founding Practitioner Status';
+                            content = `
+                                <p>Join Britain's premier network of elite longevity coaches. Connect with high-net-worth clients seeking uncompromising physical vitality.</p>
+                                <div class="bg-brand-800 border border-brand-700 p-4 rounded-xl text-xs flex items-center gap-3">
+                                    <span class="text-gold-400 text-lg font-bold">✦</span>
+                                    <p><strong>Founding Practitioners Benefit:</strong> Enjoy a <strong class="text-gold-400">2-month complimentary trial</strong>, followed by a flat rate of <strong class="text-gold-400">£25.00/month</strong>. Keep 100% of your session fees.</p>
+                                </div>
+                                <form class="modal-form space-y-4 mt-4" novalidate>
+                                    <div>
+                                        <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
+                                        <input type="text" id="apply-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Dr. Jane Doe">
+                                    </div>
+                                    <div>
+                                        <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
+                                        <input type="email" id="apply-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="jane.doe@elitetraining.com">
+                                    </div>
+                                    <div>
+                                        <label for="apply-credentials" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your credentials & specialisms</label>
+                                        <textarea id="apply-credentials" name="credentials" rows="4" required minlength="50" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="BSc Sport Science, CIMSPA L3/4, 10+ years HNW client experience, specializing in strength and balance for seniors..."></textarea>
+                                    </div>
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                        Submit Application
+                                    </button>
+                                </form>
+                            `;
+                            break;
+                        case 'engage-coach':
+                            title = 'Engage a Private Coach';
+                            content = `
+                                <p>Tell us about your longevity goals and we'll match you with the perfect elite coach.</p>
+                                <form class="modal-form space-y-4" novalidate>
+                                    <div>
+                                        <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
+                                        <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Lord Featherstone">
+                                    </div>
+                                    <div>
+                                        <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
+                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="SW1A 0AA">
+                                    </div>
+                                    <div>
+                                        <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">What are your primary longevity goals?</label>
+                                        <textarea id="engage-goals" name="goals" rows="4" required minlength="20" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm keen to improve my golf swing power and maintain independence for sailing..."></textarea>
+                                    </div>
+                                    <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+                                        Request Bespoke Match
+                                    </button>
+                                </form>
+                            `;
+                            break;
+                    }
+
+                    elements.title.innerHTML = title;
+                    elements.body.innerHTML = content;
+                }
+
+                async function _handleFormSubmit(e, modalType, data) {
                     e.preventDefault();
-                    const target = e.currentTarget.dataset.modalTarget;
-                    const practitionerName = e.currentTarget.dataset.practitionerName;
-                    openModal(target, { practitionerName });
-                });
-            });
+                    const form = e.currentTarget;
+                    const submitButton = form.querySelector('.submit-btn');
+                    const originalButtonText = submitButton.textContent;
+                    
+                    FormValidator.clearForm(form); // Clear potential previous errors but not form data
+                    if (!FormValidator.validateForm(form)) {
+                        submitButton.disabled = false;
+                        return; // Stop if validation fails
+                    }
 
-            // Event listeners for closing modals
-            modalCloseBtn.addEventListener('click', closeModal);
-            modalContainer.querySelector('.modal-backdrop').addEventListener('click', closeModal); // Close when clicking outside modal content
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modalContainer.classList.contains('modal-open')) {
-                    closeModal();
+                    // Show loading state
+                    FormValidator.showGeneralMessage('loading', 'Processing your request...', true);
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = `<span class="spinner text-brand-950"></span> Processing...`;
+
+                    // Simulate API call
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+
+                    try {
+                        // In a real app, send data to server here
+                        // const formData = new FormData(form);
+                        // const response = await fetch('/api/submit', { method: 'POST', body: formData });
+                        // const result = await response.json();
+
+                        const simulatedSuccess = Math.random() > 0.1; // 90% success rate
+                        if (simulatedSuccess) {
+                            let successMessage = "Your request has been sent successfully!";
+                            if (modalType === 'secure-consultation') {
+                                successMessage = `Your request for consultation has been sent to ${data.practitionerName} and our concierge team. We will be in touch shortly.`;
+                            } else if (modalType === 'apply-practitioner') {
+                                const emailInput = form.querySelector('#apply-email');
+                                const email = emailInput ? emailInput.value : 'your email';
+                                successMessage = `Thank you for your application! We've sent a verification email to ${email}. Please follow the instructions to complete your onboarding and activate your 2-month free trial.`;
+                            } else if (modalType === 'engage-coach') {
+                                successMessage = `Thank you for your bespoke match request! Our concierge team will review your needs and connect you with suitable elite coaches shortly.`;
+                            } else if (modalType === 'practitioner-sign-in') {
+                                successMessage = `Welcome back! Redirecting to your portal...`;
+                            }
+                            FormValidator.showGeneralMessage('success', successMessage);
+                            FormValidator.clearForm(form); // Clear form fields on success
+                        } else {
+                            let errorMessage = "Failed to submit request. Please try again.";
+                            if (modalType === 'practitioner-sign-in') {
+                                errorMessage = "Invalid credentials. Please try again.";
+                            } else if (modalType === 'apply-practitioner') {
+                                errorMessage = "Failed to submit application. Please check your details and try again.";
+                            }
+                            FormValidator.showGeneralMessage('error', errorMessage);
+                        }
+                    } catch (error) {
+                        console.error("Submission error:", error);
+                        FormValidator.showGeneralMessage('error', 'An unexpected error occurred. Please try again later.');
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = originalButtonText; // Restore original button text
+                    }
                 }
-            });
+
+                function open(type, data = {}, triggeringElement = null) {
+                    _triggeringElement = triggeringElement || document.activeElement; // Store the element that triggered the modal
+
+                    elements.container.classList.remove('modal-closed');
+                    elements.container.classList.add('modal-open');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling body
+
+                    elements.container.setAttribute('aria-modal', 'true');
+                    elements.container.setAttribute('role', 'dialog');
+                    elements.container.setAttribute('aria-labelledby', 'modal-title');
+                    elements.container.setAttribute('aria-describedby', 'modal-body');
+
+                    // Clear any old messages or form states
+                    elements.messages.innerHTML = '';
+                    elements.body.innerHTML = '';
+
+                    renderContent(type, data);
+
+                    // Attach validation and submit listeners for the new form
+                    const formElement = elements.body.querySelector('.modal-form');
+                    if (formElement) {
+                        FormValidator.attachValidationListeners(formElement);
+                        formElement.addEventListener('submit', (e) => _handleFormSubmit(e, type, data));
+                    }
+                    // For buttons inside modals that open other modals (e.g., Shortlist's "Sign In to Save")
+                    elements.body.querySelectorAll('[data-modal-target]').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const newTarget = e.currentTarget.dataset.modalTarget;
+                            // Close current modal, open new one, but keep _triggeringElement for final close
+                            close(false); // Close without restoring focus immediately
+                            open(newTarget, {}, _triggeringElement);
+                        });
+                    });
+
+                    _trapFocus();
+                }
+
+                function close(restoreFocus = true) {
+                    elements.container.classList.remove('modal-open');
+                    elements.container.classList.add('modal-closed');
+                    document.body.style.overflow = ''; // Restore body scrolling
+
+                    elements.title.innerHTML = 'Modal Title'; // Reset title
+                    elements.body.innerHTML = ''; // Clear dynamic content
+                    elements.messages.innerHTML = ''; // Clear messages
+
+                    elements.container.removeAttribute('aria-modal');
+                    elements.container.removeAttribute('role');
+                    elements.container.removeAttribute('aria-labelledby');
+                    elements.container.removeAttribute('aria-describedby');
+
+                    _releaseFocus();
+                    if (restoreFocus && _triggeringElement) {
+                        _triggeringElement.focus(); // Restore focus to the element that opened the modal
+                        _triggeringElement = null;
+                    }
+                }
+
+                function init() {
+                    // Event listeners for opening modals
+                    document.querySelectorAll('[data-modal-target]').forEach(button => {
+                        button.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const target = e.currentTarget.dataset.modalTarget;
+                            const practitionerName = e.currentTarget.dataset.practitionerName;
+                            const practitionerId = e.currentTarget.dataset.practitionerId;
+                            
+                            let data = { practitionerName, practitionerId };
+                            let isAddedOrRemoved = false;
+
+                            if (target === 'shortlist') {
+                                if (ShortlistManager.isShortlisted(practitionerId)) {
+                                    ShortlistManager.remove(practitionerId);
+                                    isAddedOrRemoved = false; // Removed
+                                } else {
+                                    ShortlistManager.add(practitionerId, practitionerName);
+                                    isAddedOrRemoved = true; // Added
+                                }
+                                ShortlistManager.updateShortlistButtons(); // Update all shortlist buttons on the page
+                                data.isAdded = isAddedOrRemoved;
+                            }
+                            open(target, data, e.currentTarget);
+                        });
+                    });
+
+                    // Event listeners for closing modals
+                    elements.closeBtn.addEventListener('click', () => close());
+                    elements.backdrop.addEventListener('click', () => close());
+                }
+
+                return {
+                    init,
+                    open,
+                    close
+                };
+            })();
+
 
             // --- FILTERING AND SORTING LOGIC ---
             const postcodeInput = document.getElementById('postcode-input');
@@ -1165,8 +1588,10 @@
             findSpecialistBtn.addEventListener('click', filterAndSortPractitioners);
             sortSelect.addEventListener('change', filterAndSortPractitioners);
 
-            // Initial display of practitioners when the page loads
-            filterAndSortPractitioners();
+            // --- INITIALIZATION ---
+            ShortlistManager.init();
+            ModalManager.init();
+            filterAndSortPractitioners(); // Initial display of practitioners when the page loads
         });
     </script>
 </body>
