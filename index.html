@@ -36,12 +36,44 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom modal styles for smoother transitions */
+        .modal-backdrop {
+            transition: opacity 0.3s ease-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        .modal-open .modal-backdrop {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-open .modal-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .modal-closed .modal-backdrop {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .modal-closed .modal-content {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        /* Hide options in select for filtering */
+        .hidden-option {
+            display: none;
+        }
+    </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
 
     <!-- Top Luxury Announcement Bar -->
     <div class="bg-brand-950 text-gold-400 px-4 py-3 text-center text-xs tracking-widest uppercase font-medium border-b border-gold-500/20">
-        <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
+        <a href="#" class="block" data-modal-target="apply-practitioner">
+            <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
+        </a>
     </div>
 
     <!-- Luxury Header / Navigation -->
@@ -70,10 +102,10 @@
 
             <!-- CTA Actions -->
             <div class="flex items-center gap-4">
-                <a href="#for-coaches" class="hidden sm:inline-flex text-xs uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-2 transition">
+                <a href="#" data-modal-target="practitioner-sign-in" class="hidden sm:inline-flex text-xs uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-2 transition">
                     Practitioner Sign In
                 </a>
-                <a href="#search-section" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-xs uppercase tracking-widest px-6 py-3.5 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                <a href="#" data-modal-target="engage-coach" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-xs uppercase tracking-widest px-6 py-3.5 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
                     Engage Private Coach
                 </a>
             </div>
@@ -103,23 +135,27 @@
                         <span class="absolute left-4 text-brand-600">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </span>
-                        <input type="text" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm">
+                        <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm">
                     </div>
                     <div class="sm:col-span-4 relative flex items-center">
                         <span class="absolute left-4 text-brand-600">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                         </span>
-                        <select class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer">
-                            <option>Elite Longevity Focus &amp; Goals</option>
-                            <option>Advanced Strength &amp; Muscle Preservation</option>
-                            <option>Absolute Balance &amp; Agility Mastery</option>
-                            <option>Post-Retirement High Performance</option>
-                            <option>Bespoke Home-Visit Conditioning</option>
+                        <select id="focus-select" class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer">
+                            <option value="">Elite Longevity Focus &amp; Goals</option>
+                            <option value="advanced-strength">Advanced Strength &amp; Muscle Preservation</option>
+                            <option value="absolute-balance">Absolute Balance &amp; Agility Mastery</option>
+                            <option value="post-retirement-performance">Post-Retirement High Performance</option>
+                            <option value="bespoke-home-visit">Bespoke Home-Visit Conditioning</option>
+                            <option value="bone-density">Bone Density Optimization</option>
+                            <option value="post-operative-mobility">Post-Operative Mobility &amp; Recovery</option>
+                            <option value="neuromuscular-balance">Neuromuscular Balance</option>
+                            <option value="cardiovascular-longevity">Cardiovascular Longevity</option>
                         </select>
                         <span class="absolute right-4 text-brand-400 pointer-events-none text-xs">▼</span>
                     </div>
                     <div class="sm:col-span-3">
-                        <button class="w-full h-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-wider py-4 px-6 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-xs">
+                        <button id="find-specialist-btn" class="w-full h-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-wider py-4 px-6 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-xs">
                             Find Specialist
                         </button>
                     </div>
@@ -145,27 +181,33 @@
             </div>
             <div class="flex items-center gap-4">
                 <span class="text-xs uppercase tracking-wider font-semibold text-brand-300">Sort Roster:</span>
-                <select class="bg-brand-800 border border-brand-700 text-white text-xs uppercase tracking-wider rounded-lg px-4 py-3 font-medium focus:outline-none focus:border-gold-500">
-                    <option>Proximity (Postcode Radius)</option>
-                    <option>Elite Credentials &amp; Honours</option>
-                    <option>Investment: High to Low</option>
+                <select id="sort-select" class="bg-brand-800 border border-brand-700 text-white text-xs uppercase tracking-wider rounded-lg px-4 py-3 font-medium focus:outline-none focus:border-gold-500">
+                    <option value="proximity">Proximity (Postcode Radius)</option>
+                    <option value="credentials">Elite Credentials &amp; Honours</option>
+                    <option value="rate-desc">Investment: High to Low</option>
+                    <option value="rate-asc">Investment: Low to High</option>
                 </select>
             </div>
         </div>
 
         <!-- Coach Cards Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-brand-900">
+        <div id="practitioner-cards-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-brand-900">
 
             <!-- Coach Card 1 -->
-            <div class="bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300">
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+                 data-id="sarah-jenkins"
+                 data-postcode="SW1X 7GR"
+                 data-focuses="advanced-strength,reverse-aging,executive-fitness,bone-density"
+                 data-rate="50"
+                 data-distance="2.4">
                 <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
                         2.4 miles away
                     </span>
                 </div>
                 
                 <div>
-                    <div class="flex items-center gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
@@ -223,10 +265,12 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£50 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-name="Sarah Jenkins">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md">
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Sarah Jenkins">
                             Secure Consultation
                         </button>
                     </div>
@@ -234,15 +278,20 @@
             </div>
 
             <!-- Coach Card 2 -->
-            <div class="bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300">
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+                 data-id="marcus-vance"
+                 data-postcode="W1K 7AU"
+                 data-focuses="cardiovascular-health,joint-preservation,dynamic-agility,executive-resilience"
+                 data-rate="60"
+                 data-distance="4.1">
                 <div class="absolute top-8 right-8 flex items-center gap-2">
-                    <span class="bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
                         4.1 miles away
                     </span>
                 </div>
                 
                 <div>
-                    <div class="flex items-center gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
                         <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
                         <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
                         <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
@@ -300,10 +349,348 @@
                         <span class="text-2xl font-serif font-bold text-brand-950">£60 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-name="Marcus Vance">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md">
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Marcus Vance">
+                            Secure Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Card 3: Dr. Evelyn Reed (Surrey/Wentworth) -->
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+                 data-id="evelyn-reed"
+                 data-postcode="GU25 4JR"
+                 data-focuses="bone-density,post-operative-mobility,absolute-balance,advanced-strength"
+                 data-rate="55"
+                 data-distance="6.8">
+                <div class="absolute top-8 right-8 flex items-center gap-2">
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                        6.8 miles away
+                    </span>
+                </div>
+                
+                <div>
+                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                        <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
+                        <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
+                        <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
+                    </div>
+
+                    <div class="flex items-start gap-6 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=300" alt="Dr. Evelyn Reed" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
+                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Bone Density &amp; Musculoskeletal Resilience</p>
+                            <p class="text-xs text-brand-500 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinical Visits</p>
+                        </div>
+                    </div>
+
+                    <!-- Best Fit Clients Section -->
+                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Evelyn elevates most):</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative mobility</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Fall prevention &amp; balance</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Strength preservation</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
+                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Osteoporosis management, joint mechanics, rehabilitation protocols.</p>
+                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Empathetic, scientifically-driven, detail-oriented.</p>
+                    </div>
+
+                    <!-- Trust & Verification Bar -->
+                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span>DBS &amp; Enhanced Check</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span>ISRM Verified Insured</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>10 Years Clinical Exp</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action Row -->
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-2xl font-serif font-bold text-brand-950">£55 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-name="Dr. Evelyn Reed">
+                            Shortlist
+                        </button>
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Dr. Evelyn Reed">
+                            Secure Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Card 4: Mr. Alistair Finch (Cotswolds) -->
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+                 data-id="alistair-finch"
+                 data-postcode="GL54 1EU"
+                 data-focuses="neuromuscular-balance,absolute-balance,agility-mastery,bespoke-home-visit"
+                 data-rate="40"
+                 data-distance="12.3">
+                <div class="absolute top-8 right-8 flex items-center gap-2">
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                        12.3 miles away
+                    </span>
+                </div>
+                
+                <div>
+                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                        <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
+                        <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
+                        <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
+                    </div>
+
+                    <div class="flex items-start gap-6 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=300" alt="Mr. Alistair Finch" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-brand-950">Mr. Alistair Finch, PT</h3>
+                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Neuromuscular Balance &amp; Agility Restoration</p>
+                            <p class="text-xs text-brand-500 mt-1 font-medium">Cotswolds &amp; Glos • Residential &amp; Remote</p>
+                        </div>
+                    </div>
+
+                    <!-- Best Fit Clients Section -->
+                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Alistair elevates most):</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Neuromuscular balance</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Agility mastery</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Fall prevention</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Outdoor fitness &amp; hiking</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
+                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Proprioception training, functional movement, active lifestyle coaching.</p>
+                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Engaging, patient, nature-integrated, highly motivational.</p>
+                    </div>
+
+                    <!-- Trust & Verification Bar -->
+                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span>DBS &amp; Enhanced Check</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span>REPs Level 4 Insured</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>8 Years Elite Exp</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action Row -->
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-2xl font-serif font-bold text-brand-950">£40 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-name="Alistair Finch">
+                            Shortlist
+                        </button>
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Alistair Finch">
+                            Secure Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Card 5: Ms. Eleanor Shaw (Sandbanks/Poole) -->
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+                 data-id="eleanor-shaw"
+                 data-postcode="BH13 7QY"
+                 data-focuses="post-operative-mobility,joint-preservation,bespoke-home-visit,advanced-strength"
+                 data-rate="45"
+                 data-distance="8.1">
+                <div class="absolute top-8 right-8 flex items-center gap-2">
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                        8.1 miles away
+                    </span>
+                </div>
+                
+                <div>
+                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                        <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
+                        <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
+                        <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
+                    </div>
+
+                    <div class="flex items-start gap-6 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=300" alt="Ms. Eleanor Shaw" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-brand-950">Ms. Eleanor Shaw, BSc</h3>
+                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Post-Operative Mobility &amp; Recovery Specialist</p>
+                            <p class="text-xs text-brand-500 mt-1 font-medium">Sandbanks &amp; Poole • Home &amp; Yacht Visits</p>
+                        </div>
+                    </div>
+
+                    <!-- Best Fit Clients Section -->
+                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Eleanor elevates most):</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative rehabilitation</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint specific recovery</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Pain management movement</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Functional strength restoration</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
+                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanics, tailored recovery plans, gentle strength progression.</p>
+                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Nurturing, precise, patient, holistic.</p>
+                    </div>
+
+                    <!-- Trust & Verification Bar -->
+                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span>DBS &amp; Enhanced Check</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span>APPI Pilates Certified</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>9 Years Elite Exp</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action Row -->
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-2xl font-serif font-bold text-brand-950">£45 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-name="Eleanor Shaw">
+                            Shortlist
+                        </button>
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Eleanor Shaw">
+                            Secure Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coach Card 6: Dr. Cameron Ross (Edinburgh) -->
+            <div class="coach-card bg-white rounded-2xl border border-brand-800 shadow-2xl p-8 flex flex-col justify-between relative group hover:border-gold-500/50 transition duration-300"
+                 data-id="cameron-ross"
+                 data-postcode="EH3 6AA"
+                 data-focuses="cardiovascular-longevity,post-retirement-performance,elite-cardiovascular-health,endurance-training"
+                 data-rate="58"
+                 data-distance="18.9">
+                <div class="absolute top-8 right-8 flex items-center gap-2">
+                    <span class="distance-pill bg-brand-50 text-brand-900 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-brand-200 tracking-wide">
+                        18.9 miles away
+                    </span>
+                </div>
+                
+                <div>
+                    <div class="flex flex-wrap gap-2.5 text-xs font-semibold text-gold-700 mb-4 tracking-wider uppercase">
+                        <span class="bg-gold-500/10 px-2.5 py-1 rounded">Master Practitioner</span>
+                        <span class="bg-brand-100 px-2.5 py-1 rounded">Fully Insured</span>
+                        <span class="bg-emerald-100 text-emerald-900 px-2.5 py-1 rounded">Accepting Select Clients</span>
+                    </div>
+
+                    <div class="flex items-start gap-6 mb-6">
+                        <div class="relative flex-shrink-0">
+                            <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=300" alt="Dr. Cameron Ross" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100">
+                            <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Cameron Ross, MD</h3>
+                            <p class="text-gold-600 font-semibold text-sm mt-0.5">Cardiovascular Longevity &amp; Endurance Coach</p>
+                            <p class="text-xs text-brand-500 mt-1 font-medium">Edinburgh &amp; Lothians • Executive &amp; Virtual</p>
+                        </div>
+                    </div>
+
+                    <!-- Best Fit Clients Section -->
+                    <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-500 block mb-2.5">Private Client Focus (Who Cameron elevates most):</span>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Cardiovascular longevity</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Endurance training for seniors</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Metabolic health optimization</span>
+                            <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Stress reduction &amp; recovery</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-6 text-xs space-y-2 text-brand-700 font-light">
+                        <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Cardiology-informed exercise, V02 max improvement, advanced metabolic programming.</p>
+                        <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Clinical, data-driven, strategic, highly refined.</p>
+                    </div>
+
+                    <!-- Trust & Verification Bar -->
+                    <div class="grid grid-cols-3 gap-2 py-4 border-t border-b border-brand-100 text-[11px] font-medium text-brand-700 mb-6">
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            <span>GMC Registered Doctor</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                            <span>Clinical Insured</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>20 Years Clinical Exp</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action Row -->
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-400 font-bold block">Private Rate</span>
+                        <span class="text-2xl font-serif font-bold text-brand-950">£58 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button class="px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-name="Dr. Cameron Ross">
+                            Shortlist
+                        </button>
+                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Dr. Cameron Ross">
                             Secure Consultation
                         </button>
                     </div>
@@ -367,10 +754,10 @@
             </div>
 
             <div class="inline-flex flex-col sm:flex-row gap-5">
-                <a href="#" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl shadow-2xl transition duration-300">
+                <a href="#" data-modal-target="apply-practitioner" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl shadow-2xl transition duration-300">
                     Apply for Founding Practitioner Status &rarr;
                 </a>
-                <a href="#" class="bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl transition duration-300">
+                <a href="#" data-modal-target="practitioner-sign-in" class="bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl transition duration-300">
                     Practitioner Sign In
                 </a>
             </div>
@@ -421,10 +808,10 @@
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Practitioner Guild</h4>
                     <ul class="space-y-2.5 text-xs font-light">
-                        <li><a href="#for-coaches" class="hover:text-gold-400 transition">Apply for Membership</a></li>
-                        <li><a href="#for-coaches" class="hover:text-gold-400 transition">Founding Trial (£25/mo)</a></li>
+                        <li><a href="#" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition">Apply for Membership</a></li>
+                        <li><a href="#" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition">Founding Trial (£25/mo)</a></li>
                         <li><a href="#" class="hover:text-gold-400 transition">Credential Verification</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition">Practitioner Portal Login</a></li>
+                        <li><a href="#" data-modal-target="practitioner-sign-in" class="hover:text-gold-400 transition">Practitioner Portal Login</a></li>
                         <li><a href="#" class="hover:text-gold-400 transition">Guild Code of Conduct</a></li>
                     </ul>
                 </div>
@@ -460,5 +847,295 @@
         </div>
     </footer>
 
+    <!-- Modals Container -->
+    <div id="modal-container" class="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-closed">
+        <!-- Backdrop -->
+        <div class="modal-backdrop absolute inset-0 bg-brand-950/90 backdrop-blur-sm"></div>
+
+        <!-- Modal Content -->
+        <div class="modal-content bg-brand-900 rounded-2xl border border-brand-800 shadow-3xl max-w-lg w-full p-8 relative transform translate-y-[-20px] opacity-0 text-brand-50">
+            <button id="modal-close-btn" class="absolute top-4 right-4 text-brand-200 hover:text-gold-400 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 id="modal-title" class="text-3xl font-serif font-bold text-white mb-6">Modal Title</h3>
+            <div id="modal-body" class="text-brand-100 space-y-4 text-sm leading-relaxed">
+                <!-- Dynamic content goes here -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- MODAL LOGIC ---
+            const modalContainer = document.getElementById('modal-container');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+
+            const openModal = (type, data = {}) => {
+                modalContainer.classList.remove('modal-closed');
+                modalContainer.classList.add('modal-open');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling body
+
+                let title = '';
+                let content = '';
+
+                switch (type) {
+                    case 'secure-consultation':
+                        title = `Secure Consultation with ${data.practitionerName}`;
+                        content = `
+                            <p>To arrange a private consultation with ${data.practitionerName}, please provide your details below. We will connect you discreetly.</p>
+                            <form class="space-y-4">
+                                <div>
+                                    <label for="consult-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
+                                    <input type="text" id="consult-name" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="John Smith">
+                                </div>
+                                <div>
+                                    <label for="consult-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
+                                    <input type="email" id="consult-email" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="john.smith@example.com">
+                                </div>
+                                <div>
+                                    <label for="consult-message" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your goals</label>
+                                    <textarea id="consult-message" rows="4" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm looking to enhance my agility and bone density..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
+                                    Submit Consultation Request
+                                </button>
+                            </form>
+                        `;
+                        break;
+                    case 'shortlist':
+                        title = `Shortlist ${data.practitionerName}`;
+                        content = `
+                            <p>You've added <strong>${data.practitionerName}</strong> to your private shortlist.</p>
+                            <p>Would you like to sign in or create an account to save your selections and compare practitioners?</p>
+                            <div class="flex flex-col sm:flex-row gap-3 mt-6">
+                                <button class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
+                                    Sign In to Save
+                                </button>
+                                <button class="w-full bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300" onclick="closeModal()">
+                                    Continue Browsing
+                                </button>
+                            </div>
+                        `;
+                        break;
+                    case 'practitioner-sign-in':
+                        title = 'Practitioner Sign In';
+                        content = `
+                            <p>Welcome back, elite practitioner. Please enter your credentials to access your private portal.</p>
+                            <form class="space-y-4">
+                                <div>
+                                    <label for="login-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
+                                    <input type="email" id="login-email" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="your.name@lifelongcoaches.co.uk">
+                                </div>
+                                <div>
+                                    <label for="login-password" class="block text-brand-200 text-sm font-medium mb-1">Password</label>
+                                    <input type="password" id="login-password" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="••••••••">
+                                </div>
+                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
+                                    Sign In to Portal
+                                </button>
+                                <a href="#" class="block text-center text-gold-400 hover:underline text-xs mt-3">Forgot Password?</a>
+                            </form>
+                        `;
+                        break;
+                    case 'apply-practitioner':
+                        title = 'Apply for Founding Practitioner Status';
+                        content = `
+                            <p>Join Britain's premier network of elite longevity coaches. Connect with high-net-worth clients seeking uncompromising physical vitality.</p>
+                            <div class="bg-brand-800 border border-brand-700 p-4 rounded-xl text-xs flex items-center gap-3">
+                                <span class="text-gold-400 text-lg font-bold">✦</span>
+                                <p><strong>Founding Practitioners Benefit:</strong> Enjoy a <strong class="text-gold-400">2-month complimentary trial</strong>, followed by a flat rate of <strong class="text-gold-400">£25.00/month</strong>. Keep 100% of your session fees.</p>
+                            </div>
+                            <form class="space-y-4 mt-4">
+                                <div>
+                                    <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
+                                    <input type="text" id="apply-name" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Dr. Jane Doe">
+                                </div>
+                                <div>
+                                    <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
+                                    <input type="email" id="apply-email" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="jane.doe@elitetraining.com">
+                                </div>
+                                <div>
+                                    <label for="apply-credentials" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your credentials & specialisms</label>
+                                    <textarea id="apply-credentials" rows="4" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="BSc Sport Science, CIMSPA L3/4, 10+ years HNW client experience, specializing in strength and balance for seniors..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
+                                    Submit Application
+                                </button>
+                            </form>
+                        `;
+                        break;
+                    case 'engage-coach':
+                        title = 'Engage a Private Coach';
+                        content = `
+                            <p>Tell us about your longevity goals and we'll match you with the perfect elite coach.</p>
+                            <form class="space-y-4">
+                                <div>
+                                    <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
+                                    <input type="text" id="engage-name" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="Lord Featherstone">
+                                </div>
+                                <div>
+                                    <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
+                                    <input type="text" id="engage-postcode" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="SW1A 0AA">
+                                </div>
+                                <div>
+                                    <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">What are your primary longevity goals?</label>
+                                    <textarea id="engage-goals" rows="4" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500" placeholder="I'm keen to improve my golf swing power and maintain independence for sailing..."></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300">
+                                    Request Bespoke Match
+                                </button>
+                            </form>
+                        `;
+                        break;
+                }
+
+                modalTitle.innerHTML = title;
+                modalBody.innerHTML = content;
+            };
+
+            const closeModal = () => {
+                modalContainer.classList.remove('modal-open');
+                modalContainer.classList.add('modal-closed');
+                document.body.style.overflow = ''; // Restore body scrolling
+            };
+
+            // Event listeners for opening modals
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const target = e.currentTarget.dataset.modalTarget;
+                    const practitionerName = e.currentTarget.dataset.practitionerName;
+                    openModal(target, { practitionerName });
+                });
+            });
+
+            // Event listeners for closing modals
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalContainer.querySelector('.modal-backdrop').addEventListener('click', closeModal); // Close when clicking outside modal content
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalContainer.classList.contains('modal-open')) {
+                    closeModal();
+                }
+            });
+
+            // --- FILTERING AND SORTING LOGIC ---
+            const postcodeInput = document.getElementById('postcode-input');
+            const focusSelect = document.getElementById('focus-select');
+            const findSpecialistBtn = document.getElementById('find-specialist-btn');
+            const sortSelect = document.getElementById('sort-select');
+            const practitionerCardsGrid = document.getElementById('practitioner-cards-grid');
+
+            // Store original card elements to manipulate their order
+            const allPractitionerCards = Array.from(practitionerCardsGrid.querySelectorAll('.coach-card'));
+
+            // Simplified postcode distance simulation
+            function calculateSimulatedDistance(practitionerPostcode, searchPostcode) {
+                if (!searchPostcode || searchPostcode.trim() === '') {
+                    return null; // No search postcode, no specific proximity
+                }
+
+                const searchPrefix = searchPostcode.toUpperCase().split(' ')[0];
+                const practitionerPrefix = practitionerPostcode.toUpperCase().split(' ')[0];
+
+                let distance;
+                if (practitionerPrefix.startsWith(searchPrefix)) {
+                    // Closer match, e.g., SW1X matches SW1X 7GR
+                    distance = (Math.random() * 4) + 1; // 1 to 5 miles
+                } else if (searchPrefix.length >= 2 && practitionerPrefix.startsWith(searchPrefix.substring(0,2))) {
+                    // Broader area match, e.g., SW1X matches SW1A
+                    distance = (Math.random() * 7) + 3; // 3 to 10 miles
+                }
+                else {
+                    distance = (Math.random() * 15) + 5; // 5 to 20 miles
+                }
+                return parseFloat(distance.toFixed(1));
+            }
+
+            function filterAndSortPractitioners() {
+                const searchPostcode = postcodeInput.value.trim();
+                const selectedFocus = focusSelect.value;
+                const sortBy = sortSelect.value;
+
+                let filteredCards = [...allPractitionerCards]; // Start with all cards
+
+                // 1. Calculate & Update Distances (if postcode provided)
+                if (searchPostcode) {
+                    filteredCards.forEach(card => {
+                        const practitionerPostcode = card.dataset.postcode;
+                        const newDistance = calculateSimulatedDistance(practitionerPostcode, searchPostcode);
+                        card.dataset.distance = newDistance !== null ? newDistance : 9999; // Assign large distance if no postcode or no match
+                        const distancePill = card.querySelector('.distance-pill');
+                        if (distancePill) {
+                            distancePill.textContent = newDistance !== null ? `${newDistance} miles away` : 'Distance N/A';
+                        }
+                    });
+                } else {
+                    // Reset to initial distances or a generic message if postcode cleared
+                    filteredCards.forEach(card => {
+                        card.dataset.distance = card.getAttribute('data-initial-distance') || 9999;
+                        const distancePill = card.querySelector('.distance-pill');
+                        if (distancePill) {
+                            distancePill.textContent = `${card.dataset.distance} miles away`; // Restore initial value or default
+                        }
+                    });
+                }
+
+                // 2. Filter by Longevity Focus
+                if (selectedFocus) {
+                    filteredCards = filteredCards.filter(card => {
+                        const focuses = card.dataset.focuses ? card.dataset.focuses.split(',') : [];
+                        return focuses.includes(selectedFocus);
+                    });
+                }
+
+                // 3. Sort
+                filteredCards.sort((a, b) => {
+                    if (sortBy === 'proximity') {
+                        const distA = parseFloat(a.dataset.distance);
+                        const distB = parseFloat(b.dataset.distance);
+                        return distA - distB;
+                    } else if (sortBy === 'rate-desc') {
+                        const rateA = parseInt(a.dataset.rate);
+                        const rateB = parseInt(b.dataset.rate);
+                        return rateB - rateA;
+                    } else if (sortBy === 'rate-asc') {
+                        const rateA = parseInt(a.dataset.rate);
+                        const rateB = parseInt(b.dataset.rate);
+                        return rateA - rateB;
+                    } else if (sortBy === 'credentials') {
+                        // For 'Elite Credentials', keep initial order or add a new data-attribute for ranking.
+                        // For this demo, we'll maintain their original position within the filtered set
+                        return 0;
+                    }
+                    return 0;
+                });
+
+                // Clear current grid and append sorted/filtered cards
+                practitionerCardsGrid.innerHTML = '';
+                if (filteredCards.length > 0) {
+                    filteredCards.forEach(card => practitionerCardsGrid.appendChild(card));
+                } else {
+                    practitionerCardsGrid.innerHTML = `<p class="text-brand-200 text-center col-span-full py-10">No elite practitioners found matching your criteria. Please adjust your search.</p>`;
+                }
+            }
+
+            // Store initial distances for reset
+            allPractitionerCards.forEach(card => {
+                card.setAttribute('data-initial-distance', card.dataset.distance);
+            });
+
+            // Event Listeners for filtering and sorting
+            postcodeInput.addEventListener('input', filterAndSortPractitioners);
+            focusSelect.addEventListener('change', filterAndSortPractitioners);
+            findSpecialistBtn.addEventListener('click', filterAndSortPractitioners);
+            sortSelect.addEventListener('change', filterAndSortPractitioners);
+
+            // Initial display of practitioners
+            filterAndSortPractitioners();
+        });
+    </script>
 </body>
 </html>
