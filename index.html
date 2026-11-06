@@ -50,37 +50,8 @@
           ]
         }
     </script>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f4f8f6',
-                            100: '#e1ede6',
-                            200: '#c2dccb',
-                            600: '#114232',
-                            700: '#0c3024', /* Ensured brand-700 is defined for contrast fixes */
-                            800: '#082119',
-                            900: '#0c221c', /* Adjusted for better contrast with gold */
-                            950: '#030b08',
-                        },
-                        gold: {
-                            500: '#D4AF37',
-                            600: '#C59B27',
-                            400: '#E6C665',
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'Georgia', 'serif'],
-                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS Build Integration (PurgeCSS) - CTO Spec II.1 -->
+    <link href="/dist/output.css" rel="stylesheet">
     <!-- Performance Optimization: Preconnect for Google Fonts - CTO Spec 8 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -107,11 +78,6 @@
         .modal-closed .modal-content {
             opacity: 0;
             transform: translateY(-20px);
-        }
-
-        /* Hide options in select for filtering */
-        .hidden-option {
-            display: none;
         }
 
         /* Custom spinner for buttons */
@@ -157,15 +123,29 @@
         .hamburger-icon.is-active span:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
         }
+
+        /* Active Navigation Link Highlighting - CTO Spec I.4 */
+        .nav-link.is-active {
+            color: #E6C665; /* gold-400 */
+            border-bottom: 2px solid #E6C665; /* gold-400 */
+            padding-bottom: 0.25rem; /* pb-1 */
+        }
+        /* Override for mobile links as they have different base styles */
+        .mobile-nav-link.is-active {
+            color: #E6C665; /* gold-400 */
+        }
     </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
 
-    <!-- Top Luxury Announcement Bar -->
-    <div class="bg-brand-950 text-gold-400 px-4 py-3 text-center text-xs tracking-widest uppercase font-medium border-b border-gold-500/20">
-        <a href="#" class="block" data-modal-target="apply-practitioner">
+    <!-- Top Luxury Announcement Bar - CTO Spec I.5 -->
+    <div id="announcement-bar" class="bg-brand-950 text-gold-400 px-4 py-3 text-center text-xs tracking-widest uppercase font-medium border-b border-gold-500/20">
+        <button type="button" class="block relative w-full text-left" data-modal-target="apply-practitioner" aria-label="Open application for founding practitioner status">
             <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
-        </a>
+            <button id="announcement-dismiss" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 px-2 py-1 text-gold-400 hover:text-white transition" aria-label="Dismiss announcement">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </button>
     </div>
 
     <!-- Luxury Header / Navigation -->
@@ -181,15 +161,16 @@
                 </div>
                 <div>
                     <span class="text-2xl font-serif font-bold tracking-wide text-white block leading-none">Lifelong<span class="text-gold-400">Coaches</span></span>
-                    <span class="text-xs normal-case tracking-normal font-medium text-brand-200 mt-1 block">Private Longevity &amp; Strength Guild</span> <!-- CTO Spec 3.4.2: text-[9px] uppercase tracking-[0.25em] -> text-xs normal-case tracking-normal -->
+                    <!-- Header Sub-logo Styling Refinement - CTO Spec I.2 -->
+                    <span class="text-[9px] uppercase tracking-[0.25em] font-medium text-brand-200 mt-1 block">Private Longevity &amp; Strength Guild</span>
                 </div>
             </a>
 
             <!-- Desktop Nav Links - CTO Spec 9: Add ARIA roles -->
-            <nav class="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium text-brand-100" role="navigation" aria-label="Main navigation"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
-                <a href="#search-section" class="hover:text-gold-400 transition">Private Directory</a>
-                <a href="#philosophy" class="hover:text-gold-400 transition">The Manifesto</a>
-                <a href="#for-coaches" class="hover:text-gold-400 transition">Practitioner Guild</a>
+            <nav class="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em] font-medium text-brand-100" role="navigation" aria-label="Main navigation">
+                <a href="#search-section" class="nav-link hover:text-gold-400 transition">Private Directory</a>
+                <a href="#philosophy" class="nav-link hover:text-gold-400 transition">The Manifesto</a>
+                <a href="#for-coaches" class="nav-link hover:text-gold-400 transition">Practitioner Guild</a>
             </nav>
 
             <!-- CTA Actions & Mobile Hamburger -->
@@ -203,12 +184,14 @@
                     </div>
                 </button>
 
-                <a href="#" data-modal-target="practitioner-sign-in" class="hidden sm:inline-flex text-xs uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-2 transition">
+                <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                <button type="button" data-modal-target="practitioner-sign-in" class="hidden sm:inline-flex text-xs uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-2 transition" aria-label="Practitioner Sign In">
                     Practitioner Sign In
-                </a>
-                <a href="#" data-modal-target="engage-coach" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-xs uppercase tracking-widest px-6 py-3.5 rounded-lg shadow-xl hover:shadow-2xl transition duration-300">
+                </button>
+                <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                <button type="button" data-modal-target="engage-coach" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-xs uppercase tracking-widest px-6 py-3.5 rounded-lg shadow-xl hover:shadow-2xl transition duration-300" aria-label="Engage a Private Coach">
                     Engage Private Coach
-                </a>
+                </button>
             </div>
         </div>
     </header>
@@ -224,12 +207,14 @@
             <li><a href="#for-coaches" class="mobile-nav-link text-xl font-serif text-brand-50 hover:text-gold-400 transition py-2 block">Practitioner Guild</a></li>
         </ul>
         <div class="flex flex-col gap-4 w-full max-w-xs mt-12">
-            <a href="#" data-modal-target="practitioner-sign-in" class="mobile-nav-link w-full text-base uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-3 rounded-lg border border-gold-400 hover:border-white transition-colors text-center">
+            <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+            <button type="button" data-modal-target="practitioner-sign-in" class="mobile-nav-link w-full text-base uppercase tracking-widest font-semibold text-gold-400 hover:text-white px-3 py-3 rounded-lg border border-gold-400 hover:border-white transition-colors text-center" aria-label="Practitioner Sign In">
                 Practitioner Sign In
-            </a>
-            <a href="#" data-modal-target="engage-coach" class="mobile-nav-link w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-base uppercase tracking-widest px-6 py-3 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 text-center">
+            </button>
+            <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+            <button type="button" data-modal-target="engage-coach" class="mobile-nav-link w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-base uppercase tracking-widest px-6 py-3 rounded-lg shadow-xl hover:shadow-2xl transition duration-300 text-center" aria-label="Engage a Private Coach">
                 Engage Private Coach
-            </a>
+            </button>
         </div>
     </nav>
 
@@ -252,6 +237,7 @@
             <!-- Search Widget Box (Elite Styling) -->
             <div id="search-section" class="bg-white p-4 sm:p-5 rounded-2xl shadow-2xl max-w-4xl mx-auto text-brand-900 border border-gold-500/30">
                 <div class="grid grid-cols-1 sm:grid-cols-12 gap-3">
+                    <!-- Enhanced Postcode Input with Geolocation - CTO Spec I.6 -->
                     <div class="sm:col-span-5 relative flex items-center">
                         <span class="absolute left-4 text-brand-600">
                             <!-- CTO Spec 12: SVG Icon Consistency -->
@@ -259,6 +245,9 @@
                         </span>
                         <!-- CTO Spec 9: ARIA Attributes -->
                         <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm" aria-label="Enter your UK Postcode to find specialists nearby">
+                        <button id="use-my-location-btn" type="button" class="absolute right-2 px-3 py-2 text-brand-600 hover:text-gold-500 text-xs font-semibold rounded-lg transition" aria-label="Use my current location">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </button>
                     </div>
                     <div class="sm:col-span-4 relative flex items-center">
                         <span class="absolute left-4 text-brand-600">
@@ -348,19 +337,26 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <!-- CTO Spec 7: Image Loading Optimization -->
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300" alt="Sarah Jenkins" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
+                        <!-- Responsive Images (`srcset`) & Elite Visual Enhancement - CTO Spec II.2, III.1 -->
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=96"
+                            srcset="
+                                https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=96 96w,
+                                https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=192 192w
+                            "
+                            sizes="(max-width: 640px) 96px, 96px"
+                            alt="Sarah Jenkins"
+                            class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Sarah Jenkins, BSc (Hons)</h3>
-                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Senior Strength &amp; Biological Longevity Specialist</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
-                        <p class="text-xs text-brand-700 mt-1 font-medium">Mayfair &amp; Chelsea • Residential &amp; Private Studio</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Senior Strength &amp; Biological Longevity Specialist</p>
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Mayfair &amp; Chelsea • Residential &amp; Private Studio</p>
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Sarah elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Sarah elevates most):</span>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Advanced strength</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Reverse aging &amp; vitality</span>
@@ -369,7 +365,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal">
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Functional hypertrophy, neuromuscular balance, high-performance longevity.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Meticulous, motivating, highly calibrated, uncompromising on form.</p>
                 </div>
@@ -391,16 +387,16 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span>
                         <span class="text-2xl font-serif font-bold text-brand-950">£50 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-id="sarah-jenkins" data-practitioner-name="Sarah Jenkins">
+                        <button type="button" class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="sarah-jenkins" data-practitioner-name="Sarah Jenkins" aria-label="Shortlist Sarah Jenkins">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
-                                data-modal-target="secure-consultation" data-practitioner-name="Sarah Jenkins">
+                        <button type="button" class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Sarah Jenkins" aria-label="Secure Consultation with Sarah Jenkins">
                             Secure Consultation
                         </button>
                     </div>
@@ -429,19 +425,26 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <!-- CTO Spec 7: Image Loading Optimization -->
-                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=300" alt="Marcus Vance" class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-brand-100" loading="lazy" width="96" height="96">
+                        <!-- Responsive Images (`srcset`) & Elite Visual Enhancement - CTO Spec II.2, III.1 -->
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=96"
+                            srcset="
+                                https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=96 96w,
+                                https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=192 192w
+                            "
+                            sizes="(max-width: 640px) 96px, 96px"
+                            alt="Marcus Vance"
+                            class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-gold-500" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Marcus Vance, MSc</h3>
-                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Post-Retirement High Performance &amp; Vitality Coach</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
-                        <p class="text-xs text-brand-700 mt-1 font-medium">Kensington &amp; Knightsbridge • Virtual &amp; In-Person</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Post-Retirement High Performance &amp; Vitality Coach</p>
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Kensington &amp; Knightsbridge • Virtual &amp; In-Person</p>
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Marcus elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Marcus elevates most):</span>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Elite cardiovascular health</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint preservation</span>
@@ -450,7 +453,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal">
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanical longevity, kinetic power output, bespoke senior conditioning.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Analytical, calm, results-driven, highly sophisticated.</p>
                 </div>
@@ -472,16 +475,16 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span>
                         <span class="text-2xl font-serif font-bold text-brand-950">£60 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-id="marcus-vance" data-practitioner-name="Marcus Vance">
+                        <button type="button" class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="marcus-vance" data-practitioner-name="Marcus Vance" aria-label="Shortlist Marcus Vance">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
-                                data-modal-target="secure-consultation" data-practitioner-name="Marcus Vance">
+                        <button type="button" class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Marcus Vance" aria-label="Secure Consultation with Marcus Vance">
                             Secure Consultation
                         </button>
                     </div>
@@ -510,19 +513,26 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <!-- CTO Spec 7: Image Loading Optimization -->
-                        <img src="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=300" alt="Dr. Evelyn Reed" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
+                        <!-- Responsive Images (`srcset`) & Elite Visual Enhancement - CTO Spec II.2, III.1 -->
+                        <img src="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=96"
+                            srcset="
+                                https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=96 96w,
+                                https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&w=192 192w
+                            "
+                            sizes="(max-width: 640px) 96px, 96px"
+                            alt="Dr. Evelyn Reed"
+                            class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
-                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Bone Density &amp; Musculoskeletal Resilience</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
-                        <p class="text-xs text-brand-700 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinical Visits</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Bone Density &amp; Musculoskeletal Resilience</p>
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinical Visits</p>
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Evelyn elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Evelyn elevates most):</span>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative mobility</span>
@@ -531,7 +541,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal">
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Osteoporosis management, joint mechanics, rehabilitation protocols.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Empathetic, scientifically-driven, detail-oriented.</p>
                 </div>
@@ -553,16 +563,16 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span>
                         <span class="text-2xl font-serif font-bold text-brand-950">£55 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-id="evelyn-reed" data-practitioner-name="Dr. Evelyn Reed">
+                        <button type="button" class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="evelyn-reed" data-practitioner-name="Dr. Evelyn Reed" aria-label="Shortlist Dr. Evelyn Reed">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
-                                data-modal-target="secure-consultation" data-practitioner-name="Dr. Evelyn Reed">
+                        <button type="button" class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Dr. Evelyn Reed" aria-label="Secure Consultation with Dr. Evelyn Reed">
                             Secure Consultation
                         </button>
                     </div>
@@ -591,19 +601,26 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <!-- CTO Spec 7: Image Loading Optimization -->
-                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=300" alt="Mr. Alistair Finch" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
+                        <!-- Responsive Images (`srcset`) & Elite Visual Enhancement - CTO Spec II.2, III.1 -->
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=96"
+                            srcset="
+                                https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=96 96w,
+                                https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&q=80&w=192 192w
+                            "
+                            sizes="(max-width: 640px) 96px, 96px"
+                            alt="Mr. Alistair Finch"
+                            class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Mr. Alistair Finch, PT</h3>
-                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Neuromuscular Balance &amp; Agility Restoration</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
-                        <p class="text-xs text-brand-700 mt-1 font-medium">Cotswolds &amp; Glos • Residential &amp; Remote</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Neuromuscular Balance &amp; Agility Restoration</p>
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Cotswolds &amp; Glos • Residential &amp; Remote</p>
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Alistair elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Alistair elevates most):</span>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Neuromuscular balance</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Agility mastery</span>
@@ -612,7 +629,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal">
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Proprioception training, functional movement, active lifestyle coaching.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Engaging, patient, nature-integrated, highly motivational.</p>
                 </div>
@@ -634,16 +651,16 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span>
                         <span class="text-2xl font-serif font-bold text-brand-950">£40 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-id="alistair-finch" data-practitioner-name="Alistair Finch">
+                        <button type="button" class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="alistair-finch" data-practitioner-name="Alistair Finch" aria-label="Shortlist Alistair Finch">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
-                                data-modal-target="secure-consultation" data-practitioner-name="Alistair Finch">
+                        <button type="button" class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Alistair Finch" aria-label="Secure Consultation with Alistair Finch">
                             Secure Consultation
                         </button>
                     </div>
@@ -672,19 +689,26 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <!-- CTO Spec 7: Image Loading Optimization -->
-                        <img src="https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=300" alt="Ms. Eleanor Shaw" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
+                        <!-- Responsive Images (`srcset`) & Elite Visual Enhancement - CTO Spec II.2, III.1 -->
+                        <img src="https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=96"
+                            srcset="
+                                https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=96 96w,
+                                https://images.unsplash.com/photo-1542385633-8ad57731778c?auto=format&fit=crop&q=80&w=192 192w
+                            "
+                            sizes="(max-width: 640px) 96px, 96px"
+                            alt="Ms. Eleanor Shaw"
+                            class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Ms. Eleanor Shaw, BSc</h3>
-                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Post-Operative Mobility &amp; Recovery Specialist</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
-                        <p class="text-xs text-brand-700 mt-1 font-medium">Sandbanks &amp; Poole • Home &amp; Yacht Visits</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Post-Operative Mobility &amp; Recovery Specialist</p>
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Sandbanks &amp; Poole • Home &amp; Yacht Visits</p>
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Eleanor elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Eleanor elevates most):</span>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative rehabilitation</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Joint specific recovery</span>
@@ -693,7 +717,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal">
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Biomechanics, tailored recovery plans, gentle strength progression.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Nurturing, precise, patient, holistic.</p>
                 </div>
@@ -715,16 +739,16 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span>
                         <span class="text-2xl font-serif font-bold text-brand-950">£45 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-id="eleanor-shaw" data-practitioner-name="Eleanor Shaw">
+                        <button type="button" class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="eleanor-shaw" data-practitioner-name="Eleanor Shaw" aria-label="Shortlist Eleanor Shaw">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
-                                data-modal-target="secure-consultation" data-practitioner-name="Eleanor Shaw">
+                        <button type="button" class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Eleanor Shaw" aria-label="Secure Consultation with Eleanor Shaw">
                             Secure Consultation
                         </button>
                     </div>
@@ -753,19 +777,26 @@
 
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
-                        <!-- CTO Spec 7: Image Loading Optimization -->
-                        <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=300" alt="Dr. Cameron Ross" class="w-24 h-24 rounded-2xl object-cover shadow-md border border-brand-100" loading="lazy" width="96" height="96">
+                        <!-- Responsive Images (`srcset`) & Elite Visual Enhancement - CTO Spec II.2, III.1 -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=96"
+                            srcset="
+                                https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=96 96w,
+                                https://images.unsplash.com/photo-1507003211169-e69fe1c5a39f?auto=format&fit=crop&q=80&w=192 192w
+                            "
+                            sizes="(max-width: 640px) 96px, 96px"
+                            alt="Dr. Cameron Ross"
+                            class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
                         <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Cameron Ross, MD</h3>
-                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Cardiovascular Longevity &amp; Endurance Coach</p> <!-- CTO Spec 3.4.2: text-gold-600 -> text-brand-700 -->
-                        <p class="text-xs text-brand-700 mt-1 font-medium">Edinburgh &amp; Lothians • Executive &amp; Virtual</p> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Cardiovascular Longevity &amp; Endurance Coach</p>
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Edinburgh &amp; Lothians • Executive &amp; Virtual</p>
                     </div>
                 </div>
 
                 <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
-                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Cameron elevates most):</span> <!-- CTO Spec 3.4.2: text-brand-500 -> text-brand-700 -->
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Cameron elevates most):</span>
                     <div class="flex flex-wrap gap-2">
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Cardiovascular longevity</span>
                         <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Endurance training for seniors</span>
@@ -774,7 +805,7 @@
                     </div>
                 </div>
 
-                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal">
                     <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Cardiology-informed exercise, V02 max improvement, advanced metabolic programming.</p>
                     <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Clinical, data-driven, strategic, highly refined.</p>
                 </div>
@@ -796,16 +827,16 @@
 
                 <div class="flex items-center justify-between pt-2">
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span> <!-- CTO Spec 3.4.2: text-brand-400 -> text-brand-700 -->
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span>
                         <span class="text-2xl font-serif font-bold text-brand-950">£58 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
                     </div>
                     <div class="flex gap-3">
-                        <button class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
-                                data-modal-target="shortlist" data-practitioner-id="cameron-ross" data-practitioner-name="Dr. Cameron Ross">
+                        <button type="button" class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="cameron-ross" data-practitioner-name="Dr. Cameron Ross" aria-label="Shortlist Dr. Cameron Ross">
                             Shortlist
                         </button>
-                        <button class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
-                                data-modal-target="secure-consultation" data-practitioner-name="Dr. Cameron Ross">
+                        <button type="button" class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Dr. Cameron Ross" aria-label="Secure Consultation with Dr. Cameron Ross">
                             Secure Consultation
                         </button>
                     </div>
@@ -869,12 +900,14 @@
             </div>
 
             <div class="inline-flex flex-col sm:flex-row gap-5">
-                <a href="#" data-modal-target="apply-practitioner" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl shadow-2xl transition duration-300">
+                <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                <button type="button" data-modal-target="apply-practitioner" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl shadow-2xl transition duration-300" aria-label="Apply for Founding Practitioner Status">
                     Apply for Founding Practitioner Status &rarr;
-                </a>
-                <a href="#" data-modal-target="practitioner-sign-in" class="bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl transition duration-300">
+                </button>
+                <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                <button type="button" data-modal-target="practitioner-sign-in" class="bg-brand-800 hover:bg-brand-700 border border-brand-700 text-white font-bold uppercase tracking-widest text-xs px-10 py-4 rounded-xl transition duration-300" aria-label="Practitioner Sign In">
                     Practitioner Sign In
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -896,13 +929,14 @@
                         </div>
                         <div>
                             <span class="font-serif font-bold text-white text-xl tracking-wide block">LifelongCoaches.co.uk</span>
-                            <span class="text-xs text-gold-400 normal-case tracking-normal font-medium">The British Senior Longevity Guild</span> <!-- CTO Spec 3.4.2: text-[10px] uppercase tracking-[0.25em] -> text-xs normal-case tracking-normal -->
+                            <!-- Footer Sub-logo Styling Refinement - CTO Spec I.2 -->
+                            <span class="text-[9px] text-gold-400 uppercase tracking-[0.25em] font-medium">The British Senior Longevity Guild</span>
                         </div>
                     </div>
                     <p class="text-xs text-brand-200 font-light leading-relaxed max-w-sm">
                         Connecting affluent seniors and discerning families with elite, vetted private fitness and strength specialists across the United Kingdom. Uncompromising standards for lifelong vitality.
                     </p>
-                    <div class="text-sm text-brand-400 font-mono"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                    <div class="text-sm text-brand-400 font-mono">
                         Registered in England &amp; Wales • Company No. 17334702
                     </div>
                 </div>
@@ -910,43 +944,46 @@
                 <!-- Column 1: Private Clients -->
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Private Clients</h4>
-                    <ul class="space-y-2.5 text-sm font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+                    <ul class="space-y-2.5 text-sm font-light">
                         <li><a href="#search-section" class="hover:text-gold-400 transition">Find Local Specialist</a></li>
                         <li><a href="#philosophy" class="hover:text-gold-400 transition">The Longevity Manifesto</a></li>
-                        <li><a href="/404" class="hover:text-gold-400 transition">Home Visit Concierge</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
-                        <li><a href="/404" class="hover:text-gold-400 transition">Client Verification Standards</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
-                        <li><a href="/404" class="hover:text-gold-400 transition">Private Consultation Desk</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                        <li><a href="/404" class="hover:text-gold-400 transition">Home Visit Concierge</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Client Verification Standards</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Private Consultation Desk</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 2: Practitioner Guild -->
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Practitioner Guild</h4>
-                    <ul class="space-y-2.5 text-sm font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
-                        <li><a href="#" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition">Apply for Membership</a></li>
-                        <li><a href="#" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition">Founding Trial (£25/mo)</a></li>
-                        <li><a href="/404" class="hover:text-gold-400 transition">Credential Verification</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
-                        <li><a href="#" data-modal-target="practitioner-sign-in" class="hover:text-gold-400 transition">Practitioner Portal Login</a></li>
-                        <li><a href="/404" class="hover:text-gold-400 transition">Guild Code of Conduct</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                    <ul class="space-y-2.5 text-sm font-light">
+                        <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                        <li><button type="button" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition" aria-label="Apply for Membership">Apply for Membership</button></li>
+                        <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                        <li><button type="button" data-modal-target="apply-practitioner" class="hover:text-gold-400 transition" aria-label="Founding Trial details">Founding Trial (£25/mo)</button></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Credential Verification</a></li>
+                        <!-- Semantic Button Usage for Modal Triggers - CTO Spec I.1 -->
+                        <li><button type="button" data-modal-target="practitioner-sign-in" class="hover:text-gold-400 transition" aria-label="Practitioner Portal Login">Practitioner Portal Login</button></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Guild Code of Conduct</a></li>
                     </ul>
                 </div>
 
                 <!-- Column 3: Governance & Legal -->
                 <div class="space-y-4">
                     <h4 class="text-xs font-semibold uppercase tracking-[0.2em] text-white">Governance &amp; Legal</h4>
-                    <ul class="space-y-2.5 text-sm font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
-                        <li><a href="/404" class="hover:text-gold-400 transition">Privacy &amp; Discretion Policy</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
-                        <li><a href="/404" class="hover:text-gold-400 transition">Client Terms &amp; Conditions</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
-                        <li><a href="/404" class="hover:text-gold-400 transition">Practitioner Membership Terms</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
-                        <li><a href="/404" class="hover:text-gold-400 transition">Safeguarding &amp; DBS Protocols</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
-                        <li><a href="/404" class="hover:text-gold-400 transition">Cookie Compliance</a></li> <!-- CTO Spec 3.1.2: href="/404" -->
+                    <ul class="space-y-2.5 text-sm font-light">
+                        <li><a href="/404" class="hover:text-gold-400 transition">Privacy &amp; Discretion Policy</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Client Terms &amp; Conditions</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Practitioner Membership Terms</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Safeguarding &amp; DBS Protocols</a></li>
+                        <li><a href="/404" class="hover:text-gold-400 transition">Cookie Compliance</a></li>
                     </ul>
                 </div>
 
             </div>
 
             <!-- Footer Bottom Bar -->
-            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-brand-400 font-light"> <!-- CTO Spec 3.4.2: text-xs -> text-sm -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-brand-400 font-light">
                 <div>
                     <p>&copy; 2026 LifelongCoaches.co.uk. All rights reserved. Designed for elite longevity.</p>
                 </div>
@@ -961,6 +998,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button - CTO Spec I.3 -->
+    <button id="scroll-to-top-btn" class="fixed bottom-6 right-6 z-40 p-3 rounded-full bg-brand-800 text-gold-400 shadow-lg hover:bg-brand-700 transition duration-300 opacity-0 invisible" aria-label="Scroll to top of page">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <!-- Sticky "Engage Coach" Call to Action (CTA) - CTO Spec III.2 -->
+    <button id="sticky-engage-coach-btn" data-modal-target="engage-coach" type="button" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-8 py-3.5 rounded-full shadow-xl hover:shadow-2xl transition duration-300 opacity-0 invisible sm:hidden lg:inline-flex items-center gap-2" aria-label="Engage a Private Coach">
+        Engage Private Coach ✦
+    </button>
 
     <!-- Modals Container -->
     <div id="modal-container" class="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-closed"
@@ -1237,13 +1284,7 @@
                         return false;
                     }
 
-                    if (input.id === 'postcode-input' && input.value.trim() && !UK_POSTCODE_REGEX.test(input.value)) {
-                        _showError(input, 'Please enter a valid UK postcode (e.g., SW1A 0AA).');
-                        return false;
-                    }
-
-                    // This handles engage-postcode and any other postcode fields in modals
-                    if (input.id === 'engage-postcode' && input.value.trim() && !UK_POSTCODE_REGEX.test(input.value)) {
+                    if ((input.id === 'postcode-input' || input.id === 'engage-postcode') && input.value.trim() && !UK_POSTCODE_REGEX.test(input.value)) {
                         _showError(input, 'Please enter a valid UK postcode (e.g., SW1A 0AA).');
                         return false;
                     }
@@ -1641,8 +1682,6 @@
                         ShortlistManager.updateShortlistButtons();
                         ModalManager.open(targetId, { practitionerId, practitionerName, isAdded }, button);
                     } else if (targetId === 'secure-consultation') {
-                        // CTO Spec 9: Add aria-label to consultation buttons
-                        button.setAttribute('aria-label', `Secure Consultation with ${practitionerName}`);
                         ModalManager.open(targetId, { practitionerName }, button);
                     } else {
                         ModalManager.open(targetId, {}, button);
@@ -1812,6 +1851,158 @@
             });
             postcodeInput.addEventListener('input', () => FormValidator.validateField(postcodeInput)); // clear error while typing
 
+            // --- Geolocation for Postcode Input - CTO Spec I.6 ---
+            const useMyLocationBtn = document.getElementById('use-my-location-btn');
+            if (useMyLocationBtn) {
+                useMyLocationBtn.addEventListener('click', () => {
+                    if (navigator.geolocation) {
+                        const originalBtnContent = useMyLocationBtn.innerHTML;
+                        useMyLocationBtn.innerHTML = '<span class="spinner text-brand-950"></span>';
+                        useMyLocationBtn.disabled = true;
+                        postcodeInput.value = 'Fetching postcode...';
+
+                        navigator.geolocation.getCurrentPosition(
+                            async (position) => {
+                                // Mock geocoding: In a real app, you'd send lat/lon to a geocoding API.
+                                await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
+                                const mockPostcodes = ['SW1A 0AA', 'W1K 7AU', 'EC1A 1BB', 'SE1 9BU', 'NW1 8BP'];
+                                const randomPostcode = mockPostcodes[Math.floor(Math.random() * mockPostcodes.length)];
+                                
+                                postcodeInput.value = randomPostcode;
+                                FormValidator.validateField(postcodeInput);
+                                filterAndSortPractitioners(true);
+
+                                useMyLocationBtn.innerHTML = originalBtnContent;
+                                useMyLocationBtn.disabled = false;
+                            },
+                            (error) => {
+                                let errorMessage = 'Location access denied or unavailable.';
+                                if (error.code === error.PERMISSION_DENIED) {
+                                    errorMessage = 'Location permission denied. Please enable it in browser settings or enter postcode manually.';
+                                } else if (error.code === error.POSITION_UNAVAILABLE) {
+                                    errorMessage = 'Location information unavailable. Please try again or enter postcode manually.';
+                                }
+                                FormValidator.showGeneralMessage('error', errorMessage);
+                                postcodeInput.value = ''; // Clear placeholder if error
+                                useMyLocationBtn.innerHTML = originalBtnContent;
+                                useMyLocationBtn.disabled = false;
+                            },
+                            {
+                                enableHighAccuracy: true,
+                                timeout: 10000,
+                                maximumAge: 0
+                            }
+                        );
+                    } else {
+                        FormValidator.showGeneralMessage('error', 'Geolocation is not supported by your browser.');
+                    }
+                });
+            }
+
+            // --- Scroll to Top Button - CTO Spec I.3 ---
+            const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+            if (scrollToTopBtn) {
+                const toggleVisibility = () => {
+                    if (window.scrollY > 300) { // Show button after scrolling 300px
+                        scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+                        scrollToTopBtn.classList.add('opacity-100', 'visible');
+                    } else {
+                        scrollToTopBtn.classList.remove('opacity-100', 'visible');
+                        scrollToTopBtn.classList.add('opacity-0', 'invisible');
+                    }
+                };
+
+                window.addEventListener('scroll', toggleVisibility);
+                toggleVisibility(); // Run on load in case user refreshed part-way down
+
+                scrollToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // --- Sticky "Engage Coach" CTA - CTO Spec III.2 ---
+            const stickyEngageCoachBtn = document.getElementById('sticky-engage-coach-btn');
+            const heroSection = document.querySelector('.hero-section') || document.getElementById('search-section'); // Use search-section as reference if hero isn't precise
+            if (stickyEngageCoachBtn && heroSection) {
+                const toggleStickyButton = () => {
+                    const heroBottom = heroSection.getBoundingClientRect().bottom;
+                    if (heroBottom < 100) { // Show when hero section is mostly out of view
+                        stickyEngageCoachBtn.classList.remove('opacity-0', 'invisible');
+                        stickyEngageCoachBtn.classList.add('opacity-100', 'visible');
+                    } else {
+                        stickyEngageCoachBtn.classList.remove('opacity-100', 'visible');
+                        stickyEngageCoachBtn.classList.add('opacity-0', 'invisible');
+                    }
+                };
+
+                window.addEventListener('scroll', toggleStickyButton);
+                toggleStickyButton(); // Run on load
+            }
+
+            // --- Announcement Bar Dismissal with Local Storage - CTO Spec I.5 ---
+            const announcementBar = document.getElementById('announcement-bar');
+            const announcementDismissBtn = document.getElementById('announcement-dismiss');
+            const announcementDismissedKey = 'announcementDismissed';
+
+            if (announcementBar && announcementDismissBtn) {
+                // Check local storage on load
+                if (localStorage.getItem(announcementDismissedKey) === 'true') {
+                    announcementBar.style.display = 'none';
+                }
+
+                // Add event listener to dismiss button
+                announcementDismissBtn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent click from bubbling to parent data-modal-target
+                    e.preventDefault(); // Prevent default link behavior
+                    announcementBar.style.display = 'none';
+                    localStorage.setItem(announcementDismissedKey, 'true');
+                });
+            }
+
+            // --- Active Navigation Link Highlighting - CTO Spec I.4 ---
+            const sections = document.querySelectorAll('section[id]');
+            const desktopNavLinks = document.querySelectorAll('nav.md\\:flex a.nav-link');
+            const mobileNavLinksActive = document.querySelectorAll('#mobile-nav ul a.mobile-nav-link'); // Note: 'mobile-nav-link' is distinct
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px 0px -50% 0px', // When 50% of section is visible
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                let activeSectionId = null;
+
+                // Find the section that is currently most in view
+                // Iterate backwards to prioritize sections higher up when multiple are intersecting
+                for (let i = entries.length - 1; i >= 0; i--) {
+                    const entry = entries[i];
+                    if (entry.isIntersecting) {
+                        activeSectionId = entry.target.id;
+                        break;
+                    }
+                }
+
+                // Update desktop navigation
+                desktopNavLinks.forEach(link => {
+                    link.classList.remove('is-active');
+                    if (link.getAttribute('href') === `#${activeSectionId}`) {
+                        link.classList.add('is-active');
+                    }
+                });
+
+                // Update mobile navigation
+                mobileNavLinksActive.forEach(link => {
+                    link.classList.remove('is-active');
+                    if (link.getAttribute('href') === `#${activeSectionId}`) {
+                        link.classList.add('is-active');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
 
         }); // End DOMContentLoaded
     </script>
