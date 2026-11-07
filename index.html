@@ -61,7 +61,6 @@
     </script>
     <!-- Tailwind CSS Build Integration (PurgeCSS) - CTO Spec II.1 -->
     <!-- 2.3 Critical CSS Inlining for FCP -->
-    <!-- Original: <link href="/dist/output.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="/dist/output.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="/dist/output.css"></noscript>
     
@@ -73,8 +72,7 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v37/rnCf-O2Xz2htPoGx-VE4cE_B.woff2" as="font" type="font/woff2" crossorigin> <!-- Playfair Display 700 normal -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO4kAplfW5jhlpxiEkUCM.woff2" as="font" type="font/woff2" crossorigin> <!-- Inter 400 regular -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- CTO Spec III.8: Inline CSS has been migrated to the external Tailwind CSS build (output.css) -->
-    <!-- 2.3 Critical CSS Inlining for FCP - CTO SPEC II.1 -->
+    <!-- CTO Spec III.8: Critical CSS is intentionally inlined here for optimal First Contentful Paint. External Tailwind build handles the rest. -->
     <style>
         /* Critical CSS for immediate above-the-fold rendering */
         body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; background-color: #16161C; color: #E2E2E6; -webkit-font-smoothing: antialiased; -moz-osx-osx-font-smoothing: grayscale; }
@@ -109,7 +107,7 @@
 
         /* Modal base styles - ensure no FOUC for modal positioning */
         .modal-container { /* Matched to HTML class name */
-            position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 1rem;
+            position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; /* Padding is not critical for FCP */
             visibility: hidden; opacity: 0; /* Initial hidden state for transitions */
         }
         .modal-backdrop { /* This is also critical to cover background instantly */
@@ -126,14 +124,18 @@
     <div id="announcement-bar" class="bg-brand-950 text-gold-400 px-4 py-3 text-center text-xs tracking-widest uppercase font-medium border-b border-gold-500/20">
         <!-- CTO Spec I.1: Refactor Announcement Bar Button Structure -->
         <div class="relative w-full flex items-center justify-between"> <!-- New wrapper for layout -->
-            <!-- Announcement Bar Call-to-Action Visual Polish - CTO SPEC III.1 -->
-            <button type="button" class="flex-grow text-left cursor-pointer pr-10" data-modal-target="apply-practitioner" aria-label="Open application for founding practitioner status">
-                <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong class="hover:underline hover:text-white transition duration-300">2-Month Free Trial for Founding Practitioners</strong>.</span>
-            </button>
+            <p class="flex-grow text-left pr-10">
+                <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. </span>
+                <!-- Announcement Bar Call-to-Action Visual Polish - CTO SPEC III.1 -->
+                <button type="button" data-modal-target="apply-practitioner" class="inline-flex items-center gap-1 text-gold-400 hover:text-white transition duration-300 bg-brand-800/50 border border-gold-500/50 px-3 py-1 rounded-full text-xs font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Learn more about 2-Month Free Trial for Founding Practitioners">
+                    <strong>2-Month Free Trial</strong>
+                    <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </p>
             <!-- Refine Announcement Bar Dismiss UX - CTO Spec III.2 -->
             <!-- Universal Focus Ring Consistency - CTO SPEC III.3 -->
             <button id="announcement-dismiss" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 px-3 py-2 text-gold-400 hover:text-white transition z-10 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-md" aria-label="Dismiss announcement">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </div>
@@ -145,7 +147,7 @@
             <!-- CTO Spec V.2: Enhance Main Logo Accessibility -->
             <a href="/" class="flex items-center gap-4 group" aria-label="LifelongCoaches.co.uk homepage"> <!-- CTO Spec 3.1.2: Logo href="/" -->
                 <div class="w-12 h-12 rounded-xl bg-brand-800 border border-gold-500/40 p-1.5 flex items-center justify-center shadow-lg group-hover:border-gold-500 transition duration-300">
-                    <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                         <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"></path>
                     </svg>
@@ -153,7 +155,7 @@
                 <div>
                     <span class="text-2xl font-serif font-bold tracking-wide text-white block leading-none">Lifelong<span class="text-gold-400">Coaches</span></span>
                     <!-- Header Sub-logo Styling Refinement - CTO Spec I.2 -->
-                    <span class="text-[9px] uppercase tracking-[0.25em] font-medium text-brand-200 mt-1 block">Private Longevity &amp; Strength Guild</span>
+                    <span class="text-xs uppercase tracking-[0.25em] font-medium text-brand-200 mt-1 block">Private Longevity &amp; Strength Guild</span>
                 </div>
             </a>
 
@@ -170,7 +172,7 @@
                 <!-- Universal Focus Ring Consistency - CTO SPEC III.3 -->
                 <button id="mobile-nav-toggle" class="md:hidden p-2 -mr-2 rounded-md text-gold-400 hover:text-white hover:bg-brand-800 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 transition" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="hamburger-icon flex flex-col justify-center items-center h-full">
-                        <!-- CTO Spec I.2: Correct Hamburger Icon Styling -->
+                        <!-- CTO Spec I.2: Correct Hamburger Icon Styling - CSS rules are external, no HTML changes needed here -->
                         <span class="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out"></span>
                         <span class="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out my-1.5"></span>
                         <span class="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out"></span>
@@ -193,7 +195,7 @@
     <nav id="mobile-nav" class="mobile-nav fixed inset-0 bg-brand-950 z-[90] flex flex-col justify-center items-center p-8 transform transition-transform duration-300 ease-out md:hidden" role="navigation" aria-label="Mobile main navigation">
         <!-- Universal Focus Ring Consistency - CTO SPEC III.3 -->
         <button id="mobile-nav-close" class="absolute top-6 right-6 text-brand-400 hover:text-gold-400 transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-md p-2" aria-label="Close mobile navigation">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <ul class="space-y-6 text-center">
             <li><a href="#search-section" class="mobile-nav-link text-xl font-serif text-brand-50 hover:text-gold-400 transition py-2 block">Private Directory</a></li>
@@ -246,7 +248,7 @@
                         <button id="use-my-location-btn" type="button" class="absolute right-2 px-3 py-2 text-brand-600 hover:text-gold-500 text-xs font-semibold rounded-lg transition disabled:opacity-75 disabled:cursor-not-allowed focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Use my current location">
                             <span class="button-text flex items-center gap-1">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <span class="sr-only">Use my current location</span>
+                                <span>My Location</span> <!-- Add visible text here -->
                             </span>
                             <span class="spinner hidden" aria-hidden="true"></span>
                         </button>
@@ -364,7 +366,7 @@
             <!-- CTO Spec I.3: "No Results" Message Enhancement -->
             <!-- 4.3 ARIA Live Region for No Results Message -->
             <!-- Universal Focus Ring Consistency - CTO SPEC III.3 -->
-            <div id="no-results-message" class="hidden lg:col-span-2 bg-brand-800 border border-gold-500/20 text-gold-400 p-8 rounded-2xl text-center text-lg font-serif italic shadow-lg" role="alert" aria-live="assertive">
+            <div id="no-results-message" class="hidden lg:col-span-2 bg-brand-800/70 border border-gold-500 text-gold-400 p-8 rounded-2xl text-center text-lg font-serif italic shadow-lg" role="alert" aria-live="assertive">
                 No elite specialists matched your criteria. Please broaden your postcode search radius or select a different longevity focus. Alternatively, our <button type="button" class='text-gold-400 hover:underline focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-sm' data-modal-target='engage-coach' aria-label="Engage concierge service">concierge service</button> can match you privately.
             </div>
 
@@ -404,7 +406,7 @@
                                 class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" width="96" height="96">
                         </picture>
                         <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
+                        <div class="absolute -bottom-2 -right-2 bg-gold-600 text-brand-900 text-[10px] font-bold px-2 py-0.5 rounded shadow-md ring-1 ring-gold-500/50 rotate-3">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Sarah Jenkins, BSc (Hons)</h3>
@@ -500,7 +502,7 @@
                                 class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-gold-500" width="96" height="96">
                         </picture>
                         <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
+                        <div class="absolute -bottom-2 -right-2 bg-gold-600 text-brand-900 text-[10px] font-bold px-2 py-0.5 rounded shadow-md ring-1 ring-gold-500/50 rotate-3">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Marcus Vance, MSc</h3>
@@ -597,7 +599,7 @@
                                 class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" width="96" height="96" loading="lazy">
                         </picture>
                         <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
+                        <div class="absolute -bottom-2 -right-2 bg-gold-600 text-brand-900 text-[10px] font-bold px-2 py-0.5 rounded shadow-md ring-1 ring-gold-500/50 rotate-3">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
@@ -731,24 +733,21 @@
             <form novalidate> <!-- Add novalidate to prevent default browser validation -->
                 <div class="mb-4">
                     <label for="practitioner-email" class="block text-brand-200 text-sm font-medium mb-2">Email Address</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="email" id="practitioner-email" name="practitioner-email" placeholder="your.name@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-describedby="practitioner-email-error">
                     <span id="practitioner-email-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-6">
                     <label for="practitioner-password" class="block text-brand-200 text-sm font-medium mb-2">Password</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="password" id="practitioner-password" name="practitioner-password" placeholder="••••••••" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required minlength="8" aria-describedby="practitioner-password-error">
                     <span id="practitioner-password-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
-                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
                 <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Sign In">
                     <span class="button-text">Sign In</span>
                     <span class="spinner hidden" aria-hidden="true"></span>
                 </button>
             </form>
             <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-md" aria-label="Close login modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </div>
@@ -762,30 +761,26 @@
             <form novalidate>
                 <div class="mb-4">
                     <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="text" id="engage-name" name="engage-name" placeholder="John Doe" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required aria-describedby="engage-name-error">
                     <span id="engage-name-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-4">
                     <label for="engage-email" class="block text-brand-200 text-sm font-medium mb-2">Email Address</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="email" id="engage-email" name="engage-email" placeholder="john.doe@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-describedby="engage-email-error">
                     <span id="engage-email-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-6">
                     <label for="engage-message" class="block text-brand-200 text-sm font-medium mb-2">Your Requirements (Optional)</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <textarea id="engage-message" name="engage-message" rows="4" placeholder="Briefly describe your longevity goals or specific needs..." class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-describedby="engage-message-error"></textarea>
                     <span id="engage-message-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
-                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
                 <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Submit Request">
                     <span class="button-text">Submit Request</span>
                     <span class="spinner hidden" aria-hidden="true"></span>
                 </button>
             </form>
             <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-md" aria-label="Close engagement modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </div>
@@ -799,36 +794,31 @@
             <form novalidate>
                 <div class="mb-4">
                     <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="text" id="apply-name" name="apply-name" placeholder="Jane Smith" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required aria-describedby="apply-name-error">
                     <span id="apply-name-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-4">
                     <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-2">Email Address</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="email" id="apply-email" name="apply-email" placeholder="jane.smith@elitefitness.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-describedby="apply-email-error">
                     <span id="apply-email-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-4">
                     <label for="apply-specialty" class="block text-brand-200 text-sm font-medium mb-2">Primary Specialty</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="text" id="apply-specialty" name="apply-specialty" placeholder="e.g., Geriatric Strength, Biohacking" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required aria-describedby="apply-specialty-error">
                     <span id="apply-specialty-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-6">
                     <label for="apply-cv" class="block text-brand-200 text-sm font-medium mb-2">Upload CV/Portfolio (Link)</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="url" id="apply-cv" name="apply-cv" placeholder="https://yourwebsite.com/cv" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" pattern="https?://.+" aria-describedby="apply-cv-error">
                     <span id="apply-cv-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
-                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
                 <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Apply Now">
                     <span class="button-text">Apply Now</span>
                     <span class="spinner hidden" aria-hidden="true"></span>
                 </button>
             </form>
             <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-md" aria-label="Close application modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </div>
@@ -842,25 +832,22 @@
             <form novalidate>
                 <div class="mb-4">
                     <label for="shortlist-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="text" id="shortlist-name" name="shortlist-name" placeholder="Your Name" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required aria-describedby="shortlist-name-error">
                     <span id="shortlist-name-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-6">
                     <label for="shortlist-email" class="block text-brand-200 text-sm font-medium mb-2">Your Email</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="email" id="shortlist-email" name="shortlist-email" placeholder="your.email@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-describedby="shortlist-email-error">
                     <span id="shortlist-email-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <input type="hidden" id="shortlist-practitioner-id" name="practitioner-id"> <!-- Hidden field for practitioner ID -->
-                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
                 <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Add to Shortlist">
                     <span class="button-text">Add to Shortlist</span>
                     <span class="spinner hidden" aria-hidden="true"></span>
                 </button>
             </form>
             <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-md" aria-label="Close shortlist modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </div>
@@ -874,31 +861,27 @@
             <form novalidate>
                 <div class="mb-4">
                     <label for="consultation-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="text" id="consultation-name" name="consultation-name" placeholder="Your Name" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required aria-describedby="consultation-name-error">
                     <span id="consultation-name-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-4">
                     <label for="consultation-email" class="block text-brand-200 text-sm font-medium mb-2">Your Email</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <input type="email" id="consultation-email" name="consultation-email" placeholder="your.email@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" aria-describedby="consultation-email-error">
                     <span id="consultation-email-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <div class="mb-6">
                     <label for="consultation-message" class="block text-brand-200 text-sm font-medium mb-2">Brief message (Optional)</label>
-                    <!-- Enhanced Client-Client Form Validation with Inline Feedback - CTO SPEC III.7 -->
                     <textarea id="consultation-message" name="consultation-message" rows="4" placeholder="I'm interested in..." class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-describedby="consultation-message-error"></textarea>
                     <span id="consultation-message-error" class="text-red-400 text-xs mt-1 hidden" role="alert"></span>
                 </div>
                 <input type="hidden" id="consultation-practitioner-id" name="practitioner-id"> <!-- Hidden field for practitioner ID -->
-                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
                 <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Request Consultation">
                     <span class="button-text">Request Consultation</span>
                     <span class="spinner hidden" aria-hidden="true"></span>
                 </button>
             </form>
             <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-md" aria-label="Close consultation modal">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
     </div>
@@ -924,7 +907,7 @@
             <div class="md:col-span-1">
                 <a href="/" class="flex items-center gap-2 group mb-4" aria-label="LifelongCoaches.co.uk homepage">
                     <div class="w-8 h-8 rounded-lg bg-brand-800 border border-gold-500/40 p-1 flex items-center justify-center shadow-lg group-hover:border-gold-500 transition duration-300">
-                        <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                             <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"></path>
                         </svg>
@@ -969,13 +952,13 @@
                 </ul>
                 <div class="flex space-x-4">
                     <a href="https://twitter.com/lifelongcoaches_uk" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-full" aria-label="Follow us on Twitter">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.791-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.919 0 .385.044.76.126 1.124-4.093-.205-7.722-2.16-10.151-5.131-.424.735-.666 1.583-.666 2.491 0 1.706.87 3.213 2.188 4.098-.807-.025-1.565-.247-2.228-.616v.061c0 2.384 1.699 4.373 3.946 4.827-.412.114-.847.175-1.299.175-.318 0-.626-.031-.926-.088.631 1.956 2.445 3.38 4.604 3.421-1.686 1.321-3.805 2.114-6.102 2.114-.398 0-.79-.023-1.175-.069 2.187 1.393 4.768 2.209 7.559 2.209 9.058 0 14.01-7.509 14.01-14.01 0-.213-.005-.426-.015-.637.967-.699 1.808-1.574 2.47-2.556z"></path></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="false"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.791-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.919 0 .385.044.76.126 1.124-4.093-.205-7.722-2.16-10.151-5.131-.424.735-.666 1.583-.666 2.491 0 1.706.87 3.213 2.188 4.098-.807-.025-1.565-.247-2.228-.616v.061c0 2.384 1.699 4.373 3.946 4.827-.412.114-.847.175-1.299.175-.318 0-.626-.031-.926-.088.631 1.956 2.445 3.38 4.604 3.421-1.686 1.321-3.805 2.114-6.102 2.114-.398 0-.79-.023-1.175-.069 2.187 1.393 4.768 2.209 7.559 2.209 9.058 0 14.01-7.509 14.01-14.01 0-.213-.005-.426-.015-.637.967-.699 1.808-1.574 2.47-2.556z"></path></svg>
                     </a>
                     <a href="https://www.linkedin.com/company/lifelongcoaches" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-full" aria-label="Follow us on LinkedIn">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54c0 .96.79 1.73 1.77 1.73h20.46c.98 0 1.77-.77 1.77-1.73V1.73c0-.96-.79-1.73-1.77-1.73zM7.3 20.25H4.27V9h3.03v11.25zM5.78 7.74a1.9 1.9 0 11-.02-3.8 1.9 1.9 0 01.02 3.8zm14.47 12.51h-3.03V14.5c0-1.3-.47-2.18-1.62-2.18-1.24 0-1.97.84-1.97 2.18v5.75H10.1V9h3.03v1.3c.42-.64 1.15-1.56 2.76-1.56 2 0 3.5 1.3 3.5 4.06v5.45z"></path></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="false"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54c0 .96.79 1.73 1.77 1.73h20.46c.98 0 1.77-.77 1.77-1.73V1.73c0-.96-.79-1.73-1.77-1.73zM7.3 20.25H4.27V9h3.03v11.25zM5.78 7.74a1.9 1.9 0 11-.02-3.8 1.9 1.9 0 01.02 3.8zm14.47 12.51h-3.03V14.5c0-1.3-.47-2.18-1.62-2.18-1.24 0-1.97.84-1.97 2.18v5.75H10.1V9h3.03v1.3c.42-.64 1.15-1.56 2.76-1.56 2 0 3.5 1.3 3.5 4.06v5.45z"></path></svg>
                     </a>
                     <a href="https://www.instagram.com/lifelongcoaches.uk" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:text-gold-400 transition focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900 rounded-full" aria-label="Follow us on Instagram">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.068 1.645.068 4.85 0 3.204-.01 3.584-.068 4.85-.148 3.228-1.667 4.746-4.919 4.919-1.266.058-1.645.068-4.85.068-3.204 0-3.584-.01-4.85-.068-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.068-1.645-.068-4.85 0-3.204.01-3.584.068-4.85.148-3.227 1.667-4.746 4.919-4.919 1.265-.058 1.644-.068 4.85-.068zm0-2.163c-3.259 0-3.667.014-4.944.072-4.358.21-6.78 2.618-6.99 6.99-.059 1.277-.073 1.685-.073 4.944 0 3.259.014 3.668.072 4.944.21 4.379 2.618 6.781 6.99 6.99 1.277.058 1.685.073 4.944.073s3.668-.014 4.944-.072c4.354-.21 6.782-2.618 6.99-6.99.058-1.277.073-1.685.073-4.944s-.014-3.668-.072-4.944c-.209-4.372-2.618-6.78-6.99-6.99-1.275-.058-1.685-.073-4.944-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"></path></svg>
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.068 1.645.068 4.85 0 3.204-.01 3.584-.068 4.85-.148 3.228-1.667 4.746-4.919 4.919-1.266.058-1.645.068-4.85.068-3.204 0-3.584-.01-4.85-.068-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.068-1.645-.068-4.85 0-3.204.01-3.584.068-4.85.148-3.227 1.667-4.746 4.919-4.919 1.265-.058 1.644-.068 4.85-.068zm0-2.163c-3.259 0-3.667.014-4.944.072-4.358.21-6.78 2.618-6.99 6.99-.059 1.277-.073 1.685-.073 4.944 0 3.259.014 3.668.072 4.944.21 4.379 2.618 6.781 6.99 6.99 1.277.058 1.685.073 4.944.073s3.668-.014 4.944-.072c4.354-.21 6.782-2.618 6.99-6.99.058-1.277.073-1.685.073-4.944s-.014-3.668-.072-4.944c-.209-4.372-2.618-6.78-6.99-6.99-1.275-.058-1.685-.073-4.944-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"></path></svg>
                     </a>
                 </div>
             </div>
@@ -1024,7 +1007,7 @@
         };
 
         // ===============================================
-        // 2. Cookie Consent - CTO SPEC IV.1, III.8
+        // 2. Cookie Consent
         // ===============================================
 
         const cookieBanner = document.getElementById('cookie-consent-banner');
@@ -1050,7 +1033,7 @@
             const consent = localStorage.getItem('cookieConsent');
             if (!consent) {
                 cookieBanner.classList.remove('hidden');
-                // CTO SPEC III.8: Focus on accept-cookies button when banner is shown
+                // Focus on accept-cookies button when banner is shown
                 acceptCookiesBtn.focus();
             } else {
                 console.log(`User previously consented: ${consent}`);
@@ -1086,7 +1069,7 @@
         }
 
         // ===============================================
-        // 4. Modal Management - CTO SPEC I.1, III.6
+        // 4. Modal Management - CTO SPEC III.6
         // ===============================================
 
         const modalState = {
@@ -1145,14 +1128,14 @@
             if (focusableElements.length > 0) {
                 // Prioritize the close button for modals without primary form fields or if it's the first focusable element
                 const closeButton = modalElement.querySelector('[data-modal-dismiss]');
-                if (closeButton === focusableElements[0] || !focusableElements[0].tagName === 'INPUT') {
+                if (closeButton === focusableElements[0] || (focusableElements[0] && focusableElements[0].tagName !== 'INPUT')) {
                     closeButton.focus();
-                } else {
+                } else if (focusableElements[0]) {
                     focusableElements[0].focus();
                 }
             }
 
-            // CTO SPEC III.6: Robust Modal Focus Trapping
+            // Robust Modal Focus Trapping
             modalState.tabKeyListener = (e) => {
                 if (e.key === 'Tab') {
                     e.preventDefault(); // Prevent default tab behavior
@@ -1205,7 +1188,7 @@
 
 
         // ===============================================
-        // 5. Dynamic Form Submission Feedback & Validation - CTO SPEC III.1, III.7
+        // 5. Dynamic Form Submission Feedback & Validation
         // ===============================================
 
         /**
@@ -1411,7 +1394,7 @@
 
 
         // ===============================================
-        // 6. Navigation - CTO SPEC 3.2.2, II.3, III.2
+        // 6. Navigation
         // ===============================================
 
         // Hamburger menu toggle
@@ -1453,7 +1436,7 @@
             });
         });
 
-        // Anchor link smooth scrolling for desktop nav - CTO Spec II.3
+        // Anchor link smooth scrolling for desktop nav
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1466,7 +1449,7 @@
             });
         });
 
-        // CTO SPEC III.2: Dynamic Header & Mobile Navigation Active States
+        // Dynamic Header & Mobile Navigation Active States
         const navLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section[id]');
         const header = document.querySelector('header'); // Assuming header height affects scroll position
@@ -1580,8 +1563,16 @@
                     // Lower rank means higher credentials
                     return parseFloat(a.dataset.credentialsRank) - parseFloat(b.dataset.credentialsRank);
                 } else if (sortBy === 'proximity') {
-                    const distA = (postcode && a.dataset.postcode.startsWith(postcode.substring(0,2))) ? (Math.random() * 2) : parseFloat(a.dataset.distance);
-                    const distB = (postcode && b.dataset.postcode.startsWith(postcode.substring(0,2))) ? (Math.random() * 2) : parseFloat(b.dataset.distance);
+                    const isAPrefixMatch = (postcode && a.dataset.postcode.startsWith(postcode.substring(0,2)));
+                    const isBPrefixMatch = (postcode && b.dataset.postcode.startsWith(postcode.substring(0,2)));
+
+                    let distA = isAPrefixMatch ? 0.5 : parseFloat(a.dataset.distance);
+                    let distB = isBPrefixMatch ? 0.5 : parseFloat(b.dataset.distance);
+
+                    if (distA === distB) {
+                        // If distances are equal, sort by credentials (lower rank is better)
+                        return parseFloat(a.dataset.credentialsRank) - parseFloat(b.dataset.credentialsRank);
+                    }
                     return distA - distB;
                 }
                 return 0;
@@ -1636,7 +1627,7 @@
             `;
             button.setAttribute('aria-live', 'polite');
             button.setAttribute('aria-pressed', 'true');
-            button.setAttribute('disabled', 'true'); // Disable after shortlisting (can be re-enabled for unshortlist)
+            // button.setAttribute('disabled', 'true'); // Removed to allow un-shortlisting
         }
 
         /**
@@ -1649,7 +1640,7 @@
             button.innerHTML = 'Shortlist';
             button.removeAttribute('aria-live');
             button.setAttribute('aria-pressed', 'false');
-            button.removeAttribute('disabled');
+            button.removeAttribute('disabled'); // Ensure button is re-enabled
         }
 
         /**
@@ -1674,15 +1665,35 @@
             const shortlistedIds = JSON.parse(localStorage.getItem(SHORTLISTED_KEY) || '[]');
             document.querySelectorAll('.shortlist-btn').forEach(button => {
                 const practitionerId = button.dataset.practitionerId;
+                const practitionerName = button.dataset.practitionerName;
+
+                // Set initial state
                 if (shortlistedIds.includes(practitionerId)) {
                     setShortlistedState(button);
                 } else {
                     removeShortlistedState(button); // Ensure correct initial state
                 }
 
-                // Add submit listener for the shortlist modal's form
+                // Attach click listener for toggling shortlist state (or opening modal)
+                button.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('is-shortlisted')) {
+                        // If already shortlisted, un-shortlist directly
+                        removeShortlistedState(button);
+                        updateLocalStorageShortlist(practitionerId, false);
+                    } else {
+                        // If not shortlisted, open modal to gather user info before shortlisting
+                        const shortlistModal = document.getElementById('shortlist-modal');
+                        if (shortlistModal) {
+                            document.getElementById('shortlist-practitioner-name').textContent = practitionerName;
+                            document.getElementById('shortlist-practitioner-id').value = practitionerId || '';
+                            openModal(shortlistModal, button);
+                        }
+                    }
+                });
+
+                // Add submit listener for the shortlist modal's form (only once)
                 const shortlistModalForm = document.getElementById('shortlist-modal')?.querySelector('form');
-                if (shortlistModalForm) {
+                if (shortlistModalForm && !shortlistModalForm.dataset.listenerAdded) {
                     shortlistModalForm.addEventListener('submit', (e) => {
                         const submittedPractitionerId = document.getElementById('shortlist-practitioner-id').value;
                         if (submittedPractitionerId) {
@@ -1693,7 +1704,8 @@
                             }
                         }
                         // General form submission feedback already handles showing success/error
-                    }, { once: false }); // Ensure this listener runs every time
+                    });
+                    shortlistModalForm.dataset.listenerAdded = true; // Mark that listener is added
                 }
             });
         }
