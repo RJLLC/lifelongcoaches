@@ -54,6 +54,8 @@
     <link href="/dist/output.css" rel="stylesheet">
     <!-- Performance Optimization: Preconnect for Google Fonts - CTO Spec 8 -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- CTO Spec V.1: Preconnect for External Image Host -->
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
     <!-- CTO Spec III.9: Critical Font Preloading -->
     <link rel="preload" href="https://fonts.gstatic.com/s/playfairdisplay/v37/rnCf-O2Xz2htPoGx-VE4cE_B.woff2" as="font" type="font/woff2" crossorigin> <!-- Playfair Display 700 normal -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO4kAplfW5jhlpxiEkUCM.woff2" as="font" type="font/woff2" crossorigin> <!-- Inter 400 regular -->
@@ -79,6 +81,18 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        /* sr-only for visually hidden text - referenced in CTO Spec V.4 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
     </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
@@ -98,7 +112,8 @@
     <header class="sticky top-0 z-50 bg-brand-900/95 backdrop-blur-md border-b border-brand-800">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 h-24 flex items-center justify-between">
             <!-- Brand Logo & Monogram -->
-            <a href="/" class="flex items-center gap-4 group"> <!-- CTO Spec 3.1.2: Logo href="/" -->
+            <!-- CTO Spec V.2: Enhance Main Logo Accessibility -->
+            <a href="/" class="flex items-center gap-4 group" aria-label="LifelongCoaches.co.uk homepage"> <!-- CTO Spec 3.1.2: Logo href="/" -->
                 <div class="w-12 h-12 rounded-xl bg-brand-800 border border-gold-500/40 p-1.5 flex items-center justify-center shadow-lg group-hover:border-gold-500 transition duration-300">
                     <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
@@ -193,8 +208,10 @@
                         <!-- CTO Spec 9: ARIA Attributes & CTO Spec II.1: Enhanced Form Input Focus States -->
                         <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Enter your UK Postcode to find specialists nearby">
                         <!-- CTO Spec II.2: Consistent Button Disabled States -->
+                        <!-- CTO Spec V.4: Enhanced "Use My Location" Button UX -->
                         <button id="use-my-location-btn" type="button" class="absolute right-2 px-3 py-2 text-brand-600 hover:text-gold-500 text-xs font-semibold rounded-lg transition disabled:opacity-75 disabled:cursor-not-allowed" aria-label="Use my current location">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span class="sr-only">Use my current location</span>
                         </button>
                     </div>
                     <div class="sm:col-span-4 relative flex items-center">
@@ -203,8 +220,9 @@
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                         </span>
                         <!-- CTO Spec 9: ARIA Attributes & CTO Spec II.1: Enhanced Form Input Focus States -->
+                        <!-- CTO Spec V.5: Refine "Elite Longevity Focus & Goals" Placeholder -->
                         <select id="focus-select" class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Select an Elite Longevity Focus or Goal">
-                            <option value="">Elite Longevity Focus &amp; Goals</option>
+                            <option value="">Select your Longevity Focus...</option>
                             <option value="advanced-strength">Advanced Strength &amp; Muscle Preservation</option>
                             <option value="absolute-balance">Absolute Balance &amp; Agility Mastery</option>
                             <option value="post-retirement-performance">Post-Retirement High Performance</option>
@@ -246,8 +264,9 @@
                 <h2 class="text-3xl lg:text-4xl font-serif font-bold text-white">Featured Longevity Specialists</h2>
                 <p class="text-sm text-brand-200 mt-2 font-light">Verified private masters of senior physical conditioning available for discreet residential or private studio visits.</p>
             </div>
+            <!-- CTO Spec V.6: Explicit Label for Sort Roster Select -->
             <div class="flex items-center gap-4">
-                <span class="text-xs uppercase tracking-wider font-semibold text-brand-300">Sort Roster:</span>
+                <label for="sort-select" class="text-xs uppercase tracking-wider font-semibold text-brand-300">Sort Roster:</label>
                 <select id="sort-select" class="bg-brand-800 border border-brand-700 text-white text-xs uppercase tracking-wider rounded-lg px-4 py-3 font-medium focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900">
                     <option value="proximity">Proximity (Postcode Radius)</option>
                     <option value="credentials">Elite Credentials &amp; Honours</option>
@@ -960,7 +979,8 @@
     </button>
 
     <!-- Sticky "Engage Coach" Call to Action (CTA) - CTO Spec III.2 -->
-    <button id="sticky-engage-coach-btn" data-modal-target="engage-coach" type="button" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-8 py-3.5 rounded-full shadow-xl hover:shadow-2xl transition duration-300 opacity-0 invisible sm:hidden lg:inline-flex items-center gap-2" aria-label="Engage a Private Coach">
+    <!-- CTO Spec V.7: Enhance Sticky "Engage Coach" CTA Visibility on Small Screens -->
+    <button id="sticky-engage-coach-btn" data-modal-target="engage-coach" type="button" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-8 py-3.5 rounded-full shadow-xl hover:shadow-2xl transition duration-300 opacity-0 invisible inline-flex items-center gap-2" aria-label="Engage a Private Coach">
         Engage Private Coach ✦
     </button>
 
@@ -1410,6 +1430,8 @@
                  */
                 function open(type, data, triggerElement = null) { // CTO Spec III.13
                     _triggeringElement = triggerElement; // Store for focus restoration
+                    // CTO Spec V.9: Clear General Message on Modal Open
+                    FormValidator.showGeneralMessage('info', '', false); // Add this line to clear messages
                     renderContent(type, data); // Render content before showing
                     elements.container.classList.remove('modal-closed');
                     elements.container.classList.add('modal-open');
@@ -1464,11 +1486,13 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="consult-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="consult-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="John Smith">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="text" id="consult-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="John Smith" autocomplete="name">
                                     </div>
                                     <div>
                                         <label for="consult-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
-                                        <input type="email" id="consult-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="john.smith@example.com">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="email" id="consult-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="john.smith@example.com" autocomplete="email">
                                     </div>
                                     <div>
                                         <label for="consult-message" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your goals</label>
@@ -1514,11 +1538,13 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="login-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                        <input type="email" id="login-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="your.name@lifelongcoaches.co.uk">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="email" id="login-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="your.name@lifelongcoaches.co.uk" autocomplete="email">
                                     </div>
                                     <div>
                                         <label for="login-password" class="block text-brand-200 text-sm font-medium mb-1">Password</label>
-                                        <input type="password" id="login-password" name="password" required minlength="8" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="••••••••">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="password" id="login-password" name="password" required minlength="8" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="••••••••" autocomplete="current-password">
                                     </div>
                                     <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Sign In to Portal
@@ -1538,11 +1564,13 @@
                                 <form class="modal-form space-y-4 mt-4" novalidate>
                                     <div>
                                         <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="apply-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="Dr. Jane Doe">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="text" id="apply-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="Dr. Jane Doe" autocomplete="name">
                                     </div>
                                     <div>
                                         <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                        <input type="email" id="apply-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="jane.doe@elitetraining.com">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="email" id="apply-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="jane.doe@elitetraining.com" autocomplete="email">
                                     </div>
                                     <div>
                                         <label for="apply-credentials" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your credentials & specialisms</label>
@@ -1561,15 +1589,18 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="Lord Featherstone">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="Lord Featherstone" autocomplete="name">
                                     </div>
                                     <div>
                                         <label for="engage-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
-                                        <input type="email" id="engage-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="lord.featherstone@example.com">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="email" id="engage-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="lord.featherstone@example.com" autocomplete="email">
                                     </div>
                                     <div>
                                         <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
-                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="SW1A 0AA">
+                                        <!-- CTO Spec V.8: Add autocomplete Attributes to Form Inputs -->
+                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="SW1A 0AA" autocomplete="postal-code">
                                     </div>
                                     <div>
                                         <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">Your Longevity Goals (20-500 chars)</label>
@@ -1987,16 +2018,20 @@
                 // Update desktop navigation
                 desktopNavLinks.forEach(link => {
                     link.classList.remove('is-active'); // Assumes is-active class is in output.css
+                    link.removeAttribute('aria-current'); // CTO Spec V.3: Ensure removed
                     if (link.getAttribute('href') === `#${activeSectionId}`) {
                         link.classList.add('is-active');
+                        link.setAttribute('aria-current', 'page'); // CTO Spec V.3: Add this line
                     }
                 });
 
                 // Update mobile navigation
                 mobileNavLinksActive.forEach(link => {
                     link.classList.remove('is-active'); // Assumes is-active class is in output.css
+                    link.removeAttribute('aria-current'); // CTO Spec V.3: Ensure removed
                     if (link.getAttribute('href') === `#${activeSectionId}`) {
                         link.classList.add('is-active');
+                        link.setAttribute('aria-current', 'page'); // CTO Spec V.3: Add this line
                     }
                 });
             }, observerOptions);
