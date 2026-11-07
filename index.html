@@ -59,17 +59,39 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO4kAplfW5jhlpxiEkUCM.woff2" as="font" type="font/woff2" crossorigin> <!-- Inter 400 regular -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- CTO Spec III.8: Inline CSS has been migrated to the external Tailwind CSS build (output.css) -->
+    <style>
+        /* CTO Spec II.4: Active State to Navigation Links */
+        .nav-link.is-active {
+            @apply text-gold-400 underline decoration-2 decoration-gold-400;
+        }
+        .mobile-nav-link.is-active {
+            @apply text-gold-400 font-bold;
+        }
+        /* Spinner CSS for Geolocation and Form Submissions - CTO Spec IV.3, IV.4.1 */
+        .spinner {
+            width: 1.25em; /* w-5 */
+            height: 1.25em; /* h-5 */
+            border: 0.15em solid currentColor; /* border-2 of the surrounding text color */
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
 
-    <!-- Top Luxury Announcement Bar - CTO Spec I.5 -->
+    <!-- Top Luxury Announcement Bar - CTO Spec I.5, I.1 -->
     <div id="announcement-bar" class="bg-brand-950 text-gold-400 px-4 py-3 text-center text-xs tracking-widest uppercase font-medium border-b border-gold-500/20">
-        <button type="button" class="block relative w-full text-left" data-modal-target="apply-practitioner" aria-label="Open application for founding practitioner status">
+        <!-- CTO Spec I.1: Refactor Announcement Bar Button Structure -->
+        <div role="button" tabindex="0" class="block relative w-full text-left cursor-pointer" data-modal-target="apply-practitioner" aria-label="Open application for founding practitioner status">
             <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
-            <button id="announcement-dismiss" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 px-2 py-1 text-gold-400 hover:text-white transition" aria-label="Dismiss announcement">
+            <button id="announcement-dismiss" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 px-2 py-1 text-gold-400 hover:text-white transition z-10" aria-label="Dismiss announcement">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-        </button>
+        </div>
     </div>
 
     <!-- Luxury Header / Navigation -->
@@ -99,12 +121,13 @@
 
             <!-- CTA Actions & Mobile Hamburger -->
             <div class="flex items-center gap-4">
-                <!-- Mobile Hamburger Button - CTO Spec 3.2.2 -->
+                <!-- Mobile Hamburger Button - CTO Spec 3.2.2, I.2 -->
                 <button id="mobile-nav-toggle" class="md:hidden p-2 -mr-2 rounded-md text-gold-400 hover:text-white hover:bg-brand-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gold-500 transition" aria-controls="mobile-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <div class="hamburger-icon flex flex-col justify-center items-center h-full">
-                        <span class="block w-24px h-2px bg-current transition-all duration-300 ease-in-out"></span>
-                        <span class="block w-24px h-2px bg-current transition-all duration-300 ease-in-out my-6px"></span>
-                        <span class="block w-24px h-2px bg-current transition-all duration-300 ease-in-out"></span>
+                        <!-- CTO Spec I.2: Correct Hamburger Icon Styling -->
+                        <span class="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out"></span>
+                        <span class="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out my-1.5"></span>
+                        <span class="block w-6 h-0.5 bg-current transition-all duration-300 ease-in-out"></span>
                     </div>
                 </button>
 
@@ -142,8 +165,8 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative bg-brand-900 py-24 lg:py-36 border-b border-brand-800 overflow-hidden">
+    <!-- Hero Section - CTO Spec I.4: Add ID to Hero Section -->
+    <section id="hero-section-top" class="relative bg-brand-900 py-24 lg:py-36 border-b border-brand-800 overflow-hidden">
         <!-- Ambient Luxury Glow -->
         <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gold-500/5 blur-[140px] pointer-events-none rounded-full"></div>
 
@@ -167,9 +190,9 @@
                             <!-- CTO Spec 12: SVG Icon Consistency -->
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </span>
-                        <!-- CTO Spec 9: ARIA Attributes & CTO Spec III.3: Enhanced Form Input Focus States -->
+                        <!-- CTO Spec 9: ARIA Attributes & CTO Spec II.1: Enhanced Form Input Focus States -->
                         <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Enter your UK Postcode to find specialists nearby">
-                        <!-- CTO Spec III.4: Consistent Button Disabled States -->
+                        <!-- CTO Spec II.2: Consistent Button Disabled States -->
                         <button id="use-my-location-btn" type="button" class="absolute right-2 px-3 py-2 text-brand-600 hover:text-gold-500 text-xs font-semibold rounded-lg transition disabled:opacity-75 disabled:cursor-not-allowed" aria-label="Use my current location">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </button>
@@ -179,7 +202,7 @@
                             <!-- CTO Spec 12: SVG Icon Consistency -->
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
                         </span>
-                        <!-- CTO Spec 9: ARIA Attributes & CTO Spec III.3: Enhanced Form Input Focus States -->
+                        <!-- CTO Spec 9: ARIA Attributes & CTO Spec II.1: Enhanced Form Input Focus States -->
                         <select id="focus-select" class="w-full pl-12 pr-8 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-800 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm appearance-none cursor-pointer focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Select an Elite Longevity Focus or Goal">
                             <option value="">Elite Longevity Focus &amp; Goals</option>
                             <option value="advanced-strength">Advanced Strength &amp; Muscle Preservation</option>
@@ -194,7 +217,7 @@
                         <span class="absolute right-4 text-brand-400 pointer-events-none text-xs">▼</span>
                     </div>
                     <div class="sm:col-span-3">
-                        <!-- CTO Spec III.4: Consistent Button Disabled States -->
+                        <!-- CTO Spec II.2: Consistent Button Disabled States -->
                         <button id="find-specialist-btn" class="w-full h-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-wider py-4 px-6 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-xs disabled:opacity-75 disabled:cursor-not-allowed">
                             Find Specialist
                         </button>
@@ -225,7 +248,7 @@
             </div>
             <div class="flex items-center gap-4">
                 <span class="text-xs uppercase tracking-wider font-semibold text-brand-300">Sort Roster:</span>
-                <select id="sort-select" class="bg-brand-800 border border-brand-700 text-white text-xs uppercase tracking-wider rounded-lg px-4 py-3 font-medium focus:outline-none focus:border-gold-500">
+                <select id="sort-select" class="bg-brand-800 border border-brand-700 text-white text-xs uppercase tracking-wider rounded-lg px-4 py-3 font-medium focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900">
                     <option value="proximity">Proximity (Postcode Radius)</option>
                     <option value="credentials">Elite Credentials &amp; Honours</option>
                     <option value="rate-desc">Investment: High to Low</option>
@@ -236,9 +259,9 @@
 
         <!-- Coach Cards Grid -->
         <div id="practitioner-cards-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-8 text-brand-900">
-            <!-- CTO Spec III.6: "No Results" Message Enhancement -->
+            <!-- CTO Spec I.3: "No Results" Message Enhancement -->
             <div id="no-results-message" class="hidden lg:col-span-2 bg-brand-800 border border-gold-500/20 text-gold-400 p-8 rounded-2xl text-center text-lg font-serif italic shadow-lg">
-                No elite specialists matched your criteria. Please broaden your postcode search radius or select a different longevity focus. Alternatively, our <a href='#' class='text-gold-400 hover:underline' data-modal-target='engage-coach'>concierge service</a> can match you privately.
+                No elite specialists matched your criteria. Please broaden your postcode search radius or select a different longevity focus. Alternatively, our <button type="button" class='text-gold-400 hover:underline focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-sm' data-modal-target='engage-coach' aria-label="Engage concierge service">concierge service</button> can match you privately.
             </div>
 
             <!-- Coach Card 1: Sarah Jenkins (Mayfair) -->
@@ -272,7 +295,8 @@
                             sizes="(max-width: 640px) 96px, 96px"
                             alt="Sarah Jenkins"
                             class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Sarah Jenkins, BSc (Hons)</h3>
@@ -360,7 +384,8 @@
                             sizes="(max-width: 640px) 96px, 96px"
                             alt="Marcus Vance"
                             class="w-24 h-24 rounded-2xl object-cover shadow-sm border border-gold-500" loading="lazy" width="96" height="96">
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Marcus Vance, MSc</h3>
@@ -448,7 +473,8 @@
                             sizes="(max-width: 640px) 96px, 96px"
                             alt="Dr. Evelyn Reed"
                             class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
@@ -536,7 +562,8 @@
                             sizes="(max-width: 640px) 96px, 96px"
                             alt="Mr. Alistair Finch"
                             class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Mr. Alistair Finch, PT</h3>
@@ -624,7 +651,8 @@
                             sizes="(max-width: 640px) 96px, 96px"
                             alt="Ms. Eleanor Shaw"
                             class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Ms. Eleanor Shaw, BSc</h3>
@@ -712,7 +740,8 @@
                             sizes="(max-width: 640px) 96px, 96px"
                             alt="Dr. Cameron Ross"
                             class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" loading="lazy" width="96" height="96">
-                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow">ELITE</div>
+                        <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
                     </div>
                     <div>
                         <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Cameron Ross, MD</h3>
@@ -1047,18 +1076,20 @@
                  * based on their current shortlisted status.
                  * @CTOSpec 5, 9
                  */
-                function updateShortlistButtons() { // CTO Spec III.13
+                function updateShortlistButtons() { // CTO Spec III.13, II.5
                     document.querySelectorAll('.shortlist-btn').forEach(button => {
                         const practitionerId = button.dataset.practitionerId;
                         const practitionerName = button.dataset.practitionerName;
                         if (isShortlisted(practitionerId)) {
                             button.textContent = 'Shortlisted ✦';
-                            button.classList.add('bg-gold-600', 'text-brand-950', 'border-transparent');
+                            // CTO Spec II.5: Refine Shortlist Button Interaction (Add hover state)
+                            button.classList.add('bg-gold-600', 'text-brand-950', 'border-transparent', 'hover:bg-gold-700'); 
                             button.classList.remove('border-brand-300', 'text-brand-800', 'hover:bg-brand-50');
                             button.setAttribute('aria-label', `Remove ${practitionerName} from shortlist`); // CTO Spec 9
                         } else {
                             button.textContent = 'Shortlist';
-                            button.classList.remove('bg-gold-600', 'text-brand-950', 'border-transparent');
+                            // CTO Spec II.5: Refine Shortlist Button Interaction (Remove hover state)
+                            button.classList.remove('bg-gold-600', 'text-brand-950', 'border-transparent', 'hover:bg-gold-700');
                             button.classList.add('border-brand-300', 'text-brand-800', 'hover:bg-brand-50');
                             button.setAttribute('aria-label', `Add ${practitionerName} to shortlist`); // CTO Spec 9
                         }
@@ -1109,7 +1140,7 @@
                     }
                     errorElement.textContent = message;
                     inputElement.classList.add('border-red-500');
-                    inputElement.classList.remove('focus:border-gold-500', 'focus:ring-2'); // Remove focus border/ring if error present
+                    inputElement.classList.remove('focus:border-gold-500', 'focus:ring-2', 'focus:ring-offset-2', 'focus:ring-gold-500', 'focus:ring-offset-brand-900'); // Remove focus border/ring if error present
                     inputElement.setAttribute('aria-invalid', 'true'); // A11y
                     inputElement.setAttribute('aria-describedby', errorElement.id || (errorElement.id = `${inputElement.id}-error`)); // A11y
                 }
@@ -1125,7 +1156,7 @@
                         errorElement.remove();
                     }
                     inputElement.classList.remove('border-red-500');
-                    inputElement.classList.add('focus:border-gold-500', 'focus:ring-2'); // Restore focus styles
+                    inputElement.classList.add('focus:border-gold-500', 'focus:ring-2', 'focus:ring-offset-2', 'focus:ring-gold-500', 'focus:ring-offset-brand-900'); // Restore focus styles
                     inputElement.removeAttribute('aria-invalid'); // A11y
                     inputElement.removeAttribute('aria-describedby'); // A11y
                 }
@@ -1400,7 +1431,14 @@
                         _triggeringElement.focus(); // Restore focus to the element that opened the modal
                         _triggeringElement = null;
                     }
-                    FormValidator.clearForm(elements.container.querySelector('.modal-form') || elements.body); // Clear forms and messages
+                    // Clear forms and messages in the modal
+                    const form = elements.container.querySelector('.modal-form');
+                    if (form) {
+                        FormValidator.clearForm(form);
+                    } else {
+                        // If no form, just clear general messages
+                        FormValidator.showGeneralMessage('info', '', false); // Clears messages
+                    }
                 }
 
                 /**
@@ -1414,8 +1452,8 @@
 
                     elements.messages.innerHTML = ''; // Clear any previous general messages
 
-                    // CTO Spec III.3 & III.4: Enhanced Form Input Focus States & Consistent Button Disabled States
-                    const focusRingClasses = 'focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900';
+                    // CTO Spec II.1 & II.2: Enhanced Form Input Focus States & Consistent Button Disabled States
+                    const focusRingClasses = 'focus:outline-none focus:border-gold-500 focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900';
                     const disabledButtonClasses = 'disabled:opacity-75 disabled:cursor-not-allowed';
 
                     switch (type) {
@@ -1426,15 +1464,15 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="consult-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="consult-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="John Smith">
+                                        <input type="text" id="consult-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="John Smith">
                                     </div>
                                     <div>
                                         <label for="consult-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
-                                        <input type="email" id="consult-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="john.smith@example.com">
+                                        <input type="email" id="consult-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="john.smith@example.com">
                                     </div>
                                     <div>
                                         <label for="consult-message" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your goals</label>
-                                        <textarea id="consult-message" name="message" rows="4" required minlength="20" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="I'm looking to enhance my agility and bone density..."></textarea>
+                                        <textarea id="consult-message" name="message" rows="4" required minlength="20" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="I'm looking to enhance my agility and bone density..."></textarea>
                                     </div>
                                     <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Submit Consultation Request
@@ -1451,7 +1489,7 @@
                             // CTO Spec III.7: Shortlist Modal Content Clarification for Empty State
                             let shortlistMessage;
                             if (currentShortlistCount === 0) {
-                                shortlistMessage = "Your private shortlist is now empty. Shortlist elite coaches to save them for later or explore our <a href='#' class='text-gold-400 hover:underline' data-modal-target='engage-coach'>concierge service</a>.";
+                                shortlistMessage = "Your private shortlist is now empty. Shortlist elite coaches to save them for later or explore our <button type='button' class='text-gold-400 hover:underline focus:outline-none focus:ring-2 focus:ring-gold-500 rounded-sm' data-modal-target='engage-coach' aria-label='Engage concierge service'>concierge service</button>.";
                             } else {
                                 shortlistMessage = `You have ${isAdded ? 'added' : 'removed'} <strong>${data.practitionerName}</strong> ${isAdded ? 'to' : 'from'} your private shortlist. You currently have <strong>${currentShortlistCount}</strong> coach${currentShortlistCount === 1 ? '' : 'es'} on your shortlist.`;
                             }
@@ -1476,11 +1514,11 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="login-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                        <input type="email" id="login-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="your.name@lifelongcoaches.co.uk">
+                                        <input type="email" id="login-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="your.name@lifelongcoaches.co.uk">
                                     </div>
                                     <div>
                                         <label for="login-password" class="block text-brand-200 text-sm font-medium mb-1">Password</label>
-                                        <input type="password" id="login-password" name="password" required minlength="8" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="••••••••">
+                                        <input type="password" id="login-password" name="password" required minlength="8" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="••••••••">
                                     </div>
                                     <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Sign In to Portal
@@ -1500,15 +1538,15 @@
                                 <form class="modal-form space-y-4 mt-4" novalidate>
                                     <div>
                                         <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="apply-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="Dr. Jane Doe">
+                                        <input type="text" id="apply-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="Dr. Jane Doe">
                                     </div>
                                     <div>
                                         <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-1">Email Address</label>
-                                        <input type="email" id="apply-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="jane.doe@elitetraining.com">
+                                        <input type="email" id="apply-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="jane.doe@elitetraining.com">
                                     </div>
                                     <div>
                                         <label for="apply-credentials" class="block text-brand-200 text-sm font-medium mb-1">Briefly describe your credentials & specialisms</label>
-                                        <textarea id="apply-credentials" name="credentials" rows="4" required minlength="50" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="BSc Sport Science, CIMSPA L3/4, 10+ years HNW client experience, specializing in strength and balance for seniors..."></textarea>
+                                        <textarea id="apply-credentials" name="credentials" rows="4" required minlength="50" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="BSc Sport Science, CIMSPA L3/4, 10+ years HNW client experience, specializing in strength and balance for seniors..."></textarea>
                                     </div>
                                     <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Submit Application
@@ -1523,19 +1561,19 @@
                                 <form class="modal-form space-y-4" novalidate>
                                     <div>
                                         <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-1">Your Full Name</label>
-                                        <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="Lord Featherstone">
+                                        <input type="text" id="engage-name" name="name" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="Lord Featherstone">
                                     </div>
                                     <div>
                                         <label for="engage-email" class="block text-brand-200 text-sm font-medium mb-1">Your Email</label>
-                                        <input type="email" id="engage-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="lord.featherstone@example.com">
+                                        <input type="email" id="engage-email" name="email" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="lord.featherstone@example.com">
                                     </div>
                                     <div>
                                         <label for="engage-postcode" class="block text-brand-200 text-sm font-medium mb-1">Your Postcode</label>
-                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="SW1A 0AA">
+                                        <input type="text" id="engage-postcode" name="postcode" required class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="SW1A 0AA">
                                     </div>
                                     <div>
                                         <label for="engage-goals" class="block text-brand-200 text-sm font-medium mb-1">Your Longevity Goals (20-500 chars)</label>
-                                        <textarea id="engage-goals" name="goals" rows="4" required minlength="20" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 focus:outline-none focus:border-gold-500 ${focusRingClasses}" placeholder="I am seeking a specialist to improve my golf swing agility and overall stamina for expeditions..."></textarea>
+                                        <textarea id="engage-goals" name="goals" rows="4" required minlength="20" maxlength="500" class="w-full bg-brand-800 border border-brand-700 rounded-lg px-4 py-2 text-white placeholder-brand-400 ${focusRingClasses}" placeholder="I am seeking a specialist to improve my golf swing agility and overall stamina for expeditions..."></textarea>
                                     </div>
                                     <button type="submit" class="submit-btn w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-widest text-xs px-6 py-3 rounded-xl transition duration-300 flex items-center justify-center gap-2 ${disabledButtonClasses}">
                                         Match Me with a Coach
@@ -1604,13 +1642,13 @@
             // Initialise ShortlistManager
             ShortlistManager.init();
 
-            // Handle modal triggers
-            document.querySelectorAll('[data-modal-target]').forEach(button => {
-                button.addEventListener('click', (e) => {
+            // Handle modal triggers - CTO Spec VI.2: Keyboard Navigation Audit
+            document.querySelectorAll('[data-modal-target]').forEach(element => {
+                const openModal = (e) => {
                     e.preventDefault();
-                    const targetId = button.dataset.modalTarget;
-                    const practitionerId = button.dataset.practitionerId;
-                    const practitionerName = button.dataset.practitionerName;
+                    const targetId = element.dataset.modalTarget;
+                    const practitionerId = element.dataset.practitionerId;
+                    const practitionerName = element.dataset.practitionerName;
 
                     if (targetId === 'shortlist') {
                         let isAdded;
@@ -1622,13 +1660,24 @@
                             isAdded = true;
                         }
                         ShortlistManager.updateShortlistButtons();
-                        ModalManager.open(targetId, { practitionerId, practitionerName, isAdded }, button);
+                        ModalManager.open(targetId, { practitionerId, practitionerName, isAdded }, element);
                     } else if (targetId === 'secure-consultation') {
-                        ModalManager.open(targetId, { practitionerName }, button);
+                        ModalManager.open(targetId, { practitionerName }, element);
                     } else {
-                        ModalManager.open(targetId, {}, button);
+                        ModalManager.open(targetId, {}, element);
                     }
-                });
+                };
+
+                element.addEventListener('click', openModal);
+
+                // For non-button elements with role="button" and tabindex="0", add keyboard activation
+                if (element.tagName !== 'BUTTON' && element.getAttribute('role') === 'button' && element.getAttribute('tabindex') === '0') {
+                    element.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            openModal(e);
+                        }
+                    });
+                }
             });
 
             // --- MOBILE NAVIGATION (CTO Spec 3) ---
@@ -1684,7 +1733,7 @@
 
                 // 1. Postcode Filtering (CTO Spec 1)
                 const postcode = postcodeInput.value.trim();
-                let isPostcodeValid = false;
+                let isPostcodeValid = true; // Assume valid initially, will be checked if postcode is present
                 if (postcode) {
                     isPostcodeValid = FormValidator.validateField(postcodeInput); // Validate in place
 
@@ -1702,8 +1751,11 @@
                             sortSelect.value = 'proximity';
                         }
                     } else {
-                        // If postcode is invalid, treat it as no postcode filter applied, but show error
-                        // No cards are removed based on invalid postcode, only the error is shown.
+                        // If postcode is invalid, filter out all results related to postcode
+                        // and ensure general error message from FormValidator is visible.
+                        // The 'isPostcodeValid' flag will prevent sorting by proximity later.
+                        filteredCards = []; // Or filter based on other criteria, but invalid postcode usually means no valid location-based results
+                        FormValidator.showGeneralMessage('error', 'Please enter a valid UK postcode (e.g., SW1A 0AA).', false);
                     }
                 }
 
@@ -1721,7 +1773,7 @@
                 // 3. Sorting Logic (CTO Spec 2)
                 const sortBy = sortSelect.value;
                 filteredCards.sort((a, b) => {
-                    if (sortBy === 'proximity') {
+                    if (sortBy === 'proximity' && postcode && isPostcodeValid) { // Only sort by proximity if postcode is valid and provided
                         const distA = parseFloat(a.dataset.distance);
                         const distB = parseFloat(b.dataset.distance);
                         return distA - distB;
@@ -1799,7 +1851,8 @@
                 useMyLocationBtn.addEventListener('click', () => {
                     if (navigator.geolocation) {
                         const originalBtnContent = useMyLocationBtn.innerHTML;
-                        useMyLocationBtn.innerHTML = '<span class="spinner text-brand-950 inline-flex items-center justify-center"></span> Locating...'; // CTO Spec III.5
+                        // CTO Spec IV.3: Enhance Geolocation Loading State
+                        useMyLocationBtn.innerHTML = '<span class="spinner text-brand-950 inline-flex items-center justify-center"></span> Locating...';
                         useMyLocationBtn.disabled = true;
                         postcodeInput.value = 'Fetching postcode...';
 
@@ -1868,11 +1921,13 @@
 
             // --- Sticky "Engage Coach" CTA - CTO Spec III.2 ---
             const stickyEngageCoachBtn = document.getElementById('sticky-engage-coach-btn');
-            const heroSection = document.querySelector('.hero-section') || document.getElementById('search-section'); // Use search-section as reference if hero isn't precise
+            // CTO Spec IV.1: Update Sticky CTA Button Hero Reference
+            const heroSection = document.getElementById('hero-section-top');
             if (stickyEngageCoachBtn && heroSection) {
                 const toggleStickyButton = () => {
                     const heroBottom = heroSection.getBoundingClientRect().bottom;
-                    if (heroBottom < 100) { // Show when hero section is mostly out of view
+                    // CTO Spec III.1: Refine Sticky CTA Button Visibility
+                    if (heroBottom < 0) { // Show when hero section is completely out of view
                         stickyEngageCoachBtn.classList.remove('opacity-0', 'invisible');
                         stickyEngageCoachBtn.classList.add('opacity-100', 'visible');
                     } else {
