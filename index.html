@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LifelongCoaches.co.uk | Elite Longevity &amp; Strength Coaching for Affluent Seniors</title>
+    <!-- Favicon and Apple Touch Icon - CTO SPEC II.2 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#0C0C10">
+    <meta name="msapplication-TileColor" content="#0C0C10">
+    <meta name="theme-color" content="#16161C">
+
     <!-- JSON-LD Schema Markup - CTO Spec 3.3.2 -->
     <script type="application/ld+json">
         {
@@ -126,7 +135,7 @@
         .mobile-nav-link.is-active {
             color: #D4AF37; font-weight: 700;
         }
-        /* Spinner CSS for Geolocation and Form Submissions - CTO Spec IV.3, IV.4.1 */
+        /* Spinner CSS for Geolocation and Form Submissions - CTO Spec III.1 */
         .spinner {
             width: 1.25em; /* w-5 */
             height: 1.25em; /* h-5 */
@@ -167,6 +176,9 @@
         .mobile-nav.is-open {
             transform: translateX(0);
         }
+        /* Cookie Consent Banner critical CSS - CTO Spec IV.1 */
+        #cookie-consent-banner.hidden { display: none; }
+        #cookie-consent-banner:not(.hidden) { display: flex; }
     </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
@@ -178,7 +190,8 @@
             <button type="button" class="flex-grow text-left cursor-pointer pr-10" data-modal-target="apply-practitioner" aria-label="Open application for founding practitioner status">
                 <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
             </button>
-            <button id="announcement-dismiss" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 px-2 py-1 text-gold-400 hover:text-white transition z-10" aria-label="Dismiss announcement">
+            <!-- Refine Announcement Bar Dismiss UX - CTO Spec III.2 -->
+            <button id="announcement-dismiss" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 px-3 py-2 text-gold-400 hover:text-white transition z-10" aria-label="Dismiss announcement">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
@@ -285,9 +298,13 @@
                         <input type="text" id="postcode-input" placeholder="Enter Postcode (e.g., SW1X or W1K)" class="w-full pl-12 pr-4 py-4 bg-brand-50 border border-brand-200 rounded-xl text-brand-900 placeholder-brand-400 font-medium focus:outline-none focus:border-gold-500 focus:bg-white transition text-sm focus:ring-2 focus:ring-offset-2 focus:ring-gold-500 focus:ring-offset-brand-900" aria-label="Enter your UK Postcode to find specialists nearby">
                         <!-- CTO Spec II.2: Consistent Button Disabled States -->
                         <!-- CTO Spec V.4: Enhanced "Use My Location" Button UX -->
+                        <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
                         <button id="use-my-location-btn" type="button" class="absolute right-2 px-3 py-2 text-brand-600 hover:text-gold-500 text-xs font-semibold rounded-lg transition disabled:opacity-75 disabled:cursor-not-allowed" aria-label="Use my current location">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                            <span class="sr-only">Use my current location</span>
+                            <span class="button-text">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <span class="sr-only">Use my current location</span>
+                            </span>
+                            <span class="spinner hidden" aria-hidden="true"></span>
                         </button>
                     </div>
                     <div class="sm:col-span-4 relative flex items-center">
@@ -312,11 +329,14 @@
                     </div>
                     <div class="sm:col-span-3">
                         <!-- CTO Spec II.2: Consistent Button Disabled States -->
+                        <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
                         <button id="find-specialist-btn" class="w-full h-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold uppercase tracking-wider py-4 px-6 rounded-xl shadow-lg transition duration-300 flex items-center justify-center gap-2 text-xs disabled:opacity-75 disabled:cursor-not-allowed">
-                            Find Specialist
+                            <span class="button-text">Find Specialist</span>
+                            <span class="spinner hidden" aria-hidden="true"></span>
                         </button>
                     </div>
                 </div>
+                <div id="search-form-message" class="text-sm mt-2 text-center hidden" aria-live="polite"></div>
                 <!-- 1.4 Dynamic Filter Status Accessibility -->
                 <div id="filter-status-message" class="text-gold-600 text-xs font-medium px-3 pt-4 border-t border-brand-100 mt-3 hidden flex items-center gap-2" role="status" aria-live="polite">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.354 5.76a.75.75 0 0 0-1.18-.082L4.015 11.23a1.5 1.5 0 0 0 1.157 2.45h14.456a.75.75 0 0 0 .546-1.28L12.534 5.678a.75.75 0 0 0-1.18-.082z"></path></svg>
@@ -328,6 +348,43 @@
                         Rigorously vetted elite practitioners &amp; clinical insurance
                     </span>
                     <span class="font-serif italic text-brand-900">Private Session Investment: £30–£60 / hour</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- "How It Works" Section - CTO SPEC I.2 -->
+    <section id="how-it-works" class="bg-brand-950 py-20 lg:py-28 border-b border-brand-800">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+            <span class="text-gold-400 uppercase tracking-[0.25em] text-xs font-semibold block mb-2">Your Path to Elite Vitality</span>
+            <h2 class="text-3xl lg:text-4xl font-serif font-bold text-white mb-16">The LifelongCoaches Journey</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+                <!-- Step 1: Discover -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-brand-800 border border-gold-500/40 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-serif font-semibold text-white mb-3">1. Discover Your Elite Match</h3>
+                    <p class="text-brand-200 text-base font-light">Utilise our intuitive directory with advanced filters to find rigorously vetted specialists perfectly aligned with your longevity goals and location.</p>
+                </div>
+
+                <!-- Step 2: Connect -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-brand-800 border border-gold-500/40 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.688 12A2.25 2.25 0 0111.25 9.75h1.372c.516 0 .966.304 1.187.75l2.471 4.942a1.25 1.25 0 01-.151 1.48L15.352 17H9.25a2.25 2.25 0 01-2.25-2.25V12zM12 21a9 9 0 100-18 9 9 0 000 18z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-serif font-semibold text-white mb-3">2. Secure a Private Consultation</h3>
+                    <p class="text-brand-200 text-base font-light">Engage directly with your chosen practitioner via our secure platform to discuss your bespoke requirements and schedule your first session.</p>
+                </div>
+
+                <!-- Step 3: Thrive -->
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-brand-800 border border-gold-500/40 rounded-full flex items-center justify-center mb-6 shadow-lg">
+                        <svg class="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.252 8.252 0 018.638 5.214m0 0a2.25 2.25 0 011.004-.847l1.45-3.048a.5.5 0 01.898 0l1.45 3.048a2.25 2.25 0 011.004.847M15.75 12h-7.5"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-serif font-semibold text-white mb-3">3. Outperform &amp; Thrive</h3>
+                    <p class="text-brand-200 text-base font-light">Embark on a tailored journey to unparalleled physical and mental resilience. Experience bespoke coaching that redefines what's possible at any age.</p>
                 </div>
             </div>
         </div>
@@ -570,6 +627,7 @@
                 <div class="flex items-start gap-6 mb-6">
                     <div class="relative flex-shrink-0">
                         <!-- 2.2 Modern Image Format Adoption (WebP/AVIF) & 2.1 Critical Coach Image Preload/Eager Loading (removed lazy for first 4) -->
+                        <!-- Lazy Loading for Off-Screen Images - CTO Spec II.1 (for 3rd card and beyond) -->
                         <picture>
                             <source srcset="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&fm=avif&w=96" type="image/avif">
                             <source srcset="https://images.unsplash.com/photo-1579612300067-d861d8a18357?auto=format&fit=crop&q=80&fm=webp&w=96" type="image/webp">
@@ -580,5 +638,733 @@
                                 "
                                 sizes="(max-width: 640px) 96px, 96px"
                                 alt="Dr. Evelyn Reed"
-                                class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" width="96" height="96">
+                                class="w-24 h-24 rounded-2xl object-cover shadow-md border border-gold-500" width="96" height="96" loading="lazy">
                         </picture>
+                        <!-- CTO Spec II.3: Refine "Elite" Badge Styling on Coach Cards -->
+                        <div class="absolute -bottom-2 -right-2 bg-gold-500 text-brand-950 text-[10px] font-bold px-2 py-0.5 rounded shadow ring-1 ring-gold-500/50">ELITE</div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-serif font-bold text-brand-950">Dr. Evelyn Reed, PhD</h3>
+                        <p class="text-brand-700 font-semibold text-sm mt-0.5">Clinical Longevity &amp; Biomechanics Specialist</p>
+                        <p class="text-xs text-brand-700 mt-1 font-medium">Surrey &amp; Wentworth • Home &amp; Clinic Visits</p>
+                    </div>
+                </div>
+
+                <div class="bg-brand-50 p-4 rounded-xl border border-brand-200/60 mb-6">
+                    <span class="text-xs uppercase tracking-widest font-bold text-brand-700 block mb-3">Private Client Focus (Who Evelyn elevates most):</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Bone density optimization</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Post-operative mobility</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Absolute balance &amp; agility</span>
+                        <span class="bg-white text-brand-900 text-xs font-medium px-3 py-1 rounded-md border border-brand-200 shadow-sm">Advanced strength</span>
+                    </div>
+                </div>
+
+                <div class="mb-6 text-sm space-y-2 text-brand-700 font-normal">
+                    <p><strong class="text-brand-950 font-medium">Core Expertise:</strong> Osteoporosis reversal, joint integrity, neurological motor control.</p>
+                    <p><strong class="text-brand-950 font-medium">Coaching Persona:</strong> Clinical, empathetic, highly academic, precise.</p>
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 py-4 border-t border-b border-brand-100 text-xs font-medium text-brand-700 mb-6">
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span>DBS &amp; Enhanced Check</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                        <span>BASES Accredited</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-4 h-4 text-gold-600 stroke-[2]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>20 Years Clinical Exp</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-2">
+                    <div>
+                        <span class="text-[10px] uppercase tracking-widest text-brand-700 font-bold block">Private Rate</span>
+                        <span class="text-2xl font-serif font-bold text-brand-950">£55 <span class="text-xs font-normal text-brand-500 font-sans">/ hour</span></span>
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="button" class="shortlist-btn px-5 py-3 rounded-xl border border-brand-300 text-brand-800 font-semibold text-xs uppercase tracking-wider hover:bg-brand-50 transition"
+                                data-modal-target="shortlist" data-practitioner-id="evelyn-reed" data-practitioner-name="Dr. Evelyn Reed" aria-label="Shortlist Dr. Evelyn Reed">
+                            Shortlist
+                        </button>
+                        <button type="button" class="bg-brand-900 hover:bg-gold-500 hover:text-brand-950 text-white font-semibold text-xs uppercase tracking-widest px-6 py-3 rounded-xl transition duration-300 shadow-md"
+                                data-modal-target="secure-consultation" data-practitioner-name="Dr. Evelyn Reed" aria-label="Secure Consultation with Dr. Evelyn Reed">
+                            Secure Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- For Coaches Call to Action Section -->
+    <section id="for-coaches" class="bg-brand-950 py-20 lg:py-28 text-center border-t border-b border-brand-800">
+        <div class="max-w-4xl mx-auto px-6 lg:px-12">
+            <span class="text-gold-400 uppercase tracking-[0.25em] text-xs font-semibold block mb-2">For Elite Practitioners</span>
+            <h2 class="text-3xl lg:text-4xl font-serif font-bold text-white mb-8">Elevate Your Practice. Serve Britain's Most Discerning Clientele.</h2>
+            <p class="text-lg text-brand-100 mb-10 leading-relaxed font-light">
+                Are you a leading longevity and strength specialist dedicated to unparalleled client results? Join our exclusive guild and connect with affluent adults aged 50+ seeking the very best in bespoke physical conditioning and vitality coaching. Expand your reach, enhance your prestige, and secure private engagements with our curated network.
+            </p>
+            <button type="button" data-modal-target="apply-practitioner" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-bold text-base uppercase tracking-widest px-8 py-4 rounded-xl shadow-xl hover:shadow-2xl transition duration-300" aria-label="Apply to the LifelongCoaches Practitioner Guild">
+                Apply to the Guild
+            </button>
+        </div>
+    </section>
+
+    <!-- Our Philosophy Section -->
+    <section id="philosophy" class="py-20 lg:py-28 bg-brand-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-gold-400 uppercase tracking-[0.25em] text-xs font-semibold block mb-2">Our Core Tenets</span>
+                <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-6">The LifelongCoaches Manifesto: Forging Ageless Excellence</h2>
+                <p class="text-brand-100 text-lg mb-6 font-light">
+                    We believe in an unwavering commitment to biological optimization, transcending conventional age limitations. Our philosophy is rooted in evidence-based, personalized conditioning that empowers individuals to reclaim and surpass their physical prime.
+                </p>
+                <ul class="space-y-4 text-brand-200 text-base font-light">
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-gold-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span class="text-white font-medium">Precision Coaching:</span> Every program is a masterpiece of bespoke strategy, adapted to individual biomarkers and aspirations.
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-gold-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span class="text-white font-medium">Uncompromising Standards:</span> We partner exclusively with practitioners who exemplify the pinnacle of expertise, ethics, and discretion.
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg class="w-5 h-5 text-gold-500 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <span class="text-white font-medium">Holistic Vitality:</span> Beyond physical strength, we champion mental acuity, emotional resilience, and an indomitable spirit.
+                    </li>
+                </ul>
+            </div>
+            <div class="relative">
+                <!-- 2.2 Modern Image Format Adoption (WebP/AVIF) -->
+                <picture>
+                    <source srcset="https://images.unsplash.com/photo-1579633845942-83b5f9a71a33?auto=format&fit=crop&q=80&fm=avif&w=700" type="image/avif">
+                    <source srcset="https://images.unsplash.com/photo-1579633845942-83b5f9a71a33?auto=format&fit=crop&q=80&fm=webp&w=700" type="image/webp">
+                    <img src="https://images.unsplash.com/photo-1579633845942-83b5f9a71a33?auto=format&fit=crop&q=80&w=700"
+                        srcset="
+                            https://images.unsplash.com/photo-1579633845942-83b5f9a71a33?auto=format&fit=crop&q=80&w=350 350w,
+                            https://images.unsplash.com/photo-1579633845942-83b5f9a71a33?auto=format&fit=crop&q=80&w=700 700w
+                        "
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt="Elderly woman lifting weights with a determined expression, showcasing strength and vitality"
+                        class="w-full h-auto rounded-3xl shadow-xl border border-gold-500/20" width="700" height="467">
+                </picture>
+                <div class="absolute -bottom-6 -left-6 bg-gold-500 text-brand-950 text-xs font-bold px-4 py-2 rounded-lg shadow-lg rotate-3 z-10">
+                    #AgelessExcellence
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
+    <!-- Practitioner Sign-In Modal -->
+    <div id="practitioner-sign-in-modal" class="modal-container" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3 class="text-2xl font-serif font-bold text-white mb-6">Practitioner Login</h3>
+            <p class="text-brand-200 mb-6 text-sm">Access your private dashboard to manage client engagements and update your profile.</p>
+            <form>
+                <div class="mb-4">
+                    <label for="practitioner-email" class="block text-brand-200 text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" id="practitioner-email" placeholder="your.name@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="practitioner-password" class="block text-brand-200 text-sm font-medium mb-2">Password</label>
+                    <input type="password" id="practitioner-password" placeholder="••••••••" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2" aria-label="Sign In">
+                    <span class="button-text">Sign In</span>
+                    <span class="spinner hidden" aria-hidden="true"></span>
+                </button>
+            </form>
+            <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition" aria-label="Close login modal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Engage Coach Modal -->
+    <div id="engage-coach-modal" class="modal-container" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3 class="text-2xl font-serif font-bold text-white mb-6">Engage a Private Coach</h3>
+            <p class="text-brand-200 mb-6 text-sm">Provide your details, and our concierge team will privately connect you with a specialist.</p>
+            <form>
+                <div class="mb-4">
+                    <label for="engage-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
+                    <input type="text" id="engage-name" placeholder="John Doe" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="engage-email" class="block text-brand-200 text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" id="engage-email" placeholder="john.doe@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="engage-message" class="block text-brand-200 text-sm font-medium mb-2">Your Requirements (Optional)</label>
+                    <textarea id="engage-message" rows="4" placeholder="Briefly describe your longevity goals or specific needs..." class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500"></textarea>
+                </div>
+                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2" aria-label="Submit Request">
+                    <span class="button-text">Submit Request</span>
+                    <span class="spinner hidden" aria-hidden="true"></span>
+                </button>
+            </form>
+            <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition" aria-label="Close engagement modal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Apply Practitioner Modal -->
+    <div id="apply-practitioner-modal" class="modal-container" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3 class="text-2xl font-serif font-bold text-white mb-6">Join the Practitioner Guild</h3>
+            <p class="text-brand-200 mb-6 text-sm">Submit your credentials to be considered for our exclusive network.</p>
+            <form>
+                <div class="mb-4">
+                    <label for="apply-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
+                    <input type="text" id="apply-name" placeholder="Jane Smith" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="apply-email" class="block text-brand-200 text-sm font-medium mb-2">Email Address</label>
+                    <input type="email" id="apply-email" placeholder="jane.smith@elitefitness.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="apply-specialty" class="block text-brand-200 text-sm font-medium mb-2">Primary Specialty</label>
+                    <input type="text" id="apply-specialty" placeholder="e.g., Geriatric Strength, Biohacking" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="apply-cv" class="block text-brand-200 text-sm font-medium mb-2">Upload CV/Portfolio (Link)</label>
+                    <input type="url" id="apply-cv" placeholder="https://yourwebsite.com/cv" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500">
+                </div>
+                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2" aria-label="Apply Now">
+                    <span class="button-text">Apply Now</span>
+                    <span class="spinner hidden" aria-hidden="true"></span>
+                </button>
+            </form>
+            <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition" aria-label="Close application modal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Shortlist Modal -->
+    <div id="shortlist-modal" class="modal-container" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3 class="text-2xl font-serif font-bold text-white mb-6">Shortlist Practitioner</h3>
+            <p class="text-brand-200 mb-6 text-sm">Add <span id="shortlist-practitioner-name" class="text-gold-400 font-semibold"></span> to your private shortlist. We'll remember your selections.</p>
+            <form>
+                <div class="mb-4">
+                    <label for="shortlist-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
+                    <input type="text" id="shortlist-name" placeholder="Your Name" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="shortlist-email" class="block text-brand-200 text-sm font-medium mb-2">Your Email</label>
+                    <input type="email" id="shortlist-email" placeholder="your.email@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2" aria-label="Add to Shortlist">
+                    <span class="button-text">Add to Shortlist</span>
+                    <span class="spinner hidden" aria-hidden="true"></span>
+                </button>
+            </form>
+            <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition" aria-label="Close shortlist modal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Secure Consultation Modal -->
+    <div id="secure-consultation-modal" class="modal-container" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <h3 class="text-2xl font-serif font-bold text-white mb-6">Secure Consultation with <span id="consultation-practitioner-name" class="text-gold-400 font-semibold"></span></h3>
+            <p class="text-brand-200 mb-6 text-sm">Provide your details to arrange a confidential discussion.</p>
+            <form>
+                <div class="mb-4">
+                    <label for="consultation-name" class="block text-brand-200 text-sm font-medium mb-2">Your Name</label>
+                    <input type="text" id="consultation-name" placeholder="Your Name" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-4">
+                    <label for="consultation-email" class="block text-brand-200 text-sm font-medium mb-2">Your Email</label>
+                    <input type="email" id="consultation-email" placeholder="your.email@example.com" class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="consultation-message" class="block text-brand-200 text-sm font-medium mb-2">Brief message (Optional)</label>
+                    <textarea id="consultation-message" rows="4" placeholder="I'm interested in..." class="w-full p-3 rounded-lg bg-brand-800 border border-brand-700 text-brand-50 placeholder-brand-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500"></textarea>
+                </div>
+                <!-- Dynamic Form Submission Feedback - CTO Spec III.1 -->
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold py-3 rounded-lg transition duration-300 flex items-center justify-center gap-2" aria-label="Request Consultation">
+                    <span class="button-text">Request Consultation</span>
+                    <span class="spinner hidden" aria-hidden="true"></span>
+                </button>
+            </form>
+            <button data-modal-dismiss class="absolute top-4 right-4 text-brand-400 hover:text-gold-400 transition" aria-label="Close consultation modal">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Cookie Consent Banner - CTO SPEC IV.1 -->
+    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 right-0 bg-brand-950/90 backdrop-blur-sm z-[1000] p-6 border-t border-brand-800 hidden" role="dialog" aria-modal="true" aria-labelledby="cookie-consent-title" aria-describedby="cookie-consent-description">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-brand-100 text-sm md:text-left text-center">
+                <h2 id="cookie-consent-title" class="font-semibold text-white mb-2">Your Privacy Matters to Us</h2>
+                <p id="cookie-consent-description">We use cookies to enhance your browsing experience, analyze site traffic, and serve targeted advertisements. By clicking "Accept All", you consent to our use of cookies. <a href="/cookie-policy" class="text-gold-400 hover:underline">Learn more about our Cookie Policy.</a></p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0 w-full md:w-auto">
+                <button id="accept-cookies" class="bg-gold-500 hover:bg-gold-600 text-brand-950 font-semibold text-sm px-6 py-3 rounded-lg transition duration-300 w-full">Accept All</button>
+                <button id="reject-cookies" class="bg-brand-800 hover:bg-brand-700 text-brand-50 font-semibold text-sm px-6 py-3 rounded-lg transition duration-300 w-full">Reject All</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comprehensive Footer - CTO SPEC I.3 -->
+    <footer class="bg-brand-950 border-t border-brand-800 py-16 lg:py-20 text-brand-200 text-sm">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <!-- Column 1: Brand Info -->
+            <div class="md:col-span-1">
+                <a href="/" class="flex items-center gap-2 group mb-4" aria-label="LifelongCoaches.co.uk homepage">
+                    <div class="w-8 h-8 rounded-lg bg-brand-800 border border-gold-500/40 p-1 flex items-center justify-center shadow-lg group-hover:border-gold-500 transition duration-300">
+                        <svg class="w-full h-full text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10" stroke-opacity="0.3"></circle>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-serif font-bold tracking-wide text-white block leading-none">Lifelong<span class="text-gold-400">Coaches</span></span>
+                </a>
+                <p class="mb-4">Britain's elite marketplace for bespoke longevity & strength coaching for affluent adults aged 50+.</p>
+                <p>&copy; <span id="current-year"></span> LifelongCoaches.co.uk. All rights reserved.</p>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h3 class="text-lg font-serif font-bold text-white mb-4">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="#search-section" class="hover:text-gold-400 transition">Find a Coach</a></li>
+                    <li><a href="#philosophy" class="hover:text-gold-400 transition">Our Manifesto</a></li>
+                    <li><a href="#for-coaches" class="hover:text-gold-400 transition">For Practitioners</a></li>
+                    <li><a href="/about-us" class="hover:text-gold-400 transition">About Us</a></li>
+                    <li><a href="/faq" class="hover:text-gold-400 transition">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Legal & Support -->
+            <div>
+                <h3 class="text-lg font-serif font-bold text-white mb-4">Support & Legal</h3>
+                <ul class="space-y-2">
+                    <li><a href="/contact" class="hover:text-gold-400 transition">Contact Us</a></li>
+                    <li><a href="/terms-of-service" class="hover:text-gold-400 transition">Terms of Service</a></li>
+                    <li><a href="/privacy-policy" class="hover:text-gold-400 transition">Privacy Policy</a></li>
+                    <li><a href="/cookie-policy" class="hover:text-gold-400 transition">Cookie Policy</a></li>
+                    <li><a href="/sitemap.xml" class="hover:text-gold-400 transition">Sitemap</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Connect with Us -->
+            <div>
+                <h3 class="text-lg font-serif font-bold text-white mb-4">Connect With Us</h3>
+                <ul class="space-y-2 mb-6">
+                    <li>Email: <a href="mailto:contact@lifelongcoaches.co.uk" class="hover:text-gold-400 transition">contact@lifelongcoaches.co.uk</a></li>
+                    <li>Phone: <a href="tel:+442071838814" class="hover:text-gold-400 transition">+44 (0)20 7183 8814</a></li>
+                    <li>Address: 71-75 Shelton Street, London, WC2H 9JQ</li>
+                </ul>
+                <div class="flex space-x-4">
+                    <a href="https://twitter.com/lifelongcoaches_uk" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:text-gold-400 transition" aria-label="Follow us on Twitter">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.791-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.919 0 .385.044.76.126 1.124-4.093-.205-7.722-2.16-10.151-5.131-.424.735-.666 1.583-.666 2.491 0 1.706.87 3.213 2.188 4.098-.807-.025-1.565-.247-2.228-.616v.061c0 2.384 1.699 4.373 3.946 4.827-.412.114-.847.175-1.299.175-.318 0-.626-.031-.926-.088.631 1.956 2.445 3.38 4.604 3.421-1.686 1.321-3.805 2.114-6.102 2.114-.398 0-.79-.023-1.175-.069 2.187 1.393 4.768 2.209 7.559 2.209 9.058 0 14.01-7.509 14.01-14.01 0-.213-.005-.426-.015-.637.967-.699 1.808-1.574 2.47-2.556z"></path></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/lifelongcoaches" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:text-gold-400 transition" aria-label="Follow us on LinkedIn">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54c0 .96.79 1.73 1.77 1.73h20.46c.98 0 1.77-.77 1.77-1.73V1.73c0-.96-.79-1.73-1.77-1.73zM7.3 20.25H4.27V9h3.03v11.25zM5.78 7.74a1.9 1.9 0 11-.02-3.8 1.9 1.9 0 01.02 3.8zm14.47 12.51h-3.03V14.5c0-1.3-.47-2.18-1.62-2.18-1.24 0-1.97.84-1.97 2.18v5.75H10.1V9h3.03v1.3c.42-.64 1.15-1.56 2.76-1.56 2 0 3.5 1.3 3.5 4.06v5.45z"></path></svg>
+                    </a>
+                    <a href="https://www.instagram.com/lifelongcoaches.uk" target="_blank" rel="noopener noreferrer" class="text-brand-300 hover:text-gold-400 transition" aria-label="Follow us on Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.068 1.645.068 4.85 0 3.204-.01 3.584-.068 4.85-.148 3.228-1.667 4.746-4.919 4.919-1.266.058-1.645.068-4.85.068-3.204 0-3.584-.01-4.85-.068-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.068-1.645-.068-4.85 0-3.204.01-3.584.068-4.85.148-3.227 1.667-4.746 4.919-4.919 1.265-.058 1.644-.068 4.85-.068zm0-2.163c-3.259 0-3.667.014-4.944.072-4.358.21-6.78 2.618-6.99 6.99-.059 1.277-.073 1.685-.073 4.944 0 3.259.014 3.668.072 4.944.21 4.379 2.618 6.781 6.99 6.99 1.277.058 1.685.073 4.944.073s3.668-.014 4.944-.072c4.354-.21 6.782-2.618 6.99-6.99.058-1.277.073-1.685.073-4.944s-.014-3.668-.072-4.944c-.209-4.372-2.618-6.78-6.99-6.99-1.275-.058-1.685-.073-4.944-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+
+    <script>
+        // --- Utility for finding focusable elements ---
+        const getFocusableElements = (container) => {
+            return Array.from(
+                container.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                )
+            ).filter((el) => !el.hasAttribute('disabled') && !el.getAttribute('aria-hidden') && el.offsetWidth > 0 && el.offsetHeight > 0);
+        };
+
+        // --- Cookie Consent (CTO SPEC IV.1) ---
+        const cookieBanner = document.getElementById('cookie-consent-banner');
+        const acceptCookiesBtn = document.getElementById('accept-cookies');
+        const rejectCookiesBtn = document.getElementById('reject-cookies');
+
+        function setCookieConsent(consent) {
+            localStorage.setItem('cookieConsent', consent);
+            cookieBanner.classList.add('hidden');
+            // In a real application, you would dynamically load/enable analytics, marketing, etc. here
+            console.log(`Cookie consent: ${consent}`);
+        }
+
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                cookieBanner.classList.remove('hidden');
+            } else {
+                console.log(`User previously consented: ${consent}`);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            checkCookieConsent();
+        });
+
+        acceptCookiesBtn.addEventListener('click', () => setCookieConsent('accepted'));
+        rejectCookiesBtn.addEventListener('click', () => setCookieConsent('rejected'));
+
+
+        // --- Modals (CTO SPEC I.1) ---
+        const modalState = {
+            activeModal: null,
+            triggeringElement: null,
+            escapeListener: null
+        };
+
+        document.querySelectorAll('[data-modal-target]').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const modalId = button.dataset.modalTarget;
+                const modal = document.getElementById(modalId + '-modal');
+                if (modal) {
+                    // Specific logic for 'shortlist' and 'secure-consultation' modals
+                    if (modalId === 'shortlist' && button.dataset.practitionerName) {
+                        document.getElementById('shortlist-practitioner-name').textContent = button.dataset.practitionerName;
+                        // Optional: populate hidden input with practitioner ID
+                    } else if (modalId === 'secure-consultation' && button.dataset.practitionerName) {
+                        document.getElementById('consultation-practitioner-name').textContent = button.dataset.practitionerName;
+                        // Optional: populate hidden input with practitioner ID
+                    }
+                    openModal(modal, button);
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-modal-dismiss]').forEach(button => {
+            button.addEventListener('click', closeModal);
+        });
+
+        document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+            backdrop.addEventListener('click', closeModal);
+        });
+
+        function openModal(modalElement, triggerElement) {
+            if (modalState.activeModal && modalState.activeModal !== modalElement) {
+                closeModal(); // Close any currently open modal first
+            }
+
+            modalState.activeModal = modalElement;
+            modalState.triggeringElement = triggerElement;
+
+            modalElement.classList.add('modal-open');
+            modalElement.setAttribute('aria-hidden', 'false');
+
+            // Focus management: Focus the first interactive element within the modal
+            const focusableElements = getFocusableElements(modalElement.querySelector('.modal-content'));
+            if (focusableElements.length > 0) {
+                // Prioritize the close button for modals without primary form fields
+                const closeButton = modalElement.querySelector('[data-modal-dismiss]');
+                if (closeButton && modalElement.id !== 'practitioner-sign-in-modal' && !focusableElements[0].tagName === 'INPUT') { // Only if first element isn't an input
+                    closeButton.focus();
+                } else {
+                    focusableElements[0].focus();
+                }
+            }
+
+            // Escape key listener
+            modalState.escapeListener = (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            };
+            document.addEventListener('keydown', modalState.escapeListener);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling body
+        }
+
+        function closeModal() {
+            if (modalState.activeModal) {
+                modalState.activeModal.classList.remove('modal-open');
+                modalState.activeModal.setAttribute('aria-hidden', 'true');
+                
+                document.removeEventListener('keydown', modalState.escapeListener);
+                modalState.escapeListener = null;
+
+                // Return focus to the element that triggered the modal
+                if (modalState.triggeringElement) {
+                    modalState.triggeringElement.focus();
+                }
+                
+                modalState.activeModal = null;
+                modalState.triggeringElement = null;
+                document.body.style.overflow = ''; // Restore body scrolling
+            }
+        }
+
+
+        // --- Announcement Bar Dismiss ---
+        document.getElementById('announcement-dismiss').addEventListener('click', () => {
+            document.getElementById('announcement-bar').style.display = 'none';
+            localStorage.setItem('announcementDismissed', 'true');
+        });
+
+        // Check on load if announcement was dismissed
+        if (localStorage.getItem('announcementDismissed') === 'true') {
+            document.getElementById('announcement-bar').style.display = 'none';
+        }
+
+
+        // --- Dynamic Form Submission Feedback (Spinners & Messages) (CTO SPEC III.1) ---
+        function showLoading(buttonElement) {
+            buttonElement.setAttribute('disabled', 'true');
+            buttonElement.classList.add('opacity-75', 'cursor-not-allowed'); // Apply disabled styles
+            const buttonText = buttonElement.querySelector('.button-text');
+            const spinner = buttonElement.querySelector('.spinner');
+            if (buttonText) buttonText.classList.add('hidden');
+            if (spinner) spinner.classList.remove('hidden');
+        }
+
+        function hideLoading(buttonElement) {
+            buttonElement.removeAttribute('disabled');
+            buttonElement.classList.remove('opacity-75', 'cursor-not-allowed'); // Remove disabled styles
+            const buttonText = buttonElement.querySelector('.button-text');
+            const spinner = buttonElement.querySelector('.spinner');
+            if (buttonText) buttonText.classList.remove('hidden');
+            if (spinner) spinner.classList.add('hidden');
+        }
+
+        function displayFormMessage(formMessageElement, message, type = 'success') {
+            formMessageElement.textContent = message;
+            formMessageElement.classList.remove('hidden', 'text-green-500', 'text-red-500', 'text-gold-500');
+            if (type === 'success') {
+                formMessageElement.classList.add('text-green-500');
+                formMessageElement.setAttribute('aria-live', 'polite');
+            } else if (type === 'error') {
+                formMessageElement.classList.add('text-red-500');
+                formMessageElement.setAttribute('aria-live', 'assertive');
+            } else { // default to a neutral message for search
+                formMessageElement.classList.add('text-gold-500');
+                formMessageElement.setAttribute('aria-live', 'polite');
+            }
+
+
+            setTimeout(() => {
+                formMessageElement.classList.add('hidden');
+                formMessageElement.textContent = '';
+            }, 5000);
+        }
+
+        // Mock Search Specialist Button
+        const findSpecialistBtn = document.getElementById('find-specialist-btn');
+        if (findSpecialistBtn) {
+            findSpecialistBtn.addEventListener('click', function() {
+                showLoading(this);
+                const searchFormMessage = document.getElementById('search-form-message');
+                // Simulate API call
+                setTimeout(() => {
+                    hideLoading(this);
+                    displayFormMessage(searchFormMessage, 'Search successful! Displaying results...', 'success');
+                    // Actual search logic would be triggered here (e.g., updateCoachCards)
+                    updateCoachCards(); // Trigger existing filter/sort logic
+                }, 1500);
+            });
+        }
+        
+
+        // Mock Use My Location Button
+        const useMyLocationBtn = document.getElementById('use-my-location-btn');
+        if (useMyLocationBtn) {
+            useMyLocationBtn.addEventListener('click', function() {
+                showLoading(this);
+                const searchFormMessage = document.getElementById('search-form-message');
+                // Simulate Geolocation API call
+                setTimeout(() => {
+                    hideLoading(this);
+                    const success = Math.random() > 0.3; // Simulate occasional failure
+                    if (success) {
+                        displayFormMessage(searchFormMessage, 'Location updated successfully!', 'success');
+                        document.getElementById('postcode-input').value = 'SW1A 0AA'; // Example postcode
+                        updateCoachCards(); // Trigger existing filter/sort logic
+                    } else {
+                        displayFormMessage(searchFormMessage, 'Failed to get location. Please enter manually.', 'error');
+                    }
+                }, 2000);
+            });
+        }
+
+
+        // --- Modal form submission feedback ---
+        document.querySelectorAll('.modal-content form').forEach(form => {
+            const submitButton = form.querySelector('button[type="submit"]');
+            if (submitButton) {
+                // Create a message container for each form if it doesn't exist
+                let formMessage = form.parentNode.querySelector('.form-message');
+                if (!formMessage) {
+                    formMessage = document.createElement('div');
+                    formMessage.className = 'form-message mt-4 p-3 rounded-lg text-sm text-center hidden';
+                    formMessage.setAttribute('role', 'status');
+                    formMessage.setAttribute('aria-live', 'polite');
+                    form.parentNode.insertBefore(formMessage, form.nextSibling);
+                }
+
+                submitButton.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    if (!form.checkValidity()) { // Basic HTML5 form validation
+                        form.reportValidity();
+                        return;
+                    }
+
+                    showLoading(this);
+                    // Simulate form submission
+                    setTimeout(() => {
+                        hideLoading(this);
+                        const success = Math.random() > 0.1; // 90% success rate
+                        if (success) {
+                            displayFormMessage(formMessage, 'Your request has been sent! A specialist will contact you shortly.', 'success');
+                            form.reset(); // Clear form
+                            // Optionally close modal after success
+                            setTimeout(closeModal, 3000);
+                        } else {
+                            displayFormMessage(formMessage, 'Failed to submit request. Please check your details and try again.', 'error');
+                        }
+                    }, 2000);
+                });
+            }
+        });
+
+
+        // --- Other existing JS (mobile nav, filters, etc.) ---
+        // Hamburger menu toggle
+        const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        const mobileNavClose = document.getElementById('mobile-nav-close');
+        const mobileNavLinks = mobileNav.querySelectorAll('.mobile-nav-link');
+
+        function toggleMobileNav() {
+            mobileNav.classList.toggle('is-open');
+            mobileNavToggle.classList.toggle('is-active');
+            const isExpanded = mobileNav.classList.contains('is-open');
+            mobileNavToggle.setAttribute('aria-expanded', isExpanded);
+            document.body.style.overflow = isExpanded ? 'hidden' : ''; // Prevent scrolling body
+        }
+
+        mobileNavToggle.addEventListener('click', toggleMobileNav);
+        mobileNavClose.addEventListener('click', toggleMobileNav);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent immediate jump
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                    toggleMobileNav(); // Close mobile nav after clicking a link
+                }
+            });
+        });
+
+        // Anchor link smooth scrolling for desktop nav - CTO Spec II.3
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Filter status message and coach card sorting logic (existing)
+        const postcodeInput = document.getElementById('postcode-input');
+        const focusSelect = document.getElementById('focus-select');
+        const sortSelect = document.getElementById('sort-select');
+        const filterStatusMessage = document.getElementById('filter-status-message');
+        const appliedFiltersText = document.getElementById('applied-filters-text');
+        const practitionerCardsGrid = document.getElementById('practitioner-cards-grid');
+        const noResultsMessage = document.getElementById('no-results-message');
+
+        function updateCoachCards() {
+            const postcode = postcodeInput.value.trim().toUpperCase();
+            const focus = focusSelect.value;
+            const sortBy = sortSelect.value;
+
+            let filteredCards = Array.from(document.querySelectorAll('.coach-card'));
+
+            let activeFilters = [];
+            if (postcode) {
+                // Simple mock: assumes all coaches are "near" if postcode is entered. In a real app,
+                // this would involve geolocation/API call.
+                activeFilters.push(`Postcode: ${postcode}`);
+            }
+            if (focus) {
+                filteredCards = filteredCards.filter(card => card.dataset.focuses.includes(focus));
+                const focusOption = focusSelect.querySelector(`option[value="${focus}"]`);
+                if (focusOption) {
+                    activeFilters.push(`Focus: ${focusOption.textContent}`);
+                }
+            }
+
+            // Sorting logic
+            filteredCards.sort((a, b) => {
+                if (sortBy === 'rate-asc') {
+                    return parseFloat(a.dataset.rate) - parseFloat(b.dataset.rate);
+                } else if (sortBy === 'rate-desc') {
+                    return parseFloat(b.dataset.rate) - parseFloat(a.dataset.rate);
+                } else if (sortBy === 'credentials') {
+                    // Lower rank means higher credentials
+                    return parseFloat(a.dataset.credentialsRank) - parseFloat(b.dataset.credentialsRank);
+                } else if (sortBy === 'proximity') {
+                    // If a postcode is entered, mock distance to be more precise for "proximity" sorting
+                    // Otherwise, just use the default data-distance.
+                    // For demo, if input postcode matches coach's, make it appear very close.
+                    const distA = (postcode && a.dataset.postcode.startsWith(postcode.substring(0,2))) ? (Math.random() * 2) : parseFloat(a.dataset.distance);
+                    const distB = (postcode && b.dataset.postcode.startsWith(postcode.substring(0,2))) ? (Math.random() * 2) : parseFloat(b.dataset.distance);
+                    return distA - distB;
+                }
+                return 0;
+            });
+
+            practitionerCardsGrid.innerHTML = ''; // Clear current cards
+
+            if (filteredCards.length === 0) {
+                noResultsMessage.classList.remove('hidden');
+                practitionerCardsGrid.appendChild(noResultsMessage); // Add it back
+            } else {
+                noResultsMessage.classList.add('hidden');
+                filteredCards.forEach(card => practitionerCardsGrid.appendChild(card));
+            }
+
+            if (activeFilters.length > 0) {
+                appliedFiltersText.textContent = activeFilters.join(', ');
+                filterStatusMessage.classList.remove('hidden');
+            } else {
+                filterStatusMessage.classList.add('hidden');
+                appliedFiltersText.textContent = '';
+            }
+        }
+
+        postcodeInput.addEventListener('input', updateCoachCards);
+        focusSelect.addEventListener('change', updateCoachCards);
+        sortSelect.addEventListener('change', updateCoachCards);
+
+        // Initial call to update cards on page load
+        document.addEventListener('DOMContentLoaded', updateCoachCards);
+    </script>
+</body>
+</html>
