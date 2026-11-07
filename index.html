@@ -8,8 +8,8 @@
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
-          "@type": "MedicalBusiness",
-          "additionalType": ["HealthAndBeautyBusiness", "ProfessionalService", "SportsActivityLocation"],
+          "@type": "ProfessionalService",
+          "additionalType": ["HealthAndBeautyBusiness", "ProfessionalService", "SportsActivityLocation", "MedicalBusiness"],
           "name": "LifelongCoaches.co.uk",
           "url": "https://lifelongcoaches.co.uk",
           "logo": "https://lifelongcoaches.co.uk/assets/images/lifelong-coaches-logo.png",
@@ -44,9 +44,9 @@
             "url": "https://lifelongcoaches.co.uk#search-section"
           },
           "sameAs": [
-            // Add official social media profiles here if applicable
-            // "https://twitter.com/lifelongcoaches",
-            // "https://www.linkedin.com/company/lifelongcoaches"
+            "https://twitter.com/lifelongcoaches_uk",
+            "https://www.linkedin.com/company/lifelongcoaches",
+            "https://www.instagram.com/lifelongcoaches.uk"
           ]
         }
     </script>
@@ -93,6 +93,16 @@
             white-space: nowrap;
             border-width: 0;
         }
+        /* Hamburger Icon is-active styling - CTO Spec item 3 */
+        .mobile-nav-toggle.is-active .hamburger-icon span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .mobile-nav-toggle.is-active .hamburger-icon span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-nav-toggle.is-active .hamburger-icon span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
     </style>
 </head>
 <body class="bg-brand-900 text-brand-50 antialiased selection:bg-gold-500 selection:text-brand-950 font-sans">
@@ -100,8 +110,10 @@
     <!-- Top Luxury Announcement Bar - CTO Spec I.5, I.1 -->
     <div id="announcement-bar" class="bg-brand-950 text-gold-400 px-4 py-3 text-center text-xs tracking-widest uppercase font-medium border-b border-gold-500/20">
         <!-- CTO Spec I.1: Refactor Announcement Bar Button Structure -->
-        <div role="button" tabindex="0" class="block relative w-full text-left cursor-pointer" data-modal-target="apply-practitioner" aria-label="Open application for founding practitioner status">
-            <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
+        <div class="relative w-full flex items-center justify-between"> <!-- New wrapper for layout -->
+            <button type="button" class="flex-grow text-left cursor-pointer pr-10" data-modal-target="apply-practitioner" aria-label="Open application for founding practitioner status">
+                <span>✦ Private Client Invitation: Secure elite home-visit longevity coaching. <strong>2-Month Free Trial for Founding Practitioners</strong>.</span>
+            </button>
             <button id="announcement-dismiss" type="button" class="absolute right-0 top-1/2 -translate-y-1/2 px-2 py-1 text-gold-400 hover:text-white transition z-10" aria-label="Dismiss announcement">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -1646,7 +1658,8 @@
                                     console.error('Modal form submission failed:', errorMessage, { formId: form.id || form.className, data: Array.from(new FormData(form).entries()) }); // CTO Spec III.14
                                 }
 
-                                submitBtn.innerHTML = submitBtn.dataset.originalText || 'Submit'; // Restore original text
+                                // CTO Spec item 4: Consistent Modal Form Submission Button Text Restoration
+                                submitBtn.innerHTML = submitBtn.dataset.originalText; // Restore original text
                                 submitBtn.disabled = false;
                             }
                         });
@@ -1702,6 +1715,8 @@
                 element.addEventListener('click', openModal);
 
                 // For non-button elements with role="button" and tabindex="0", add keyboard activation
+                // This specific check now handles elements that are NOT native buttons.
+                // The announcement bar CTA is now a native <button>, so this block will not apply to it.
                 if (element.tagName !== 'BUTTON' && element.getAttribute('role') === 'button' && element.getAttribute('tabindex') === '0') {
                     element.addEventListener('keydown', (e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
